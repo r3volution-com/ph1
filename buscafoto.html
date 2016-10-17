@@ -4,17 +4,18 @@
         <meta charset="UTF-8">
         <title>WePic - Busqueda avanzada</title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css"/>
-        <link href="css/style3.css" rel="stylesheet" type="text/css"/>
+		<link href="css/avanzada.css" rel="stylesheet" type="text/css"/>
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
 		<nav>
-			<div class="left"><a href="index.html"><img src="images/logo.png" alt="Logo"/></a></div>
+			<div class="left"><a href="principal.html"><img src="images/logo.png" alt="Logo"/></a></div>
 			<div class="clear"></div>
 		</nav>
 		<section>
 			<form id="formulario" action="enviado.php" method="post">
-				<fieldset>
-					<legend><h2>Busqueda de foto</h2></legend>
+				<fieldset class="text">
+					<legend class="text2"><h2>Busqueda de foto</h2></legend>
 					<p>
 						<label for="titulo">T&iacute;tulo</label>
 						<input id="campo1" name="titulo" type="text" />
@@ -27,7 +28,9 @@
 						<label for="pais">Pa&iacute;s</label>
 						<input id="campo3" name="pais" type="text" />
 					</p>
+					<div class="enviar">
 					<input id="campo4" name="buscar" type="submit" value="Buscar" />
+					</div>
 				</fieldset>
 			</form>
 		</section>

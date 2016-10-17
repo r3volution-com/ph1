@@ -1,0 +1,110 @@
+html, body{
+	margin: 0px;
+	padding: 0px;
+}
+body{
+	background: url('../images/fondo.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	font-family: Arial, Helvetica;
+}
+a{
+	text-decoration: none;
+	color: black;
+}
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+.clear {
+	clear: both;
+}
+.box{
+	background-color: rgba(200, 200, 200, 0.5);
+	width: 25%;
+	margin: auto;
+	margin-top: 15%;
+	padding: 5px 20px 20px 20px;
+}
+.box h2{
+	text-align: center;
+	text-shadow: 1px 1px #ffffff;
+}
+.box input[type="text"], input[type="submit"], input[type="date"],select{
+	width: 95%;
+	font-size: 2.5vh;
+	padding: 10px 5px;
+	border: 1px solid lightgrey;
+}
+.box input[type="submit"]{
+	width: 98.5%;
+	padding: 10px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.registro{
+	margin-top: 5%;
+}
+nav {
+	/*background-color: #E57373;*/
+	position: fixed;
+	top:0px;
+	width: 100%;
+	z-index: 10;
+	height: 35px;
+}
+nav .left img {
+	height: 35px;
+	margin: 5px;
+}
+nav i.lefticon {
+  margin-right: 5px;
+	display: inline-block;
+  vertical-align: middle !important;
+  line-height: 1;
+}
+nav .btn{
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 1;
+	padding: 5px;
+	margin: 5px;
+	background-color: #E57373;
+	border-radius: 1px solid black;
+}
+nav input[type="text"] {
+	border: 0px;
+	border-bottom: 2px solid black;
+	border-radius: 2px;
+	padding: 10px;
+	margin: 3px;
+	background-color: rgba(200, 200, 200, 0.6);
+	color: black;
+}
+::-webkit-input-placeholder {
+	color: #444444;
+}
+nav .search-icon {
+	position: relative; 
+	left: -35px;
+	top: 8px;
+	cursor: pointer;
+}
+section{
+	margin-top: 40px;
+}
+footer {
+	text-shadow: 1px 1px #ffffff;
+	position: fixed;
+	bottom: 0px;
+	padding: 10px;
+	width: 100%;
+	background-color: rgba(200, 200, 200, 0.5);
+}
+.hide{
+display:block;
+	height: 0px;
+}

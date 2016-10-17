@@ -1,0 +1,34 @@
+section {
+	margin: auto;
+	margin-top: 50px;
+	width: 80%;
+	background-color: rgba(200, 200, 200, 0.5);
+}
+section h1{
+	margin: 2px;
+	margin-left: 40px;
+}
+.image{
+	margin: 10px;
+	width:50%;
+	display: inline-block;
+}
+.image img{
+	width:100%;
+}
+.info{
+	display: inline-block;
+	width: 45%;	
+	vertical-align:top;
+	padding-left: 15px;
+	font-size:15px;
+}
+.coment{
+	margin-top:15px !important;
+}
+.clear{
+	display: inline-block;
+	width: 50%;
+	font-size:15px;
+	margin-left: 10px;
+}
