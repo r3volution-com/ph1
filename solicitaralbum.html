@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>WePic - Solicitud de envio de album</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css"/>
+        <link href="css/style3.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+		<nav>
+			<div class="left"><a href="index.html"><img src="images/logo.png" alt="Logo"/></a></div>
+		</nav>
+		<section style="text-align: left;">
+			<p>Permite solicitar un album de fotos impreso</p>
+			<form id="formulario" action="enviado.html" method="post">
+				<fieldset>
+					<legend><h2>Formulario de solicitud</h2></legend>
+					<p>
+						<label for="nombre">Nombre completo</label>
+						<input id="nombre" name="nombre" type="text" maxlength="200" required/>
+					</p>
+					<p>
+						<label for="titulo">T&iacute;tulo del album</label>
+						<input id="titulo" name="titulo" type="text" maxlength="200" required/>
+					</p>
+					<p>
+						<label for="adicional">Texto adicional</label>
+						<textarea name="adicional" id="adicional" maxlength="4000"></textarea>
+					</p>
+					<p>
+						<label for="email">Email</label>
+						<input id="email" name="email" type="email" required/>
+					</p>
+					<p>
+						<label for="direccion">Direcci&oacute;n</label>
+						<input id="direccion" name="direccion" type="text" /> 
+						<label for="numero">N&uacute;mero</label>
+						<input id="numero" name="numero" type="number" />
+					</p>
+					<p>
+						<label for="cod">C&oacute;digo Postal</label>
+						<input id="cod" name="cod" type="text" /> 
+						<label for="localidad">Localidad</label>
+						<input id="localidad" name="localidad" type="text" />
+					</p>
+					<p>
+						<label for="prov">Provincia</label>
+						<input id="campo7" name="prov" type="text" /> 
+						<label for="pais">Pais</label>
+						<input id="campo7" name="pais" type="text" />
+					</p>
+					<p>
+						<label for="color">Color de la portada</label>
+						<input type="color" name="color" value="#000000">
+					</p>
+					<p>
+						<label for="numcopias">Resoluci&oacute;n de las fotos</label>
+						<input id="numcopias" name="numcopias" type="number" value="150" step="150" min="150" max="900" required/>
+					</p>
+					<p>
+						<label for="res">N&uacute;mero de copias</label>
+						<input id="res" name="res" type="number" value="1" min="1"/>
+					</p>
+					<p>
+						<label for="album">Album</label>
+						<select id="album" name="album">
+							<option value="1">Tu album 1</option>
+							<option value="2">Tu album 2</option>
+							<option value="3">Tu album 3</option>
+							<option value="4">Tu album 4</option>
+						</select>
+					</p>
+					<p>
+						<label for="date">Fecha de recepci&oacute;n</label>
+						<input type="date" id="date" name="date">
+					</p>
+					<p>
+						<label for="color">&iquest;Desea Impresi&oacute;n a color?</label>
+						<select id="color" name="color">
+							<option value="n" selected>Negro</option>
+							<option value="c">Color</option>
+						</select>
+					</p>
+					<input id="campo9" name="enviar" type="submit" value="Enviar" />
+				</fieldset>
+			</form>
+			<h3>Tarifas</h3>
+			<table>
+				<thead>
+					<tr>
+						<th>Numero de Paginas</th>
+						<th>Resolucion</th>
+						<th>Color de la portada</th>
+						<th>Precio</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td>320ppp</td>
+						<td>Blanco y Negro</td>
+						<td>1&euro;</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>320ppp</td>
+						<td>Color</td>
+						<td>1.20&euro;</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>320ppp</td>
+						<td>Blanco y Negro</td>
+						<td>2&euro;</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>320ppp</td>
+						<td>Color</td>
+						<td>2.40&euro;</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+		<footer>
+			WePic &copy;2016
+		</footer>
+    </body>
+</html>
