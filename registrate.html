@@ -2,35 +2,66 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8">
-        <title>WePic - Busqueda avanzada</title>
+        <title>WePic - Registro</title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css"/>
-        <link href="style.css" rel="stylesheet" type="text/css"/>
+        <link href="css/style3.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <div class="left"><a href="index.html"><img src="logo.png" alt="Logo"/></a></div>
-        <form id="formulario" action="enviado.php" method="post">
-            <fieldset>
-                <legend><h2>Formulario de Registro</h2></legend>
-                    <p><label>Nombre</label>
-                        <input id="campo1" name="nombre" type="text" /></p>
-                    <p><label>Contrase&ntilde;a</label>
-                        <input id="campo2" name="pass" type="text" /></p>
-        			<p><label>Confirmar contrase&ntilde;a</label>
-                        <input id="campo3" name="pass2" type="text" /></p>
-        			<p><label>Email</label>
-                        <input id="campo4" name="email" type="text" /></p>
-        			<p><label>Sexo</label>
-                        <input id="campo5" name="sexo" type="text" /></p>
-                    <p><label>Fecha de nacimiento</label>
-                        <input id="campo6" name="fecha" type="text" /></p>
-        			<p><label>Ciudad</label>
-                        <input id="campo7" name="ciudad" type="text" /></p>
-        			<p><label>Pa&iacute;s de residencia</label>
-                        <input id="campo8" name="pais" type="text" /></p>
-        			<p><label>Foto</label>
-        				<input type="file" name="nombre"></p>
-                    <input id="campo9" name="enviar" type="submit" value="Enviar" />
-            </fieldset>
-        </form>
+		<nav>
+			<div class="left"><a href="index.html"><img src="images/logo.png" alt="Logo"/></a></div>
+		</nav>
+		<section>
+			<form id="formulario" action="index.php" method="post">
+				<fieldset>
+					<legend><h2>Formulario de Registro</h2></legend>
+					<p>
+						<label for="nombre">Nombre</label>
+						<input id="campo1" name="nombre" type="text" />
+					</p>
+					<p>
+						<label for="pass">Contrase&ntilde;a</label>
+						<input id="campo2" name="pass" type="text" />
+					</p>
+					<p>
+						<label for="pass2">Confirmar contrase&ntilde;a</label>
+						<input id="campo3" name="pass2" type="text" />
+					</p>
+					<p>
+						<label for="email">Email</label>
+						<input id="campo4" name="email" type="text" />
+					</p>
+					<p>
+						<label for="sexo">Sexo</label>
+						<select name="sexo">
+							<option value="h">Hombre</option>
+							<option value="m">Mujer</option>
+						</select>
+					</p>
+					<p>
+						<label>Fecha de nacimiento</label>
+						<input id="campo6" name="fecha" type="text" />
+					</p>
+					<p>
+						<label>Ciudad</label>
+						<input id="campo7" name="ciudad" type="text" />
+					</p>
+					<p>
+						<label>Pa&iacute;s de residencia</label>
+						<input id="campo8" name="pais" type="text" />
+					</p>
+					<p>
+						<label>Foto</label>
+						<input type="file" name="nombre">
+					</p>
+					<input id="campo9" name="enviar" type="submit" value="Enviar" />
+				</fieldset>
+			</form>
+			<div class="right">
+				<a href="acceso.html">Conéctate</a>    
+			</div>
+		</section>
+		<footer>
+			WePic &copy;2016
+		</footer>
     </body>
 </html>
