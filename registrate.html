@@ -10,14 +10,14 @@
 		<nav>
 			<div class="left"><img src="images/logo.png" alt="Logo"/></div>
 			<div class="right">
-				<input type="text" placeholder="Buscar"/>
+				<label for="search" class="hide">Buscar</label>
+				<input type="text" placeholder="Buscar" id="search"/>
  				<a href="resultadobusqueda.html" class="search-icon"><i class="material-icons">search</i></a>
 				<a href="index.html" class="btn"><i class="material-icons lefticon">person</i>Conectate</a>
 			</div>
 			<div class="clear"></div>
 		</nav>
 		<section class="box registro">
-			<h2>Formulario de Registro</h2>
 			<form method="POST" action="index.html">
 				<label for="nombre" class="hide">Nombre</label>
 				<input id="nombre" name="nombre" type="text" placeholder="Nombre"/>
@@ -26,7 +26,7 @@
 				<label for="pass2" class="hide">Repetir Contraseña</label>
 				<input id="pass2" name="pass2" type="text" placeholder="Confirmar Contraseña"/>
 				<label for="email" class="hide">E-mail</label>
-				<input id="email" name="email" type="text" placeholder="E-mail"/>
+				<input id="email" name="email" type="email" placeholder="E-mail"/>
 				<label for="ciudad" class="hide">Ciudad</label>
 				<input id="ciudad" name="ciudad" type="text" placeholder="Ciudad"/>
 				<label for="pais" class="hide">Pais</label>

@@ -22,7 +22,7 @@ a{
 	clear: both;
 }
 .box{
-	background-color: rgba(200, 200, 200, 0.5);
+	background-color: rgba(240, 240, 240, 0.7);
 	width: 25%;
 	margin: auto;
 	margin-top: 15%;
@@ -107,4 +107,11 @@ footer {
 .hide{
 display:block;
 	height: 0px;
+}
+
+label.hide{
+	display: block;
+	width: 0px;
+	height: 0px;
+	overflow: hidden;
 }

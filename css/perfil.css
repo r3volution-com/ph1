@@ -1,22 +1,38 @@
 .perfil{
-	position: relative;
 	width:80%;
 	background-color: rgba(200, 200, 200, 0.5);
 	margin:auto;
+	text-align: left;
+	padding: 10px;
 }
-.perfil2{
-	width:40%;
-	margin-left:50px;
-	display: inline-block;
-}
-.perfil3{
-	width: 50%;
+.perfil .cabecera h2{
 	display: inline-block;
 	vertical-align: top;
 }
-.boton{
+.perfil .cabecera img{
+	border-radius: 37px;
+}
+.section-profile{
+	width:49%;
 	display: inline-block;
+	vertical-align: top;
+	min-width: 250px;
+}
+.buttons{
+	margin-top: 20px;
+}
+.boton{
+	/*display: inline-block;*/
+	text-align: center;
 	background-color: rgba(200, 200, 200, 0.5);
-	padding: 5px;
-	margin: 5px;
+	margin: 3px auto;
+	width: 200px;
+}
+.boton a{
+	display: block;
+
+	padding: 15px;
+}
+.boton a:hover{
+	background-color: grey;
 }

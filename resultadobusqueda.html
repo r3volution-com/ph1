@@ -5,20 +5,25 @@
 		<title>WePic - Resultados de busqueda</title>
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css"/>
 		<link href="css/style.css" rel="stylesheet" type="text/css"/>
+		<link href="css/principal.css" rel="stylesheet" type="text/css"/>
 	</head>
 	<body>
 		<nav>
 			<div class="left"><a href="principal.html"><img src="images/logo.png" alt="Logo"/></a></div>
 			<div class="right">
 				<a href="registrate.html">Registrate</a>
+				<a href="index.html">Accede</a>
 			</div>
 			<div class="clear"></div>
 		</nav>
 		<section class="search">
-			<input type="text" placeholder="Buscar" value="Jardin"/>
-			<input type="button" onclick="location.href='resultadobusqueda.html'" value="Buscar"/> - <a href="buscafoto.html"><b>Busqueda avanzada</b></a>
+			<form method="POST" action="resultadobusqueda.html">
+				<label for="search">Buscar</label>
+				<input type="text" placeholder="Buscar" value="Jardin" id="search"/>
+				<input type="submit" value="Buscar"/> - <a href="buscafoto.html"><b>Busqueda avanzada</b></a>
+			</form>
 		</section>
-		<section>
+		<section class="results">
 			<h1>Resultados</h1>
 			<article>
 				<div class="image">
@@ -27,7 +32,7 @@
 				<div class="info">
 					<a href="detalle.html"><h3>Jardin de mi casa</h3></a>
 					<p class="left">29/09/2016- España</p>
-					<p class="right"><a href="perfil.html"><b>Jon Snow</b></a></p>
+					<p class="right author"><a href="perfil.html"><img src="images/fotoperfil.png"/><b>Jon Snow</b></a></p>
 					<p class="clear"></p>
 				</div>
 			</article>
@@ -38,7 +43,7 @@
 				<div class="info">
 					<h3>Jardin con piscina</h3>
 					<p class="left">29/09/2016- España</p>
-					<p class="right"><a href="perfil.html"><b>Jon Snow</b></a></p>
+					<p class="right author"><a href="perfil.html"><img src="images/fotoperfil.png"/><b>Jon Snow</b></a></p>
 					<p class="clear"></p>
 				</div>
 			</article>
