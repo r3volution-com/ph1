@@ -36,3 +36,11 @@
 .boton a:hover{
 	background-color: grey;
 }
+
+@media (max-width: 800px) {
+.section-profile{
+ width: 95%;
+display: block;
+margin: auto;
+}
+}

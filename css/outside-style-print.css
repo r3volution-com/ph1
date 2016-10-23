@@ -3,9 +3,6 @@ html, body{
 	padding: 0px;
 }
 body{
-	background: url('../images/fondo.jpg');
-	background-size: cover;
-	background-repeat: no-repeat;
 	font-family: Arial, Helvetica;
 }
 a{
@@ -22,7 +19,6 @@ a{
 	clear: both;
 }
 .box{
-	background-color: rgba(240, 240, 240, 0.7);
 	width: 25%;
 	margin: auto;
 	margin-top: 15%;
@@ -30,22 +26,19 @@ a{
 }
 .box h2{
 	text-align: center;
-	text-shadow: 1px 1px #ffffff;
 }
 .box input[type="text"], input[type="submit"], input[type="date"], input[type="email"],select{
-	width: 95%;
-	font-size: 2.5vh;
+	width: 93%;
+	font-size: 16px;
 	padding: 10px 5px;
-	border: 1px solid lightgrey;
 }
 select{
-	width: 98%;
+	width: 100%;
 }
 .box input[type="submit"]{
-	width: 98.5%;
-	padding: 10px;
+	width: 100%;
+	padding: 15px;
 	font-weight: bold;
-	cursor: pointer;
 }
 
 .registro{
@@ -76,24 +69,13 @@ nav .btn{
 	padding: 5px;
 	margin: 5px;
 	background-color: #E57373;
+	border-radius: 1px solid black;
 }
 nav input[type="text"] {
-	border: 0px;
-	border-bottom: 2px solid black;
-	border-radius: 2px;
-	padding: 10px;
-	margin: 3px;
-	background-color: rgba(200, 200, 200, 0.6);
-	color: black;
-}
-::-webkit-input-placeholder {
-	color: #444444;
+	display: none;
 }
 nav .search-icon {
-	position: relative; 
-	left: -35px;
-	top: 8px;
-	cursor: pointer;
+	display: none;
 }
 section{
 	margin-top: 40px;
@@ -107,7 +89,7 @@ footer {
 	background-color: rgba(200, 200, 200, 0.5);
 }
 .hide{
-	display:block;
+display:block;
 	height: 0px;
 }
 
@@ -116,16 +98,4 @@ label.hide{
 	width: 0px;
 	height: 0px;
 	overflow: hidden;
-}
-@media (max-width: 800px) {
-	input[type="submit"]{
-		width: 103% !important;
-	}
-	nav .right input{
-		display: none;
-	}
-	nav .right .search-icon{
-		display: none;
-	}
-
 }
