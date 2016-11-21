@@ -9,8 +9,9 @@
 		<a href="buscafoto.php">Búsqueda avanzada</a>
 		<div class="profile dropdown"><img src="images/fotoperfil.png" alt="Perfil"/>
 			<div class="dropdown-content">
+				<p>Hola,XXX</p>
 				<a href="perfil.php">Perfil</a>
-				<a href="index.php">Cerrar sesión</a>
+				<a href="operaciones.php?operacion=logout">Cerrar sesión</a>
 			</div>
 		</div>
 	</div>

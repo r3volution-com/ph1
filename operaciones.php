@@ -1,4 +1,5 @@
 <?php
+session_start();
 	$opt=$_GET["operacion"];
 	switch($opt){
 		case "login":
@@ -8,6 +9,12 @@
 					$user=$_POST["nombre"];
 					$pass=$_POST["pass"];
 					if(($user=="johnsnow" && $pass=="admin") || ($user=="ygritte" && $pass=="admin") || ($user=="test" && $pass=="admin")){
+						if(isset($_POST["remember"]) && ($_POST["remember"]=="Yes" || $_POST["remember"]=="on")){
+							setcookie("remember_user", $user);
+							setcookie("remember_pass", $pass);
+							setcookie("remember_time", time());
+						}
+						$_SESSION["remember"]=$user;
 						header("location: principal.php");
 					}else{
 						header("location: index.php?error");
@@ -38,6 +45,35 @@
 				} else header("location: index.php?error=0");
 			}
 		break;
+		
+		case "logout":
+			if(isset($_SESSION["remember"])){
+				unset($_SESSION["remember"]);
+				if(isset($_COOKIE["remember_user"])){
+					setcookie("remember_user", "", time() -3600);
+					setcookie("remember_pass", "", time() -3600);
+					setcookie("remember_time", "", time() -3600);
+				}
+				header("location: index.php");
+			}
+		break;
+		
+		case "deletecookie":
+			if(isset($_COOKIE["remember_user"])){
+				setcookie("remember_user", "", time() -3600);
+				setcookie("remember_pass", "", time() -3600);
+				setcookie("remember_time", "", time() -3600);
+			}
+			header("location: index.php");
+		break;
+		
+		case "semilogout":
+			if(isset($_SESSION["remember"])){
+				unset($_SESSION["remember"]);
+			}
+			header("location: index.php");
+		break;
+		
 		default:
 		
 		break;

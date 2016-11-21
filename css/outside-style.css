@@ -72,11 +72,21 @@ nav i.lefticon {
   vertical-align: middle !important;
   line-height: 1;
 }
-nav .btn{
+.btn{
 	display: inline-block;
 	vertical-align: middle;
 	line-height: 1;
 	padding: 5px;
+	margin: 5px;
+	background-color: #E57373;
+}
+.btn2{
+	font-size:13px;
+	font-weight: bold;
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 1;
+	padding: 10px;
 	margin: 5px;
 	background-color: #E57373;
 }

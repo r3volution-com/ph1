@@ -2,6 +2,9 @@
 	$title = "Pagina principal";
 	$cssfile = "principal";
 	include("includes/head.php");
+	if(isset($_SESSION["remember"])==false){
+		header("location: index.php");
+	}
 	include("includes/header.php");
 ?>
 <section>

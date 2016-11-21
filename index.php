@@ -1,4 +1,8 @@
 <?php
+	session_start();
+	if(isset($_SESSION["remember"])==true){
+		header("location: principal.php");
+	}
 	if(isset($_GET["q"]) && $_GET["q"]=="login"){
 		$pagina="l";
 	}else if(isset($_GET["q"]) && $_GET["q"]=="registro"){
