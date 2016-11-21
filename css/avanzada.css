@@ -4,6 +4,7 @@
 	margin: auto;
 	margin-top: 5%;
 	padding: 5px 20px 20px 20px;
+	text-align:left;
 }
 .box input[type="text"]{
 	text-align: left;
@@ -15,6 +16,13 @@
 .box input[type="submit"]{
 	margin: 15px;
 	text-align: center;
+	width: 70%;
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.box input[type="data"]{
+	text-align: left;
 	width: 70%;
     padding: 10px;
     font-weight: bold;

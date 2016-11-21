@@ -34,7 +34,7 @@ a{
 	text-align: center;
 	text-shadow: 1px 1px #ffffff;
 }
-.box input[type="text"], input[type="submit"], input[type="date"], input[type="email"],select{
+.box input[type="text"], input[type="submit"], input[type="date"], input[type="email"], input[type="password"],select{
 	width: 95%;
 	font-size: 2vh;
 	padding: 10px;
@@ -130,5 +130,4 @@ label.hide{
 	nav .right .search-icon{
 		display: none;
 	}
-
 }
