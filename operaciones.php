@@ -1,5 +1,8 @@
 <?php
 session_start();
+	include ("includes/config.php");
+	$db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+	$db->set_charset("utf8");
 	$opt=$_GET["operacion"];
 	switch($opt){
 		case "login":
@@ -8,14 +11,21 @@ session_start();
 					//Comprobamos con los del profesor
 					$user=$_POST["nombre"];
 					$pass=$_POST["pass"];
-					if(($user=="johnsnow" && $pass=="admin") || ($user=="ygritte" && $pass=="admin") || ($user=="test" && $pass=="admin")){
-						if(isset($_POST["remember"]) && ($_POST["remember"]=="Yes" || $_POST["remember"]=="on")){
-							setcookie("remember_user", $user);
-							setcookie("remember_pass", $pass);
-							setcookie("remember_time", time());
+					$response = $db->query("SELECT nombre,clave FROM usuarios WHERE nombre='".$db->real_escape_string($user)."'");
+					if($response->num_rows>0){
+						$row=$response->fetch_array();
+						if($row["clave"]==sha1($pass)){
+							if(isset($_POST["remember"]) && ($_POST["remember"]=="Yes" || $_POST["remember"]=="on")){
+								setcookie("remember_user", $user, time()+3600);
+								setcookie("remember_pass", $pass, time()+3600);
+								setcookie("remember_time", time(), time()+3600);
+							}
+							$_SESSION["remember"]=$user;
+							header("location: principal.php");
+							exit;
+						}else{
+							header("location: index.php?error");
 						}
-						$_SESSION["remember"]=$user;
-						header("location: principal.php");
 					}else{
 						header("location: index.php?error");
 					}
