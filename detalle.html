@@ -2,41 +2,52 @@
 <html lang="es">
 	<head>
 		<meta charset="UTF-8">
-		<title>WePic - Pagina Principal</title>
+		<title>WePic - Página Principal</title>
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css"/>
-		<link href="css/style.css" rel="stylesheet" type="text/css"/>
-		<link href="css/detalle.css" rel="stylesheet" type="text/css"/>
+        <link href="css/style.css" rel="stylesheet" type="text/css" media="screen"/>
+        <link href="css/style-print.css" rel="stylesheet" type="text/css" media="print"/>
+		<link href="css/style-accesible.css" rel="alternate stylesheet" type="text/css" title="Accesible"/> 		
+		<link href="css/detalle.css" rel="stylesheet" type="text/css"/>	
 	</head>
 	<body>
 		<nav>
 			<div class="left"><a href="principal.html"><img src="images/logo.png" alt="Logo"/></a></div>
 			<div class="right">
-				<a href="registrate.html">Registrate</a>
+				<label for="search">Buscar</label>
+				<input type="text" placeholder="Buscar" id="search"/>
+				<a href="resultadobusqueda.html" class="search-icon"><i class="material-icons">search</i></a>
+				<a href="buscafoto.html">Búsqueda avanzada</a>
+				<div class="profile dropdown"><img src="images/fotoperfil.png" alt="Perfil"/>
+				  	<div class="dropdown-content">
+						<a href="perfil.html">Perfil</a>
+						<a href="index.html">Cerrar sesión</a>
+				 	</div>
+				</div>
 			</div>
 			<div class="clear"></div>
 		</nav>
 		<section>
 			<div class="cabecera">
-				<h1>Jardin de mi casa</h1>
+				<h1>Jardín de mi casa</h1>
 			</div>
 			<article>
 				<div class="image">
 					<img src="images/01.jpg" width="500" alt="Foto"/>
 					<div class="info">
-						<p class="descripcion">Foto que subi desde el jardin de mi casa, esta bastante bien la verdad, se ven plantas, una mesa, sillas, suelo de madera, paredes, cactus.</p>
+						<p class="descripcion">Foto que subí desde el jardín de mi casa, esta bastante bien la verdad, se ven plantas, una mesa, sillas, suelo de madera, paredes, cactus.</p>
 						<p>29/09/2016 - España</p>
-						<p><b><a href="perfil.html">Jon Snow</b></a></p>
+						<p><b><a href="perfil.html">Jon Snow</a></b></p>
 					</div>
 				</div>
 				<div class="comments">
 					<h1>Comentarios</h1>
-					<p class="coment"><b><a href="perfil.html">Ygritte:</b> You know nothing John Snow</p>
+					<p class="coment"><b><a href="perfil.html">Ygritte:</a></b> You know nothing John Snow</p>
 				</div>
 				<div class="clear"></div>
 			</article>
 		</section>
 		<footer>
-			WePic &copy;2016
+			WePic ©2016
 		</footer>
 	</body>
 </html>

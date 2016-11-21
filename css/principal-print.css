@@ -57,8 +57,3 @@ section.search input[type="submit"]{
 	background-color: lightgrey;
 	border: 0px;
 }
-@media (max-width: 1324px) {
-	article {
-		width: 90%;
-	}
-}

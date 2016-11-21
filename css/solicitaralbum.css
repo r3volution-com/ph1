@@ -1,0 +1,69 @@
+.box{
+	background-color: rgba(240, 240, 240, 0.7);
+	width: 45%;
+	text-align:left;
+	margin: auto;
+	margin-top: 5%;
+	padding: 5px 20px 20px 20px;
+}
+.box input[type="text"]{
+	text-align: left;
+    padding: 10px;
+    font-weight: bold;
+	width: 100%;
+    cursor: pointer;
+}
+.box input[type="submit"]{
+	text-align: center;
+	margin:auto;
+	display: block;
+    padding: 10px;
+	width: 50%;
+    font-weight: bold;
+    cursor: pointer;
+}
+.box input[type="email"]{
+	text-align: left;
+    padding: 10px;
+	width: 100%;
+    font-weight: bold;
+    cursor: pointer;
+}
+.box input[type="number"]{
+	text-align: left;
+    padding: 10px;
+	width: 100%;
+    font-weight: bold;
+    cursor: pointer;
+}
+.content{
+	margin:auto;
+	width: 70%;
+}
+textarea{
+	text-align: left;
+	padding: 10px;
+	width: 100%;
+    font-weight: bold;
+    cursor: pointer;
+}
+.label{
+	display:inline;
+}
+.tabla{
+	margin: auto;
+}
+.tabla tr:nth-child(even){background-color: #f2f2f2;}
+.tabla tr:nth-child(odd){background-color: rgba(200, 200, 200, 0.5)}
+.tabla tr:hover {background-color: #272D4E;}
+.tabla th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #272D4E;
+    color: white;
+}
+h3{
+	margin-top:60px;
+	text-align:center;
+}

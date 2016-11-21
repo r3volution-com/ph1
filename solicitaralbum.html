@@ -2,94 +2,96 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8">
-        <title>WePic - Solicitud de envio de album</title>
+        <title>WePic - Solicitud de envío de album</title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css"/>
-        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+        <link href="css/style.css" rel="stylesheet" type="text/css" media="screen"/>
+        <link href="css/style-print.css" rel="stylesheet" type="text/css" media="print"/>
+		<link href="css/style-accesible.css" rel="alternate stylesheet" type="text/css" title="Accesible"/> 
+		<link href="css/solicitaralbum.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
 		<nav>
 			<div class="left"><a href="principal.html"><img src="images/logo.png" alt="Logo"/></a></div>
+			<div class="right">
+				<label for="search">Buscar</label>
+				<input type="text" placeholder="Buscar" id="search"/>
+				<a href="resultadobusqueda.html" class="search-icon"><i class="material-icons">search</i></a>
+				<a href="buscafoto.html">Búsqueda avanzada</a>
+				<div class="profile dropdown"><img src="images/fotoperfil.png" alt="Perfil"/>
+				  	<div class="dropdown-content">
+						<a href="perfil.html">Perfil</a>
+						<a href="index.html">Cerrar sesión</a>
+				 	</div>
+				</div>
+			</div>
+			<div class="clear"></div>
 		</nav>
-		<section style="text-align: left;">
-			<p>Permite solicitar un album de fotos impreso</p>
-			<form id="formulario" action="enviado.html" method="post">
-				<fieldset>
-					<legend><h2>Formulario de solicitud</h2></legend>
-					<p>
+		<section class="box">
+			<div class="content">
+			<h2>Formulario de solicitud</h2>	
+				<p>Permite solicitar un album de fotos impreso</p>
+				<form id="formulario" action="enviado.html" method="post">
 						<label for="nombre">Nombre completo</label>
-						<input id="nombre" name="nombre" type="text" maxlength="200" required/>
-					</p>
-					<p>
-						<label for="titulo">T&iacute;tulo del album</label>
-						<input id="titulo" name="titulo" type="text" maxlength="200" required/>
-					</p>
-					<p>
+						<input id="nombre" name="nombre" type="text" maxlength="200" required placeholder="Nombre completo"/>
+						<label for="titulo">Título del album</label>
+						<input id="titulo" name="titulo" type="text" maxlength="200" required placeholder="Título del album"/>
 						<label for="adicional">Texto adicional</label>
-						<textarea name="adicional" id="adicional" maxlength="4000"></textarea>
-					</p>
-					<p>
+						<textarea name="adicional" id="adicional" maxlength="4000" placeholder="Texto adicional"></textarea>
 						<label for="email">Email</label>
-						<input id="email" name="email" type="email" required/>
-					</p>
-					<p>
-						<label for="direccion">Direcci&oacute;n</label>
-						<input id="direccion" name="direccion" type="text" /> 
-						<label for="numero">N&uacute;mero</label>
-						<input id="numero" name="numero" type="number" />
-					</p>
-					<p>
-						<label for="cod">C&oacute;digo Postal</label>
-						<input id="cod" name="cod" type="text" /> 
+						<input id="email" name="email" type="email" required placeholder="Email"/>
+						<label for="direccion">Dirección</label>
+						<input id="direccion" name="direccion" type="text" placeholder="Dirección"/> 
+						<label for="numero">Número</label>
+						<input id="numero" name="numero" type="number" placeholder="Número"/>
+						<label for="cod">Código Postal</label>
+						<input id="cod" name="cod" type="text" placeholder="Código Postal"/> 
 						<label for="localidad">Localidad</label>
-						<input id="localidad" name="localidad" type="text" />
-					</p>
-					<p>
+						<input id="localidad" name="localidad" type="text" placeholder="Localidad"/>
 						<label for="prov">Provincia</label>
-						<input id="campo7" name="prov" type="text" /> 
-						<label for="pais">Pais</label>
-						<input id="campo7" name="pais" type="text" />
-					</p>
-					<p>
-						<label for="color">Color de la portada</label>
+						<input id="prov" name="prov" type="text" placeholder="Provincia"/> 
+						<label for="pais">País</label>
+						<input id="pais" name="pais" type="text" placeholder="País"/>
+						<p>
+						<label class="label" for="color">Color de la portada</label>
 						<input type="color" name="color" value="#000000">
-					</p>
-					<p>
-						<label for="numcopias">Resoluci&oacute;n de las fotos</label>
-						<input id="numcopias" name="numcopias" type="number" value="150" step="150" min="150" max="900" required/>
-					</p>
-					<p>
-						<label for="res">N&uacute;mero de copias</label>
-						<input id="res" name="res" type="number" value="1" min="1"/>
-					</p>
-					<p>
-						<label for="album">Album</label>
+						</p>
+						<p>
+						<label class="label" for="numcopias">Resolución de las fotos</label>
+						<input id="numcopias" name="numcopias" type="number" value="150" step="150" min="150" max="900" required placeholder="Resolución de las fotos"/>
+						</p>
+						<p>
+						<label class="label" for="res">Número de copias</label>
+						<input id="res" name="res" type="number" value="1" min="1" placeholder="Número de copias"/>
+						</p>
+						<p>
+						<label class="label" for="album">Album</label>
 						<select id="album" name="album">
 							<option value="1">Tu album 1</option>
 							<option value="2">Tu album 2</option>
 							<option value="3">Tu album 3</option>
 							<option value="4">Tu album 4</option>
 						</select>
-					</p>
-					<p>
-						<label for="date">Fecha de recepci&oacute;n</label>
+</p>
+						<p>
+						<label class="label" for="date">Fecha de recepción</label>
 						<input type="date" id="date" name="date">
-					</p>
-					<p>
-						<label for="color">&iquest;Desea Impresi&oacute;n a color?</label>
+						</p>
+						<p>
+						<label class="label" for="color">¿Desea Impresión a color?</label>
 						<select id="color" name="color">
 							<option value="n" selected>Negro</option>
 							<option value="c">Color</option>
 						</select>
-					</p>
+						</p>
 					<input id="campo9" name="enviar" type="submit" value="Enviar" />
-				</fieldset>
-			</form>
+				</form>
+			</div>
 			<h3>Tarifas</h3>
-			<table>
+			<table class="tabla">
 				<thead>
 					<tr>
-						<th>Numero de Paginas</th>
-						<th>Resolucion</th>
+						<th>Número de Páginas</th>
+						<th>Resolución</th>
 						<th>Color de la portada</th>
 						<th>Precio</th>
 					</tr>
@@ -99,31 +101,31 @@
 						<td>1</td>
 						<td>320ppp</td>
 						<td>Blanco y Negro</td>
-						<td>1&euro;</td>
+						<td>1€</td>
 					</tr>
 					<tr>
 						<td>1</td>
 						<td>320ppp</td>
 						<td>Color</td>
-						<td>1.20&euro;</td>
+						<td>1.20€</td>
 					</tr>
 					<tr>
 						<td>2</td>
 						<td>320ppp</td>
 						<td>Blanco y Negro</td>
-						<td>2&euro;</td>
+						<td>2€</td>
 					</tr>
 					<tr>
 						<td>2</td>
 						<td>320ppp</td>
 						<td>Color</td>
-						<td>2.40&euro;</td>
+						<td>2.40€</td>
 					</tr>
 				</tbody>
 			</table>
 		</section>
 		<footer>
-			WePic &copy;2016
+			WePic ©2016
 		</footer>
     </body>
 </html>

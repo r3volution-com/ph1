@@ -12,6 +12,9 @@ a{
 	text-decoration: none;
 	color: black;
 }
+a:focus, input:focus, select:focus{
+	outline: 2px solid black;
+}
 .left {
 	float: left;
 }
@@ -22,7 +25,7 @@ a{
 	clear: both;
 }
 .box{
-	background-color: rgba(240, 240, 240, 0.7);
+	background-color: rgba(240, 240, 240, 1);
 	width: 25%;
 	margin: auto;
 	margin-top: 15%;
@@ -30,20 +33,20 @@ a{
 	text-align: center;
 }
 .box h2{
-	margin-top: 5px;
 	text-align: center;
 	text-shadow: 1px 1px #ffffff;
+	font-size: 2em;
 }
 .box input[type="text"], input[type="submit"], input[type="date"], input[type="email"],select{
 	width: 95%;
-	font-size: 2vh;
+	font-size: 2em;
 	padding: 10px;
 	border: 1px solid lightgrey;
 }
 .box input[type="submit"]{
 	width: 98%;
 	padding: 10px;
-	font-size: 2vh;
+	font-size: 2em;
 	font-weight: bold;
 	cursor: pointer;
 }
@@ -63,7 +66,7 @@ nav {
 	height: 35px;
 }
 nav .left img {
-	height: 35px;
+	height: 55px;
 	margin: 5px;
 }
 nav i.lefticon {
@@ -79,6 +82,7 @@ nav .btn{
 	padding: 5px;
 	margin: 5px;
 	background-color: #E57373;
+	font-size: 2em;
 }
 nav input[type="text"] {
 	border: 0px;
@@ -86,7 +90,8 @@ nav input[type="text"] {
 	border-radius: 2px;
 	padding: 10px;
 	margin: 3px;
-	background-color: rgba(200, 200, 200, 0.6);
+	background-color: rgba(200, 200, 200,1);
+	font-size: 1.2em;
 	color: black;
 }
 ::-webkit-input-placeholder {
@@ -107,7 +112,8 @@ footer {
 	bottom: 0px;
 	padding: 10px;
 	width: 100%;
-	background-color: rgba(200, 200, 200, 0.5);
+	background-color: rgba(200, 200, 200, 1);
+	font-size: 2em;
 }
 .hide{
 	display:block;

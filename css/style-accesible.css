@@ -2,6 +2,7 @@
 html, body{
 	margin: 0px;
 	padding: 0px;
+	font-size: 1.1em;
 }
 body{
 	font-family: Arial, Helvetica;
@@ -10,6 +11,9 @@ body{
 a{
 	text-decoration: none;
 	color: black;
+}
+a:focus, input:focus, select:focus{
+	outline: 3px solid black;
 }
 /*Navbar*/
 nav {
@@ -54,6 +58,7 @@ nav input[type="text"] {
 	border-bottom: 1px solid black;
 	border-radius: 3px;
 	padding: 3px;
+	font-size: 1.2em;
 }
 nav .search-icon {
 	position: relative; 
@@ -111,7 +116,7 @@ section {
 	margin: auto;
 	margin-top: 70px;
 	width: 80%;
-	background-color: rgba(225, 225, 225, 0.6);
+	background-color: rgba(200, 200, 200, 0.5);
 	padding: 5px;
 	text-align:center;
 }

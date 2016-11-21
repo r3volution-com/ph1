@@ -4,9 +4,10 @@
         <meta charset="UTF-8">
         <title>WePic - Control de acceso</title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css"/>
-        <link href="css/outside-style.css" rel="stylesheet" type="text/css" media="screen"/>
-        <link href="css/outside-style-print.css" rel="stylesheet" type="text/css" media="print"/>
-    </head>
+		<link href="css/outside-style.css" rel="stylesheet" type="text/css" media="screen"/>
+        <link href="css/outside-style-print.css" rel="stylesheet" type="text/css" media="print"/>    
+		<link href="css/style-accesible.css" rel="alternate stylesheet" type="text/css" title="Accesible"/> 
+		</head>
     <body>
 		<nav>
 			<div class="left"><img src="images/logo.png" alt="Logo"/></div>
@@ -14,11 +15,12 @@
 				<label for="search" class="hide">Buscar</label>
 				<input type="text" placeholder="Buscar" id="search"/>
  				<a href="resultadobusqueda.html" class="search-icon"><i class="material-icons">search</i></a>
-				<a href="index.html" class="btn"><i class="material-icons lefticon">person</i>Conectate</a>
+				<a href="index.html" class="btn"><i class="material-icons lefticon">person</i>Conéctate</a>
 			</div>
 			<div class="clear"></div>
 		</nav>
 		<section class="box registro">
+		<h3>Regístrate</h3>
 			<form method="POST" action="index.html">
 				<label for="nombre" class="hide">Nombre</label>
 				<input id="nombre" name="nombre" type="text" placeholder="Nombre"/>
@@ -30,18 +32,18 @@
 				<input id="email" name="email" type="email" placeholder="E-mail"/>
 				<label for="ciudad" class="hide">Ciudad</label>
 				<input id="ciudad" name="ciudad" type="text" placeholder="Ciudad"/>
-				<label for="pais" class="hide">Pais</label>
+				<label for="pais" class="hide">País</label>
 				<input id="pais" name="pais" type="text" placeholder="Pais"/>
 				<p>
 				<label for="sexo">Sexo</label>
-				<select name="sexo">
+				<select name="sexo" id="sexo">
 					<option value="h">Hombre</option>
 					<option value="m">Mujer</option>
 				</select>
 				</p>
 				<p>
 				<label for="fecha">Fecha de nacimiento</label>
-				<input id="fecha" name="fecha" type="date" placeholder="Fecha de Nacimiento" /><br>
+				<input id="fecha" name="fecha" type="date"/><br>
 				</p>
 				<p>
 				<label for="foto">Foto</label>
@@ -51,7 +53,7 @@
 			</form>
 		</section>
 		<footer>
-			WePic &copy;2016
+			WePic ©2016
 		</footer>
     </body>
 </html>
