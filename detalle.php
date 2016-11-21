@@ -1,23 +1,27 @@
 <?php 
+	$title = "Detalle de foto";
+	$cssfile = "detalle";
+	include("includes/head.php");
+	if(isset($_SESSION["remember"])==false){
+		header("location: index.php");
+	}
 	if (isset($_GET["id"])){
 		$id = $_GET["id"];
 		if(is_numeric($id)){
 			if($id>=0){
-				if (($id % 2) == 0){ //par
-					$titulo = "Jardín de mi casa";
-					$foto = "01.jpg";
-					$descripcion = "Foto que subí desde el jardín de mi casa, esta bastante bien la verdad, se ven plantas, una mesa, sillas, suelo de madera, paredes, cactus.";
-					$fecha = "29/09/2016";
-					$pais = "España";
-					$autor = "Jon Snow";
-				} else {
-					$titulo = "Jardín de mi comunidad";
-					$foto = "02.jpg";
-					$descripcion = "Foto subí jardín casa, estar bien, ven plantas, mesa, sillas, suelo de madera, paredes, cactus.";
-					$fecha = "22/09/2016";
-					$pais = "España";
-					$autor = "Ygritte";
-				}
+				$response = $db->query("SELECT id, titulo, descripcion, fecha, idAlbum, idPais, ruta FROM fotos WHERE id=".$id." ORDER BY fechaSubida DESC");
+				$foto = $response->fetch_array();
+				$titulo = $foto["titulo"];
+				$ruta = $foto["ruta"];
+				$descripcion = $foto["descripcion"];
+				$fecha = $foto["fecha"];
+				$r_pais = $db->query("SELECT nombre FROM paises WHERE id=".$foto["idPais"]);
+				$row_pais = $r_pais->fetch_array();
+				$pais = $row_pais["nombre"];
+				$r_usuario = $db->query("SELECT * FROM usuarios WHERE id=(SELECT idUsuario FROM albumes WHERE id=".$foto["idAlbum"].")");
+				$row_usuario = $r_pais->fetch_array();
+				$id_autor = $row_usuario["id"];
+				$autor = $row_usuario["nombre"];
 			}else{
 				$error=true;
 			}
@@ -26,12 +30,6 @@
 			$error=true;
 		}
 	} 
-	$title = "Detalle de foto";
-	$cssfile = "detalle";
-	include("includes/head.php");
-	if(isset($_SESSION["remember"])==false){
-		header("location: index.php");
-	}
 	include("includes/header.php");
 ?>
 <section>
@@ -40,11 +38,11 @@
 	</div>
 	<article>
 		<div class="image">
-			<img src="images/<?php echo $foto; ?>" width="500" alt="Foto"/>
+			<img src="images/<?php echo $ruta; ?>" width="500" alt="Foto"/>
 			<div class="info">
 				<p class="descripcion"><?php echo $descripcion;?></p>
 				<p><?php echo $fecha; ?> - <?php echo $pais; ?></p>
-				<p><b><a href="perfil.php"><?php echo $autor; ?></a></b></p>
+				<p><b><a href="perfil.php?id=<?php echo $id_autor; ?>"><?php echo $autor; ?></a></b></p>
 			</div>
 		</div>
 		<div class="comments">

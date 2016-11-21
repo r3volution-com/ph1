@@ -1,10 +1,11 @@
 html, body{
 	margin: 0px;
 	padding: 0px;
+	height: 100%;
 }
 body{
 	background: url('../images/fondo.jpg');
-	background-size: cover;
+	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	font-family: Arial, Helvetica;
 }
@@ -103,10 +104,16 @@ nav input[type="text"] {
 	color: #444444;
 }
 nav .search-icon {
-	position: relative; 
-	left: -35px;
-	top: 8px;
+	border-radius: 10px;
+	width: 25px;
+	text-align: center;
+	display: inline-block;
 	cursor: pointer;
+	font-size: 18px;
+	padding: 3px;
+}
+form{
+	display: inline-block;
 }
 section{
 	margin-top: 40px;

@@ -20,6 +20,7 @@ if(isset($_POST)){
 		} else header("location: index.php?q=registro&error=1");
 	}
 }
+$response = $db->query("SELECT id,nombre FROM paises ORDER BY nombre");
 ?>
 <section class="box registro">
 	<h3>Regístrate</h3>
@@ -54,19 +55,22 @@ if(isset($_POST)){
 		<input id="email" name="email" type="email" placeholder="E-mail" <?php if (isset($email)) echo "value='".$email."' disabled"; ?> required/>
 		<label for="ciudad" class="hide">Ciudad</label>
 		<input id="ciudad" name="ciudad" type="text" placeholder="Ciudad" <?php if (isset($ciudad)) echo "value='".$ciudad."' disabled"; ?> />
-		<label for="pais" class="hide">País</label>
-		<input id="pais" name="pais" type="text" placeholder="Pais" <?php if (isset($pais)) echo "value='".$pais."' disabled"; ?> />
-		<p>
+		<label for="pais">País</label>
+		<select id="pais" name="pais">
+		<option value="0">Elija un país</option>
+		<?php
+			while($row=$response->fetch_array()){
+				echo '<option value="'.$row["id"].'">'.$row["nombre"].'</option>';
+			}
+		?>
+		</select>
 		<label for="sexo">Sexo</label>
 		<select name="sexo" id="sexo">
 			<option value="h">Hombre</option>
 			<option value="m">Mujer</option>
 		</select>
-		</p>
-		<p>
 		<label for="fecha">Fecha de nacimiento</label>
 		<input id="fecha" name="fecha" type="date" <?php if (isset($fecha)) echo "value='".$foto."' disabled"; ?>/><br>
-		</p>
 		<p>
 		<label for="foto">Foto</label>
 		<input type="file" id="foto" name="foto">

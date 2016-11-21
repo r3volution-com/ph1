@@ -5,7 +5,9 @@
 	if(isset($_SESSION["remember"])==false){
 		header("location: index.php");
 	}
-	include("includes/header.php");
+	include("includes/header.php"); 
+	$response = $db->query("SELECT id,titulo FROM albumes ORDER BY titulo");
+	$response2 = $db->query("SELECT id,nombre FROM paises ORDER BY nombre");
 ?>
 <section class="box">
 	<div class="content">
@@ -25,13 +27,20 @@
 				<label for="numero">Número</label>
 				<input id="numero" name="numero" type="number" placeholder="Número"/>
 				<label for="cod">Código Postal</label>
-				<input id="cod" name="cod" type="text" placeholder="Código Postal"/> 
+				<input id="cod" name="cod" type="number" placeholder="Código Postal"/> 
 				<label for="localidad">Localidad</label>
 				<input id="localidad" name="localidad" type="text" placeholder="Localidad"/>
 				<label for="prov">Provincia</label>
 				<input id="prov" name="prov" type="text" placeholder="Provincia"/> 
 				<label for="pais">País</label>
-				<input id="pais" name="pais" type="text" placeholder="País"/>
+				<select id="pais" name="pais" class="pais">
+					<option value="0">Elija un país</option>
+					<?php
+						while($row=$response2->fetch_array()){
+							echo '<option value="'.$row["id"].'">'.$row["nombre"].'</option>';
+						}
+					?>
+				</select>
 				<p>
 				<label class="label" for="color">Color de la portada</label>
 				<input type="color" name="color" value="#000000">
@@ -45,12 +54,13 @@
 				<input id="numcopias" name="numcopias" type="number" value="1" min="1" placeholder="Número de copias"/>
 				</p>
 				<p>
-				<label class="label" for="album">Album</label>
-				<select id="album" name="album">
-					<option value="1">Tu album 1</option>
-					<option value="2">Tu album 2</option>
-					<option value="3">Tu album 3</option>
-					<option value="4">Tu album 4</option>
+				<label class="label" for="album">Album</label><br>
+				<select id="album" name="album" class="pais">
+					<?php
+						while($row=$response->fetch_array()){
+							echo '<option value="'.$row["id"].'">'.$row["titulo"].'</option>';
+						}
+					?>
 				</select>
 </p>
 				<p>
@@ -58,8 +68,8 @@
 				<input type="date" id="date" name="date">
 				</p>
 				<p>
-				<label class="label" for="colored">¿Desea Impresión a color?</label>
-				<select id="colored" name="colored">
+				<label class="label" for="colored">¿Desea Impresión a color?</label><br>
+				<select id="colored" name="colored" class="pais">
 					<option value="1" selected>Negro</option>
 					<option value="2">Color</option>
 				</select>

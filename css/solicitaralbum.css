@@ -36,6 +36,13 @@
     font-weight: bold;
     cursor: pointer;
 }
+.box input[type="date"]{
+	text-align: left;
+    padding: 10px;
+	width: 100%;
+    font-weight: bold;
+    cursor: pointer;
+}
 .content{
 	margin:auto;
 	width: 70%;
@@ -55,7 +62,7 @@ textarea{
 }
 .tabla tr:nth-child(even){background-color: #f2f2f2;}
 .tabla tr:nth-child(odd){background-color: rgba(200, 200, 200, 0.5)}
-.tabla tr:hover {background-color: #272D4E;}
+.tabla tr:hover {background-color: #272D4E;color:white;}
 .tabla th {
     padding-top: 12px;
     padding-bottom: 12px;
@@ -70,4 +77,8 @@ h3{
 .rediv{
 	width: 40%;
 	margin: auto;
+}
+select{
+	padding: 10px;
+	width: 105.7%;
 }

@@ -6,18 +6,26 @@
 		header("location: index.php");
 	}
 	include("includes/header.php");
+	$response = $db->query("SELECT id,nombre FROM paises ORDER BY nombre");
 ?>
 <section class="box">
 	<div class="content">
 	<h2>Formulario de creación</h2>	
 		<p>Permite crear un álbum de fotos</p>
-		<form id="formulario" action="operaciones.php?op=crearalbum" method="post">
+		<form id="formulario" action="operaciones.php?operacion=crearalbum" method="post">
 				<label for="titulo">Título del álbum</label>
 				<input id="titulo" name="titulo" type="text" maxlength="200" required placeholder="Título del álbum"/>
 				<label for="descrip">Descripción</label>
 				<textarea name="descrip" id="descrip" maxlength="4000" placeholder="Descripción"></textarea>
 				<label for="pais">País</label>
-				<input id="pais" name="pais" type="text" placeholder="País"/>
+				<select id="pais" name="pais">
+					<option value="0">Elija un país</option>
+					<?php
+						while($row=$response->fetch_array()){
+							echo '<option value="'.$row["id"].'">'.$row["nombre"].'</option>';
+						}
+					?>
+				</select>
 				<p>
 				<label class="label" for="date">Fecha</label>
 				<input type="date" id="date" name="date">

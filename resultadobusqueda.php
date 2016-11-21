@@ -3,38 +3,67 @@
 	$cssfile = "principal";
 	include("includes/head.php");
 	include("includes/header.php");
+	if(isset($_GET["search"])) $search = $_GET["search"];
+	else $search = "";
+	if (isset($_GET["pais"]) && $_GET["pais"]) $pais = $_GET["pais"];
+	else $pais = 0;
+	if (isset($_GET["fecha"]) && $_GET["fecha"]) $fecha= date("Y-m-d", strtotime($_GET['fecha']));
+	else $fecha = "";
+	$extra = "WHERE 1=1";
+	if ($search) $extra .= " AND titulo LIKE '%".$search."%'";
+	if ($pais) $extra .= " AND idPais=".$pais;
+	if ($fecha) $extra .= " AND fecha='".$fecha."'";
+	if(!$search && !$fecha && !$pais){
+		$extra .= " LIMIT 10";
+	}
+	$query = "SELECT id, titulo, descripcion, fecha, idAlbum, idPais, ruta FROM fotos $extra ORDER BY fechaSubida DESC";
+	$response = $db->query($query);
 ?>
 <section class="search">
-	<form method="POST" action="resultadobusqueda.php">
+	<form method="GET" action="resultadobusqueda.php">
 		<label for="search">Buscar</label>
-		<input type="text" placeholder="Buscar" value="<?php if(isset($_GET["search"]))echo $_GET["search"];?> " id="search"/>
+		<input type="text" placeholder="Buscar" value="<?php echo $search;?>" name="search" id="search"/>
+		<?php if ($pais != 0){?>
+			<select id="pais" name="pais" disabled>
+				<option value="0">Elija un país</option>
+				<?php
+					$res_pais = $db->query("SELECT id,nombre FROM paises ORDER BY nombre");
+					while($row=$res_pais->fetch_array()){
+						$selected = "";
+						if ($row["id"] == $pais) $selected = "selected";
+						echo '<option '.$selected.' value="'.$row["id"].'">'.$row["nombre"].'</option>';
+					}
+				?>
+			</select>
+		<?php } ?>
+		<?php if ($fecha) echo '<input id="fecha" name="fecha" type="date" value="'.$fecha.'" disabled/>'; ?>
 		<input type="submit" value="Buscar"/> - <a href="buscafoto.php"><b>Búsqueda avanzada</b></a>
 	</form>
 </section>
 <section class="results">
 	<h1>Resultados</h1>
+	<?php 
+	if($response->num_rows<=0) echo "No hay fotos"; 
+	else { 
+		while ($row = $response->fetch_array()){ 
+			$r_pais = $db->query("SELECT nombre FROM paises WHERE id=".$row["idPais"]);
+			$pais = $r_pais->fetch_array();
+			$r_usuario = $db->query("SELECT * FROM usuarios WHERE id=(SELECT idUsuario FROM albumes WHERE id=".$row["idAlbum"].")");
+			$usuario = $r_usuario->fetch_array();
+	?>
 	<article>
 		<div class="image">
-			<img src="images/01.jpg" width="800" alt="Foto"/>
+			<a href="detalle.php?id=<?php echo $row["id"]; ?>"><img src="images/<?php echo $row["ruta"]; ?>" width="800" alt="Foto"/></a>
 		</div>
 		<div class="info">
-			<a href="detalle.php"><h3>Jardín de mi casa</h3></a>
-			<p class="left">29/09/2016- España</p>
-			<p class="right author"><a href="perfil.php"><img src="images/fotoperfil.png" alt="Perfil"/><b>Jon Snow</b></a></p>
+			<a href="detalle.php?id=<?php echo $row["id"]; ?>"><h3><?php echo $row["titulo"]; ?></h3></a>
+			<p class="left"><?php echo $row["fecha"]; ?> - <?php echo $pais["nombre"]; ?></p>
+			<p class="right author"><a href="perfil.php?id=<?php echo $usuario["id"]; ?>"><img src="images/<?php echo $usuario["foto"]; ?>" alt="Perfil"/><b><?php echo $usuario["nombre"]; ?></b></a></p>
 			<p class="clear"></p>
 		</div>
 	</article>
-	<article>
-		<div class="image">
-			<img src="images/02.jpg" width="800" alt="Foto"/>
-		</div>
-		<div class="info">
-			<h3>Jardin con piscina</h3>
-			<p class="left">29/09/2016- España</p>
-			<p class="right author"><a href="perfil.php"><img src="images/fotoperfil.png" alt="Perfil"/><b>Jon Snow</b></a></p>
-			<p class="clear"></p>
-		</div>
-	</article>
+<?php }
+} ?>
 </section>
 <?php
 	include("includes/footer.php");

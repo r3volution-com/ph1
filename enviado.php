@@ -4,11 +4,12 @@
 	include("includes/head.php");
 	if(isset($_SESSION["remember"])==false){
 		header("location: index.php");
+		exit;
 	}
-	include("includes/header.php");
-?>
-<section class="box">
-<?php
+	if(!isset($_POST["nombre"])){
+		header("location: index.php");
+		exit;
+	}
 	$nombre = $_POST["nombre"];
 	$titulo = $_POST["titulo"];
 	$adicional = $_POST["adicional"];
@@ -26,7 +27,10 @@
 	$date = $_POST["date"];
 	$colored = $_POST["colored"];
 	$error = false;
-	
+	include("includes/header.php");
+?>
+<section class="box">
+<?php
 	if(strlen($nombre)>51){
 		echo"Se ha excedido el tamaño máximo de campo <b>Nombre</b>";
 		$error=true;

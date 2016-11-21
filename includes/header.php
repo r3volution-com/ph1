@@ -7,13 +7,15 @@
 		</form>
 		<a href="resultadobusqueda.php" class="search-icon"><i class="material-icons">search</i></a>
 		<a href="buscafoto.php">Búsqueda avanzada</a>
-		<div class="profile dropdown"><img src="images/fotoperfil.png" alt="Perfil"/>
+		<?php if (isset($_SESSION["remember"])) { ?>
+		<div class="profile dropdown"><img src="images/<?php echo $_SESSION["remember"]["foto"];?>" alt="Perfil"/>
 			<div class="dropdown-content">
-				<p>Hola, <?php echo $_SESSION["remember"];?></p>
+				<p>Hola, <?php echo $_SESSION["remember"]["nombre"];?></p>
 				<a href="perfil.php">Perfil</a>
 				<a href="operaciones.php?operacion=logout">Cerrar sesión</a>
 			</div>
 		</div>
+		<?php } ?>
 	</div>
 	<div class="clear"></div>
 </nav>

@@ -3,9 +3,14 @@ html, body{
 	margin: 0px;
 	padding: 0px;
 }
+html{
+	position: relative;	
+	min-height: 100%;
+}
 body{
 	font-family: Arial, Helvetica;
 	background-color: #272D4E;
+	margin: 0 0 35px 0;
 }
 a{
 	text-decoration: none;
@@ -132,11 +137,10 @@ section h1{
 }
 /*Footer*/
 footer {
-  position: relative;
-  height: 35px;
+	position: absolute;
+	bottom: 0px;
+  height: 25px;
   background-color: rgba(200, 200, 200, 0.5);
-  margin-top: 10px;   
-  bottom: 0px;
   border-top: 1px solid grey;
   padding: 10px 0px 0px 10px;
   width:99%

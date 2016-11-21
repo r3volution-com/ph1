@@ -4,7 +4,7 @@
 	margin: auto;
 	margin-top: 5%;
 	padding: 5px 20px 20px 20px;
-	text-align:left;
+	text-align:center;
 }
 .box input[type="text"]{
 	text-align: left;
@@ -21,6 +21,18 @@
     cursor: pointer;
 }
 .box input[type="date"]{
+	text-align: left;
+	width: 70%;
+    padding: 10px;
+    font-weight: bold;
+}
+.box input[type="email"]{
+	text-align: left;
+	width: 70%;
+    padding: 10px;
+    font-weight: bold;
+}
+.box input[type="password"]{
 	text-align: left;
 	width: 70%;
     padding: 10px;

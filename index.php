@@ -1,7 +1,10 @@
 <?php
 	session_start();
+	include ("includes/config.php");
+	
 	if(isset($_SESSION["remember"])==true){
 		header("location: principal.php");
+		exit;
 	}
 	if(isset($_GET["q"]) && $_GET["q"]=="login"){
 		$pagina="l";
@@ -10,6 +13,8 @@
 	}else{
 		$pagina="l";
 	}
+	$db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+	$db->set_charset("utf8");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -36,9 +41,11 @@
 		<nav>
 			<div class="left"><img src="images/logo.png" alt="Logo"/></div>
 			<div class="right">
-				<label for="search" class="hide">Buscar</label>
-				<input type="text" placeholder="Buscar" id="search"/>
- 				<a href="resultadobusqueda.php" class="search-icon"><i class="material-icons">search</i></a>
+				<form method="GET" action="resultadobusqueda.php">
+					<label for="search" class="hide">Buscar</label>
+					<input type="text" placeholder="Buscar" name="search" id="search"/>
+					<input class="material-icons search-icon" type="submit" value="search"/>
+				</form>
 				<?php
 					if($pagina=="l"){
 				?>
@@ -65,3 +72,6 @@
 		</footer>
 	</body>
 </html>
+<?php
+	$db->close();
+?>

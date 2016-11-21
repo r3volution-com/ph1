@@ -1,0 +1,67 @@
+.image{
+	margin-top: 5px;
+	margin-left: 5px;
+	width:30%;
+	display: inline-block;
+}
+.info{
+	width: 68%;
+	display: inline-block;
+	vertical-align:top;
+	margin-top: 5px;
+	text-align:right;
+	height:100%;
+}
+.image img{
+	width:100%;
+}
+div.titulo{
+	font-size:1.5em;
+	font-weight: bold;
+	text-align: left;
+	width:100%;
+	display: inline-block;
+	margin-left: 10px;
+}
+div.descripcion{
+	margin-top:20px;
+	margin-left: 10px;
+	font-size:1em;
+	text-align: left;
+	width:100%;
+	display: inline-block;
+}
+div.fecha{
+	font-weight: bold;
+	margin-right:10px;
+	margin-top:70px;
+	font-size:1em;
+	vertical-align:bottom;
+	width:20%;
+	display: inline-block;
+	position: absolute;
+	bottom:0px;
+	right: 0px;
+}
+div.pais{
+	font-weight: bold;
+	font-size:1em;
+	vertical-align:bottom;
+	width:20%;
+	display: inline-block;
+	position: absolute;
+	bottom:0px;
+	left: 31%;
+	margin-left: 10px;
+	text-align: left;
+}
+div.aux{
+	position: relative;
+}
+article {
+	margin: auto;
+	margin-top: 20px;
+	width: 70%;
+	background-color: rgba(225, 225, 225, 0.6);
+	text-align: left;
+}
