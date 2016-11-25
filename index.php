@@ -41,7 +41,7 @@
 		<nav>
 			<div class="left"><img src="images/logo.png" alt="Logo"/></div>
 			<div class="right">
-				<form method="GET" action="resultadobusqueda.php">
+				<form method="GET" action="resultadobusqueda.php" style="display: inline-block;">
 					<label for="search" class="hide">Buscar</label>
 					<input type="text" placeholder="Buscar" name="search" id="search"/>
 					<input class="material-icons search-icon" type="submit" value="search"/>

@@ -46,15 +46,15 @@ $response = $db->query("SELECT id,nombre FROM paises ORDER BY nombre");
 	} ?>
 	<form method="POST" action="index.php?q=registro">
 		<label for="nombre" class="hide">Nombre</label>
-		<input id="nombre" name="nombre" type="text" placeholder="Nombre" <?php if (isset($user)) echo "value='".$user."' disabled"; ?> required/>
+		<input id="nombre" name="nombre" type="text" minlength="3" maxlength="15" placeholder="Nombre" <?php if (isset($user)) echo "value='".$user."' disabled"; ?> required/>
 		<label for="pass" class="hide">Contraseña</label>
-		<input id="pass" name="pass" type="password" placeholder="Contraseña" required/>
+		<input id="pass" name="pass" type="password" minlength="6" maxlength="15" placeholder="Contraseña" required/>
 		<label for="pass2" class="hide">Repetir Contraseña</label>
-		<input id="pass2" name="pass2" type="password" placeholder="Confirmar Contraseña" required/>
+		<input id="pass2" name="pass2" type="password" minlength="6" maxlength="15" placeholder="Confirmar Contraseña" required/>
 		<label for="email" class="hide">E-mail</label>
-		<input id="email" name="email" type="email" placeholder="E-mail" <?php if (isset($email)) echo "value='".$email."' disabled"; ?> required/>
+		<input id="email" name="email" type="email" minlength="8" maxlength="250" placeholder="E-mail" <?php if (isset($email)) echo "value='".$email."' disabled"; ?> required/>
 		<label for="ciudad" class="hide">Ciudad</label>
-		<input id="ciudad" name="ciudad" type="text" placeholder="Ciudad" <?php if (isset($ciudad)) echo "value='".$ciudad."' disabled"; ?> />
+		<input id="ciudad" name="ciudad" type="text" maxlength="250" placeholder="Ciudad" <?php if (isset($ciudad)) echo "value='".$ciudad."' disabled"; ?> />
 		<label for="pais">País</label>
 		<select id="pais" name="pais">
 		<option value="0">Elija un país</option>

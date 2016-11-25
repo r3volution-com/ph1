@@ -23,9 +23,6 @@
 		</div>
 		<div class="section-profile buttons">
 			<div class="boton">
-				<a href="subefoto.php">Subir foto</a>
-			</div>
-			<div class="boton">
 				<a href="listalbumes.php">Visualizar album</a>
 			</div>
 			<div class="boton">

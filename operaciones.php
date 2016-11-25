@@ -42,19 +42,48 @@ session_start();
 					//Comprobamos con los del profesor
 					$user   = $_POST["nombre"];
 					$pass   = $_POST["pass"];
+					$pass2  = $_POST["pass2"];
 					$email  = $_POST["email"];
 					$ciudad = $_POST["ciudad"];
 					$pais   = $_POST["pais"];
 					$sexo   = $_POST["sexo"];
 					$fecha  = $_POST["fecha"];
 					$foto   = $_POST["foto"];
-					if($user != "" && $user == "johnsnow" && $user == "ygritte" && $user == "test"){
-						if ($pass == $pass2){
-							if (filter_var($email, FILTER_VALIDATE_EMAIL)){
-								header("location: index.php");
-							} else header("location: index.php?q=registro&error=3");
-						} else header("location: index.php?error=2");
-					} else header("location: index.php?error=1");
+					if (strlen($user) < 3 || strlen($user) > 15) {
+						header("location: index.php?q=registro&error=bad_length_name");
+						exit;
+					}
+					$response = $db->query("SELECT * FROM usuarios WHERE nombre='".$db->real_escape_string($user)."'");
+					if($response->num_rows != 0){
+						header("location: index.php?q=registro&error=user_already_exists");
+						exit;
+					}
+					if (strlen($pass) < 6 || strlen($pass) > 15) {
+						header("location: index.php?q=registro&error=bad_length_pass");
+						exit;
+					}
+					if ($pass != $pass2){
+						header("location: index.php?q=registro&error=pass_not_equals");
+						exit;
+					}
+					if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
+						header("location: index.php?q=registro&error=bad_email");
+						exit;
+					}
+					$response = $db->query("SELECT * FROM usuarios WHERE email='".$db->real_escape_string($email)."'");
+					if($response->num_rows != 0){
+						header("location: index.php?q=registro&error=email_already_exists");
+						exit;
+					}
+					if ($sexo != "h" && $sexo != "m"){
+						header("location: index.php?q=registro&error=bad_sex");
+						exit;
+					}
+					if (!strtotime($fecha)){
+						header("location: index.php?q=registro&error=bad_date");
+						exit;
+					}
+					header("location: index.php");
 				} else header("location: index.php?error=0");
 			}
 		break;
