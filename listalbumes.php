@@ -11,6 +11,7 @@
 <section>
 	<div class="cabecera">
 		<h1>Tus álbumes</h1>
+		<a class="foto" href="subefoto.php">Añadir foto</a>
 	</div>
 <?php 
 	if($response->num_rows<=0) echo "El album especificado no existe"; 
@@ -22,10 +23,11 @@
 	<article>
 		<div class="aux">
 		<div class="image">
-			<img src="images/01.jpg" alt="Foto"/>
+			<a href="veralbum.php?id=<?php echo $row["id"]; ?>"><img src="images/01.jpg" alt="Foto"/></a>
 		</div>
 		<div class="info">
 			<div class="titulo"><a href="veralbum.php?id=<?php echo $row["id"]; ?>"><?php echo $row["titulo"]; ?></a></div>
+			<a class="foto2" href="subefoto.php?idalbum=<?php echo $row["id"]; ?>">Añadir foto</a>
 			<div class="descripcion"><?php echo $row["descripcion"]; ?></div>
 			<div class="pais"><?php echo $pais["nombre"]; ?></div>
 			<div class="fecha"><?php echo $row["fecha"]; ?></div>

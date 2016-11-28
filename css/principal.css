@@ -42,6 +42,9 @@ article .image img{
 	width: 100%;
 }
 /*Busqueda*/
+section{
+	position: relative;
+}
 section.results{
 	margin-top: 20px;
 }
@@ -56,6 +59,25 @@ section.search input[type="submit"]{
 	font-size: 14px;
 	background-color: lightgrey;
 	border: 0px;
+}
+section h2{
+	width:50%;
+	margin: auto;
+	padding: 20px;
+	display: inline-block;
+}
+.foto2{
+	font-weight: bold;
+	position: absolute;
+	right:10px;
+	top:10px;
+	display: block;
+	text-align: center;
+	background-color: rgba(200, 200, 200, 0.5);
+	padding:8px;
+}
+.foto2:hover{
+	background-color: grey;
 }
 @media (max-width: 1324px) {
 	article {

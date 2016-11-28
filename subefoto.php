@@ -26,14 +26,16 @@
 					?>
 				</select>
 				<p>¿A qué álbum quieres añadirlo?</p>
-				<select id="pais" name="pais" >
-					<option value="0">Elija un album</option>
-					<?php
-						while($row=$response2->fetch_array()){
-							echo '<option value="'.$row["id"].'">'.$row["titulo"].'</option>';
-						}
-					?>
-				</select>
+				<?php if (!isset($_GET["idalbum"])) { ?>
+					<select id="pais" name="pais" >
+						<option value="0">Elija un album</option>
+						<?php
+							while($row=$response2->fetch_array()){
+								echo '<option value="'.$row["id"].'">'.$row["titulo"].'</option>';
+							}
+				?>
+					</select>
+				<?php } ?>
 				</p>
 				<label class="label" for="date">Fecha</label>
 				<input type="date" id="date" name="date" required>

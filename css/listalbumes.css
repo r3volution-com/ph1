@@ -65,3 +65,32 @@ article {
 	background-color: rgba(225, 225, 225, 0.6);
 	text-align: left;
 }
+.foto{
+	font-weight: bold;
+	position: absolute;
+	right:10px;
+	top:10px;
+	display: block;
+	text-align: center;
+	background-color: rgba(200, 200, 200, 0.5);
+	padding:8px;
+}
+.foto:hover{
+	background-color: grey;
+}
+.foto2{
+	font-weight: bold;
+	position: absolute;
+	right:10px;
+	top:10px;
+	display: block;
+	text-align: center;
+	background-color: rgba(250, 250, 250, 0.8);
+	padding:8px;
+}
+.foto2:hover{
+	background-color: grey;
+}
+section{
+	position: relative;
+}

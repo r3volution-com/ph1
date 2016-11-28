@@ -12,8 +12,6 @@
 <section class="box">
 	<h3>Modificar pefil</h3>
 	<form method="POST" action="perfil.php">
-		<label for="nombre" class="hide">Nombre</label>
-		<input id="nombre" name="nombre" type="text" minlength="3" maxlength="15" placeholder="Nombre" <?php if (isset($user)) echo "value='".$user."' disabled"; ?> required/>
 		<label for="pass" class="hide">Contraseña</label>
 		<input id="pass" name="pass" type="password" minlength="6" maxlength="15" placeholder="Contraseña" required/>
 		<label for="pass2" class="hide">Repetir Contraseña</label>
@@ -36,10 +34,6 @@
 			<option value="h">Hombre</option>
 			<option value="m">Mujer</option>
 		</select>
-		<p>Fecha de nacimiento
-		<label for="fecha">Fecha de nacimiento</label>
-		<input id="fecha" name="fecha" type="date" <?php if (isset($fecha)) echo "value='".$foto."' disabled"; ?>/>
-		</p>
 		<p>
 		Elija su foto de perfil<br><br>
 		<label for="foto">Foto</label>

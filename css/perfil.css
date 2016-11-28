@@ -43,9 +43,6 @@
 	padding: 5px;
 	width: 150px;
 }
-.boton2{
-	display: block;
-}
 .boton2:hover{
 	background-color: grey;
 }
