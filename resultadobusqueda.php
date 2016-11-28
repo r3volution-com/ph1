@@ -10,14 +10,18 @@
 	if (isset($_GET["fecha"]) && $_GET["fecha"]) $fecha= date("Y-m-d", strtotime($_GET['fecha']));
 	else $fecha = "";
 	$extra = "WHERE 1=1";
+	$extra2 = "";
 	if ($search) $extra .= " AND titulo LIKE '%".$search."%'";
 	if ($pais) $extra .= " AND idPais=".$pais;
 	if ($fecha) $extra .= " AND fecha='".$fecha."'";
 	if(!$search && !$fecha && !$pais){
-		$extra .= " LIMIT 10";
+		$extra2 = " LIMIT 10";
 	}
-	$query = "SELECT id, titulo, descripcion, fecha, idAlbum, idPais, ruta FROM fotos $extra ORDER BY fechaSubida DESC";
+	$query = "SELECT id, titulo, descripcion, fecha, idAlbum, idPais, ruta FROM fotos $extra ORDER BY fechaSubida DESC $extra2";
 	$response = $db->query($query);
+	if(!$response){
+		die("error: ".$query);
+	}
 ?>
 <section class="search">
 	<form method="GET" action="resultadobusqueda.php">

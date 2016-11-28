@@ -25,9 +25,13 @@
 	width: 70%;
     padding: 10px;
     font-weight: bold;
+	margin-left: 5px;
 }
 .box select{
 	text-align: left;
 	width: 77%;
     padding: 10px;
+}
+.rediv{
+	text-align:center;
 }

@@ -130,6 +130,7 @@ section {
 	width: 80%;
 	background-color: rgba(225, 225, 225, 0.6);
 	padding: 5px;
+	padding-bottom: 20px;
 	text-align:center;
 }
 section h1{

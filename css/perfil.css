@@ -22,7 +22,7 @@
 	margin-top: 20px;
 }
 .boton{
-	/*display: inline-block;*/
+	display: block;
 	text-align: center;
 	background-color: rgba(200, 200, 200, 0.5);
 	margin: 3px auto;
@@ -30,10 +30,23 @@
 }
 .boton a{
 	display: block;
-
 	padding: 15px;
 }
 .boton a:hover{
+	background-color: grey;
+}
+.boton2{
+	display: block;
+	text-align: center;
+	background-color: rgba(200, 200, 200, 0.5);
+	margin: 3px;
+	padding: 5px;
+	width: 150px;
+}
+.boton2{
+	display: block;
+}
+.boton2:hover{
 	background-color: grey;
 }
 

@@ -18,8 +18,8 @@
 			<p><b>Sexo: </b>Hombre</p>
 			<p><b>Fecha de nacimiento: </b>Desconocida</p>
 			<p><b>País: </b>Ivernalia</p>
-			<p><b><a href="#">Modificar datos</a></b></p>
-			<p><b><a href="#">Darse de baja</a></b></p>
+			<p><b><a class="boton2" href="modificaperfil.php">Modificar datos</a></b></p>
+			<p><b><a class="boton2" href="dardebaja.php">Darse de baja</a></b></p>
 		</div>
 		<div class="section-profile buttons">
 			<div class="boton">
