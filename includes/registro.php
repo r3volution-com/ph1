@@ -27,17 +27,35 @@ $response = $db->query("SELECT id,nombre FROM paises ORDER BY nombre");
 	<?php 
 	if (isset($_GET["error"])) {
 		switch($_GET["error"]){
-			case 0:
+			case "bad_params":
 				echo "Debe enviar todos los datos";
 			break;
-			case 1:
+			case "bad_length_name":
+				echo "El nombre de usuario debe tener entre 3 y 15 caracteres";
+			break;
+			case "user_already_exists":
 				echo "El usuario que has especificado ya esta registrado";
 			break;
-			case 2:
+			case "bad_length_pass":
+				echo "La contraseña debe tener entre 6 y 15 caracteres";
+			break;
+			case "pass_not_equals":
 				echo "Las contraseñas no coinciden";
 			break;
-			case 3:
+			case "bad_email":
 				echo "El e-mail no es valido";
+			break;
+			case "email_already_exists":
+				echo "El e-mail introducido ya esta registrado";
+			break;
+			case "bad_sex":
+				echo "El sexo introducido no es valido";
+			break;
+			case "bad_date":
+				echo "La fecha introducida no es valida";
+			break;
+			case "country_not_found":
+				echo "El pais especificado no existe";
 			break;
 			default:
 				echo "Error inesperado";
