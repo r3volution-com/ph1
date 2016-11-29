@@ -19,10 +19,12 @@
 	} else $error = true;
 ?>
 <section>
+	<?php
+	if (!$error){
+	?>
 	<h2><?php echo $album["titulo"]; ?></h2>
 	<a class="foto2" href="subefoto.php?idalbum=<?php echo $row["id"]; ?>">Añadir foto</a>
 	<?php 
-	if (!$error){
 		if($response->num_rows<=0) echo "No hay fotos"; 
 		else { 
 			while ($row = $response->fetch_array()){ 

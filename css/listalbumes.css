@@ -25,11 +25,14 @@ div.titulo{
 }
 div.descripcion{
 	margin-top:20px;
-	margin-left: 10px;
+	margin-left: 5px;
 	font-size:1em;
 	text-align: left;
-	width:100%;
+	width:98%;
 	display: inline-block;
+	word-wrap: break-word;
+	max-height:40px;
+	overflow-y:hidden;
 }
 div.fecha{
 	font-weight: bold;
@@ -93,4 +96,30 @@ article {
 }
 section{
 	position: relative;
+}
+@media (max-width: 840px) {
+	section{
+		margin-top:75px !important;
+	}
+	div.fecha{
+		display: none;
+	}
+	.foto2{
+		display:none !important;
+	}
+	div.pais{
+		display:none;
+	}
+	.info{
+		width:61%;
+	}
+	div.descripcion{
+		margin-top: 5px;
+		height: 40px;
+		overflow-y: hidden;
+		text-overflow: ellipsis;
+	}
+	article{
+		width:95%;
+	}
 }

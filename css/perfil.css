@@ -48,9 +48,12 @@
 }
 
 @media (max-width: 800px) {
-.section-profile{
- width: 95%;
-display: block;
-margin: auto;
-}
+	.section-profile{
+	 width: 95%;
+	display: block;
+	margin: auto;
+	}
+	section{
+		margin-top:75px !important;
+	}
 }

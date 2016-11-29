@@ -27,6 +27,7 @@ a{
 .box{
 	background-color: rgba(240, 240, 240, 0.7);
 	width: 25%;
+	min-width:350px;
 	margin: auto;
 	margin-top: 15%;
 	padding: 5px 20px 20px 20px;
@@ -146,4 +147,5 @@ label.hide{
 	nav .right .search-icon{
 		display: none;
 	}
+	
 }

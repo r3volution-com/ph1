@@ -44,6 +44,7 @@ article .image img{
 /*Busqueda*/
 section{
 	position: relative;
+	margin-top:9%;
 }
 section.results{
 	margin-top: 20px;
@@ -79,7 +80,7 @@ section h2{
 .foto2:hover{
 	background-color: grey;
 }
-@media (max-width: 1324px) {
+@media(max-width: 1324px) {
 	article {
 		width: 90%;
 	}
