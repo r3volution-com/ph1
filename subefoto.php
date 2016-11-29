@@ -16,7 +16,6 @@
 		<form id="formulario" action="perfil.php" method="post">
 				<label for="titulo">Título de la foto</label>
 				<input id="titulo" name="titulo" type="text" maxlength="200" required placeholder="Título de la foto"/>
-				<p>
 				<select id="pais" name="pais" >
 					<option value="0">Elija un país</option>
 					<?php
@@ -25,18 +24,17 @@
 						}
 					?>
 				</select>
-				<p>¿A qué álbum quieres añadirlo?</p>
 				<?php if (!isset($_GET["idalbum"])) { ?>
+					<p>¿A qué álbum quieres añadirlo?</p>
 					<select id="pais" name="pais" >
 						<option value="0">Elija un album</option>
 						<?php
 							while($row=$response2->fetch_array()){
 								echo '<option value="'.$row["id"].'">'.$row["titulo"].'</option>';
 							}
-				?>
+						?>
 					</select>
 				<?php } ?>
-				</p>
 				<label class="label" for="date">Fecha</label>
 				<input type="date" id="date" name="date" required>
 				<label for="pais">País</label>
