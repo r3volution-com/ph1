@@ -11,11 +11,43 @@
 ?>
 <section class="box">
 	<h3>Modificar pefil</h3>
+	<?php 
+	if (isset($_GET["error"])) {
+		switch($_GET["error"]){
+			case "bad_params":
+				echo "Debe enviar todos los datos";
+			break;
+			case "bad_length_pass":
+				echo "La contraseña debe tener entre 6 y 15 caracteres";
+			break;
+			case "pass_not_equals":
+				echo "Las contraseñas no coinciden";
+			break;
+			case "pass_only_alphanumeric":
+				echo "La contraseña que has especificado no cumple los requisitos (Solo letras, numeros y barra baja)";
+			break;
+			case "bad_email":
+				echo "El e-mail no es valido";
+			break;
+			case "email_already_exists":
+				echo "El e-mail introducido ya esta registrado";
+			break;
+			case "bad_sex":
+				echo "El sexo introducido no es valido";
+			break;
+			case "country_not_found":
+				echo "El pais especificado no existe";
+			break;
+			default:
+				echo "Error inesperado";
+			break;
+		}
+	} ?>
 	<form method="POST" action="perfil.php">
 		<label for="pass" class="hide">Contraseña</label>
-		<input id="pass" name="pass" type="password" minlength="6" maxlength="15" placeholder="Contraseña" required/>
+		<input id="pass" name="pass" type="password" minlength="6" maxlength="15" pattern="[a-zA-Z0-9\s_]{6,15}" placeholder="Contraseña" required/>
 		<label for="pass2" class="hide">Repetir Contraseña</label>
-		<input id="pass2" name="pass2" type="password" minlength="6" maxlength="15" placeholder="Confirmar Contraseña" required/>
+		<input id="pass2" name="pass2" type="password" minlength="6" maxlength="15" pattern="[a-zA-Z0-9\s_]{6,15}" placeholder="Confirmar Contraseña" required/>
 		<label for="email" class="hide">E-mail</label>
 		<input id="email" name="email" type="email" minlength="8" maxlength="250" placeholder="E-mail" <?php if (isset($email)) echo "value='".$email."' disabled"; ?> required/>
 		<label for="ciudad" class="hide">Ciudad</label>

@@ -11,7 +11,6 @@ session_start();
 		case "login":
 			if(isset($_POST)){
 				if(isset($_POST["nombre"]) && isset($_POST["pass"])){
-					//Comprobamos con los del profesor
 					$user=$db->real_escape_string($_POST["nombre"]);
 					$pass=$db->real_escape_string($_POST["pass"]);
 					$response = $db->query("SELECT * FROM usuarios WHERE nombre='".$user."'");
@@ -53,12 +52,20 @@ session_start();
 						exit;
 					}
 					$response = $db->query("SELECT * FROM usuarios WHERE nombre='".$user."'");
-					if($response->num_rows != 0){
+					if($response && $response->num_rows != 0){
 						header("location: index.php?q=registro&error=user_already_exists");
+						exit;
+					}
+					if (ctype_alnum($user)){
+						header("location: index.php?q=registro&error=user_only_alphanumeric");
 						exit;
 					}
 					if (strlen($pass) < 6 || strlen($pass) > 15) {
 						header("location: index.php?q=registro&error=bad_length_pass");
+						exit;
+					}
+					if (ctype_alnum(str_replace('_', '', $pass))){
+						header("location: index.php?q=registro&error=pass_only_alphanumeric");
 						exit;
 					}
 					if ($pass != $pass2){
@@ -70,7 +77,7 @@ session_start();
 						exit;
 					}
 					$response = $db->query("SELECT * FROM usuarios WHERE email='".$email."'");
-					if($response->num_rows != 0){
+					if($response && $response->num_rows != 0){
 						header("location: index.php?q=registro&error=email_already_exists");
 						exit;
 					}
@@ -87,7 +94,7 @@ session_start();
 						exit;
 					}
 					$response = $db->query("SELECT * FROM paises WHERE id='".$pais."'");
-					if($response->num_rows != 0){
+					if($response && $response->num_rows != 0){
 						header("location: index.php?q=registro&error=country_not_found");
 						exit;
 					}
@@ -124,6 +131,10 @@ session_start();
 							header("location: modificaperfil.php?error=pass_not_equals");
 							exit;
 						}
+						if (ctype_alnum(str_replace('_', '', $pass))){
+							header("location: modificaperfil.php?error=pass_only_alphanumeric");
+							exit;
+						}
 						$extra[] = " clave='".sha1($pass)."' ";
 					}
 					if ($email != "" && $email != $row["email"]){
@@ -144,21 +155,21 @@ session_start();
 					if ($pais != "" && $pais != $row["pais"] && is_numeric($pais)){
 						$response = $db->query("SELECT * FROM paises WHERE id=".$pais);
 						if($response->num_rows != 0){
-							header("location: index.php?q=registro&error=country_not_found");
+							header("location: modificaperfil.php?error=country_not_found");
 							exit;
 						}
 						$extra[] = " pais=".$pais." ";
 					}
 					if ($sexo != "" && $sexo != $row["sexo"]){
 						if ($sexo != "h" && $sexo != "m"){
-							header("location: index.php?q=registro&error=bad_sex");
+							header("location: modificaperfil.php?error=bad_sex");
 							exit;
 						}
 						$extra[] = " sexo='".$sexo."' ";
 					}
 					$extraquery = implode(",", $extra);
 					if($extraquery != "") $db->query("UPDATE usuarios SET ".$extraquery." WHERE id=".$row["id"]);
-				}else header("location: index.php?error=bad_params");
+				}else header("location: modificaperfil.php?error=bad_params");
 			}
 		break;
 		
