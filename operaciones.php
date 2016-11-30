@@ -173,6 +173,53 @@ session_start();
 			}
 		break;
 		
+		case "crearalbum":
+			if(isset($_POST)){
+				if(isset($_POST["titulo"]) && isset($_POST["descripcion"]) && isset($_POST["pais"]) && isset($_POST["date"])){
+					$response = $db->query("SELECT * FROM usuarios WHERE id=".$_SESSION["remember"]["id"]);
+					if (!$response) {
+						header("location: modificaperfil.php?error=user_no_exists");
+						exit;
+					}
+					$titulo  = $db->real_escape_string($_POST["titulo"]);
+					$descripcion  = $db->real_escape_string($_POST["descripcion"]);
+					$date = $db->real_escape_string($_POST["date"]);
+					$pais   = $db->real_escape_string($_POST["pais"]);
+					if (strlen($titulo) < 3 || strlen($titulo) > 200) {
+						header("location: index.php?q=registro&error=bad_length_title");
+						exit;
+					}
+					if (strlen($descripcion) < 3 || strlen($descripcion) > 4000) {
+						header("location: index.php?q=registro&error=bad_length_desc");
+						exit;
+					}
+					if (!is_numeric($pais)){
+						header("location: index.php?q=registro&error=country_not_found");
+						exit;
+					}
+					$response = $db->query("SELECT * FROM paises WHERE id='".$pais."'");
+					if($response && $response->num_rows != 0){
+						header("location: index.php?q=registro&error=country_not_found");
+						exit;
+					}
+					if (!strtotime($fecha)){
+						header("location: index.php?q=registro&error=bad_date");
+						exit;
+					}
+					$db->query("INSERT INTO albumes (titulo, descripcion, fecha, idPais) VALUES ('".$titulo."', '".$descripcion."', '".$date."', ".$pais.")");
+					header("location: index.php");
+				} else header("location: modificaperfil.php?error=bad_params");
+			}
+		break;
+		
+		case "fotoalbum":
+		
+		break;
+		
+		case "solicitaalbum":
+		
+		break;
+		
 		case "logout":
 			if(isset($_SESSION["remember"])){
 				unset($_SESSION["remember"]);

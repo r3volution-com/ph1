@@ -12,11 +12,34 @@
 	<div class="content">
 	<h2>Formulario de creación</h2>	
 		<p>Permite crear un álbum de fotos</p>
+		<?php 
+			if (isset($_GET["error"])) {
+				switch($_GET["error"]){
+					case "bad_params":
+						echo "Debe enviar todos los datos";
+					break;
+					case "bad_length_title":
+						echo "El titulo debe tener entre 3 y 200 caracteres";
+					break;
+					case "bad_length_desc":
+						echo "La contraseña debe tener entre 3 y 4000 caracteres";
+					break;
+					case "bad_date":
+						echo "La fecha introducida no es valida";
+					break;
+					case "country_not_found":
+						echo "El pais especificado no existe";
+					break;
+					default:
+						echo "Error inesperado";
+					break;
+				}
+			} ?>
 		<form id="formulario" action="operaciones.php?operacion=crearalbum" method="post">
 				<label for="titulo">Título del álbum</label>
 				<input id="titulo" name="titulo" type="text" minlength="3" maxlength="200" required placeholder="Título del álbum"/>
-				<label for="descrip">Descripción</label>
-				<textarea name="descrip" id="descrip" minlength="3" maxlength="4000" placeholder="Descripción"></textarea>
+				<label for="descripcion">Descripción</label>
+				<textarea name="descripcion" id="descripcion" minlength="3" maxlength="4000" placeholder="Descripción"></textarea>
 				<label for="pais">País</label>
 				<select id="pais" name="pais">
 					<option value="0">Elija un país</option>

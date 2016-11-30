@@ -94,7 +94,7 @@ $response = $db->query("SELECT id,nombre FROM paises ORDER BY nombre");
 			<option value="m">Mujer</option>
 		</select>
 		<label for="fecha">Fecha de nacimiento</label>
-		<input id="fecha" name="fecha" type="date" <?php if (isset($fecha)) echo "value='".$foto."' disabled"; ?>/><br>
+		<input id="fecha" name="fecha" type="date" placeholder="dd/mm/yy" <?php if (isset($fecha)) echo "value='".$foto."' disabled"; ?>/><br>
 		<p>
 		<label for="foto">Foto</label>
 		<input type="file" id="foto" name="foto">
