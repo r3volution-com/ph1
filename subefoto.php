@@ -13,7 +13,30 @@
 <section class="box">
 	<div class="content">
 	<h2>Añade una foto</h2>	
-		<form id="formulario" action="perfil.php" method="post">
+		<?php 
+			if (isset($_GET["error"])) {
+				switch($_GET["error"]){
+					case "bad_params":
+						echo "Debe enviar todos los datos";
+					break;
+					case "bad_length_title":
+						echo "El titulo debe tener entre 3 y 200 caracteres";
+					break;
+					case "album_not_found":
+						echo "El album especificado no existe o no le pertenece";
+					break;
+					case "bad_date":
+						echo "La fecha introducida no es valida";
+					break;
+					case "country_not_found":
+						echo "El pais especificado no existe";
+					break;
+					default:
+						echo "Error inesperado";
+					break;
+				}
+			} ?>
+		<form id="formulario" action="operaciones.php?operacion=fotoalbum" method="post">
 				<label for="titulo">Título de la foto</label>
 				<input id="titulo" name="titulo" type="text" maxlength="200" required placeholder="Título de la foto"/>
 				<select id="pais" name="pais" >
@@ -26,7 +49,7 @@
 				</select>
 				<?php if (!isset($_GET["idalbum"])) { ?>
 					<p>¿A qué álbum quieres añadirlo?</p>
-					<select id="pais" name="pais" >
+					<select id="album" name="album" >
 						<option value="0">Elija un album</option>
 						<?php
 							while($row=$response2->fetch_array()){

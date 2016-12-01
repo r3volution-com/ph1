@@ -14,7 +14,7 @@ session_start();
 					$user=$db->real_escape_string($_POST["nombre"]);
 					$pass=$db->real_escape_string($_POST["pass"]);
 					$response = $db->query("SELECT * FROM usuarios WHERE nombre='".$user."'");
-					if($response->num_rows>0){
+					if($response && $response->num_rows>0){
 						$row=$response->fetch_array();
 						if($row["clave"]==sha1($pass)){
 							if(isset($_POST["remember"]) && ($_POST["remember"]=="Yes" || $_POST["remember"]=="on")){
@@ -52,7 +52,7 @@ session_start();
 						exit;
 					}
 					$response = $db->query("SELECT * FROM usuarios WHERE nombre='".$user."'");
-					if($response && $response->num_rows != 0){
+					if(!$response || ($response && $response->num_rows != 0)){
 						header("location: index.php?q=registro&error=user_already_exists");
 						exit;
 					}
@@ -68,6 +68,18 @@ session_start();
 						header("location: index.php?q=registro&error=pass_only_alphanumeric");
 						exit;
 					}
+					if (!preg_match("#[0-9]+#", $pass)) {
+						header("location: index.php?q=registro&error=pass_no_number");
+						exit;
+					}
+					if (!preg_match("#[a-z]+#", $pass)) {
+						header("location: index.php?q=registro&error=pass_no_lowercase");
+						exit;
+					}
+					if (!preg_match("#[A-Z]+#", $pass)) {
+						header("location: index.php?q=registro&error=pass_no_uppercase");
+						exit;
+					}
 					if ($pass != $pass2){
 						header("location: index.php?q=registro&error=pass_not_equals");
 						exit;
@@ -77,7 +89,7 @@ session_start();
 						exit;
 					}
 					$response = $db->query("SELECT * FROM usuarios WHERE email='".$email."'");
-					if($response && $response->num_rows != 0){
+					if(!$response || ($response && $response->num_rows != 0)){
 						header("location: index.php?q=registro&error=email_already_exists");
 						exit;
 					}
@@ -94,7 +106,7 @@ session_start();
 						exit;
 					}
 					$response = $db->query("SELECT * FROM paises WHERE id='".$pais."'");
-					if($response && $response->num_rows != 0){
+					if(!$response && ($response && $response->num_rows == 0)){
 						header("location: index.php?q=registro&error=country_not_found");
 						exit;
 					}
@@ -109,7 +121,7 @@ session_start();
 				if(isset($_POST["pass"]) && isset($_POST["pass2"]) && isset($_POST["email"]) && isset($_POST["ciudad"])
 				&& isset($_POST["pais"]) && isset($_POST["sexo"]) && isset($_POST["foto"])){
 					$response = $db->query("SELECT * FROM usuarios WHERE id=".$_SESSION["remember"]["id"]);
-					if (!$response) {
+					if (!$response || ($response && $response->num_rows == 0)) {
 						header("location: modificaperfil.php?error=user_no_exists");
 						exit;
 					}
@@ -135,6 +147,18 @@ session_start();
 							header("location: modificaperfil.php?error=pass_only_alphanumeric");
 							exit;
 						}
+						if (!preg_match("#[0-9]+#", $pass)) {
+							header("location: modificaperfil.php?error=pass_no_number");
+							exit;
+						}
+						if (!preg_match("#[a-z]+#", $pass)) {
+							header("location: modificaperfil.php?error=pass_no_lowercase");
+							exit;
+						}
+						if (!preg_match("#[A-Z]+#", $pass)) {
+							header("location: modificaperfil.php?error=pass_no_uppercase");
+							exit;
+						}
 						$extra[] = " clave='".sha1($pass)."' ";
 					}
 					if ($email != "" && $email != $row["email"]){
@@ -143,7 +167,7 @@ session_start();
 							exit;
 						}
 						$response = $db->query("SELECT * FROM usuarios WHERE email='".$email."'");
-						if($response->num_rows != 0){
+						if(!$response || ($response && $response->num_rows != 0)){
 							header("location: modificaperfil.php?error=email_already_exists");
 							exit;
 						}
@@ -154,7 +178,7 @@ session_start();
 					}
 					if ($pais != "" && $pais != $row["pais"] && is_numeric($pais)){
 						$response = $db->query("SELECT * FROM paises WHERE id=".$pais);
-						if($response->num_rows != 0){
+						if(!$response || ($response && $response->num_rows == 0)){
 							header("location: modificaperfil.php?error=country_not_found");
 							exit;
 						}
@@ -177,7 +201,7 @@ session_start();
 			if(isset($_POST)){
 				if(isset($_POST["titulo"]) && isset($_POST["descripcion"]) && isset($_POST["pais"]) && isset($_POST["date"])){
 					$response = $db->query("SELECT * FROM usuarios WHERE id=".$_SESSION["remember"]["id"]);
-					if (!$response) {
+					if (!$response || ($response && $response->num_rows == 0)) {
 						header("location: modificaperfil.php?error=user_no_exists");
 						exit;
 					}
@@ -197,8 +221,8 @@ session_start();
 						header("location: index.php?q=registro&error=country_not_found");
 						exit;
 					}
-					$response = $db->query("SELECT * FROM paises WHERE id='".$pais."'");
-					if($response && $response->num_rows != 0){
+					$response = $db->query("SELECT * FROM paises WHERE id=".$pais);
+					if(!$response || ($response && $response->num_rows == 0)){
 						header("location: index.php?q=registro&error=country_not_found");
 						exit;
 					}
@@ -213,11 +237,48 @@ session_start();
 		break;
 		
 		case "fotoalbum":
-		
-		break;
-		
-		case "solicitaalbum":
-		
+			if(isset($_POST)){
+				if(isset($_POST["titulo"]) && isset($_POST["descripcion"]) && isset($_POST["pais"]) && isset($_POST["date"]) && isset($_POST["album"])){
+					$response = $db->query("SELECT * FROM usuarios WHERE id=".$_SESSION["remember"]["id"]);
+					if (!$response || ($response && $response->num_rows == 0)) {
+						header("location: modificaperfil.php?error=user_no_exists");
+						exit;
+					}
+					$titulo = $db->real_escape_string($_POST["titulo"]);
+					$date 	= $db->real_escape_string($_POST["date"]);
+					$pais   = $db->real_escape_string($_POST["pais"]);
+					$album  = $db->real_escape_string($_POST["album"]);
+					$foto	= ""; //$db->real_escape_string($_POST["foto"]);
+					if (strlen($titulo) < 3 || strlen($titulo) > 200) {
+						header("location: index.php?q=registro&error=bad_length_title");
+						exit;
+					}
+					if (!is_numeric($pais)){
+						header("location: index.php?q=registro&error=country_not_found");
+						exit;
+					}
+					$response = $db->query("SELECT * FROM paises WHERE id=".$pais);
+					if(!$response || ($response && $response->num_rows == 0)){
+						header("location: index.php?q=registro&error=country_not_found");
+						exit;
+					}
+					if (!is_numeric($album)){
+						header("location: index.php?q=registro&error=album_not_found");
+						exit;
+					}
+					$response = $db->query("SELECT * FROM albumes WHERE id=".$album." AND idUsuario=".$_SESSION["remember"]["id"]);
+					if(!$response || ($response && $response->num_rows == 0)){
+						header("location: index.php?q=registro&error=album_not_found");
+						exit;
+					}
+					if (!strtotime($fecha)){
+						header("location: index.php?q=registro&error=bad_date");
+						exit;
+					}
+					$db->query("INSERT INTO fotos (titulo, idAlbum, fecha, idPais, ruta) VALUES ('".$titulo."', ".$album.", '".$date."', ".$pais.", '".$ruta."')");
+					header("location: index.php");
+				} else header("location: modificaperfil.php?error=bad_params");
+			}
 		break;
 		
 		case "logout":

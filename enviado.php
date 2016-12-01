@@ -74,6 +74,7 @@
 		$error=true;
 	}
 	if($error == false){
+		$db->query("INSERT INTO fotos (titulo, idAlbum, fecha, idPais, ruta) VALUES ('".$titulo."', ".$album.", '".$date."', ".$pais.", '".$ruta."')");
 ?>
 <h1>Pedido realizado</h1>
 	<p>Su pedido de envío de album impreso ha sido registrado. El coste es de <em><?php echo (($res/100)*$numcopias)+$colored; ?>€</em></p>

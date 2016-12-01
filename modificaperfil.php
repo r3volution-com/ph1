@@ -43,7 +43,7 @@
 			break;
 		}
 	} ?>
-	<form method="POST" action="operaciones.php?operacion=modificaruser">
+	<form method="POST" action="perfil.php">
 		<label for="pass" class="hide">Contraseña</label>
 		<input id="pass" name="pass" type="password" minlength="6" maxlength="15" pattern="[a-zA-Z0-9\s_]{6,15}" placeholder="Contraseña" required/>
 		<label for="pass2" class="hide">Repetir Contraseña</label>
