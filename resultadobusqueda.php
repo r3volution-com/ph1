@@ -11,9 +11,9 @@
 	else $fecha = "";
 	$extra = "WHERE 1=1";
 	$extra2 = "";
-	if ($search) $extra .= " AND titulo LIKE '%".$search."%'";
-	if ($pais) $extra .= " AND idPais=".$pais;
-	if ($fecha) $extra .= " AND fecha='".$fecha."'";
+	if ($search) $extra .= " AND titulo LIKE '%".$db->real_escape_string($search)."%'";
+	if ($pais) $extra .= " AND idPais=".$db->real_escape_string($pais);
+	if ($fecha) $extra .= " AND fecha='".$db->real_escape_string($fecha)."'";
 	if(!$search && !$fecha && !$pais){
 		$extra2 = " LIMIT 10";
 	}

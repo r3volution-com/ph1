@@ -8,7 +8,7 @@
 	include("includes/header.php");
 	$error = false;
 	if (isset($_GET["id"])){
-		$id = $_GET["id"];
+		$id = $db->real_escape_string($_GET["id"]);
 		if(is_numeric($id)){
 			if($id>=0){
 				$res = $db->query("SELECT titulo FROM albumes WHERE id=".$id);

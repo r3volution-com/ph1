@@ -2,12 +2,24 @@
 	$title = "Sube foto";
 	$cssfile = "solicitaralbum";
 	include("includes/head.php");
+	if (isset($_GET["idalbum"])) {
+		if ($_GET["idalbum"] == "" || !is_numeric($_GET["idalbum"]) || $_GET["idalbum"] <= 0){
+			header("location: index.php");
+			exit;
+		}
+		$res = $db->query("SELECT id FROM albumes WHERE id=".$db->real_escape_string($_GET["idalbum"])." AND idUsuario=".$_SESSION["remember"]["id"]);
+		if (!$res || ($res && $res->num_rows <= 0)){
+			header("location: perfil.php");
+			exit;
+		}
+	}
 	if(isset($_SESSION["remember"])==false){
 		header("location: index.php");
+		exit;
 	}
 	include("includes/header.php");
 	$response = $db->query("SELECT id,nombre FROM paises ORDER BY nombre");
-	$response2 = $db->query("SELECT id,titulo FROM albumes ORDER BY titulo");
+	$response2 = $db->query("SELECT id,titulo FROM albumes WHERE idUsuario=".$_SESSION["remember"]["id"]." ORDER BY titulo");
 	if($response2->num_rows){
 ?>
 <section class="box">
@@ -57,6 +69,8 @@
 							}
 						?>
 					</select>
+				<?php } else { ?>
+					<input type="hidden" name="album" value="<?php echo $_SESSION["remember"]["id"]; ?>"/>
 				<?php } ?>
 				<label class="label" for="date">Fecha</label>
 				<input type="date" id="date" name="date" required>

@@ -6,12 +6,12 @@
 		header("location: index.php");
 	}
 	include("includes/header.php");
-	$response = $db->query("SELECT * FROM albumes ORDER BY fecha DESC LIMIT 5");
+	$response = $db->query("SELECT * FROM albumes WHERE idUsuario=".$_SESSION["remember"]["id"]." ORDER BY fecha DESC LIMIT 5");
 ?>
 <section>
 	<div class="cabecera">
 		<h1>Tus álbumes</h1>
-		<a class="foto" href="subefoto.php">Añadir foto</a>
+		<?php if($response->num_rows>0) echo '<a class="foto" href="subefoto.php">Añadir foto</a>'; ?>
 	</div>
 <?php 
 	if($response->num_rows<=0) echo "El album especificado no existe"; 
