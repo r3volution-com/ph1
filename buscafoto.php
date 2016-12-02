@@ -13,7 +13,7 @@
 		<form id="formulario" action="resultadobusqueda.php" method="get">
 			<h2>Búsqueda de foto</h2>
 				<label for="titulo">Título</label>
-				<input id="titulo" name="search" type="text" placeholder="Título"/>
+				<input id="titulo" name="search" type="text" maxlength="130" placeholder="Título"/>
 				<label for="pais">País</label>
 				<select id="pais" name="pais">
 					<option value="0">Elija un país</option>
