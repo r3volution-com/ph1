@@ -42,7 +42,7 @@ session_start();
 					$pass   = $db->real_escape_string($_POST["pass"]);
 					$pass2  = $db->real_escape_string($_POST["pass2"]);
 					$email  = $db->real_escape_string($_POST["email"]);
-					$ciudad = $db->real_escape_string($_POST["ciudad"]);
+					$ciudad = htmlentities($db->real_escape_string($_POST["ciudad"]));
 					$pais   = $db->real_escape_string($_POST["pais"]);
 					$sexo   = $db->real_escape_string($_POST["sexo"]);
 					$fecha  = $db->real_escape_string($_POST["fecha"]);
@@ -115,7 +115,7 @@ session_start();
 				} else header("location: index.php?error=bad_params");
 			}
 		break;
-		
+
 		case "modificaruser":
 			if(isset($_POST)){
 				if(isset($_POST["pass"]) && isset($_POST["pass2"]) && isset($_POST["email"]) && isset($_POST["ciudad"])
@@ -129,7 +129,7 @@ session_start();
 					$pass   = $db->real_escape_string($_POST["pass"]);
 					$pass2  = $db->real_escape_string($_POST["pass2"]);
 					$email  = $db->real_escape_string($_POST["email"]);
-					$ciudad = $db->real_escape_string($_POST["ciudad"]);
+					$ciudad = htmlentities($db->real_escape_string($_POST["ciudad"]));
 					$pais   = $db->real_escape_string($_POST["pais"]);
 					$sexo   = $db->real_escape_string($_POST["sexo"]);
 					//$foto   = $db->real_escape_string($_POST["foto"]);
@@ -196,7 +196,7 @@ session_start();
 				}else header("location: modificaperfil.php?error=bad_params");
 			}
 		break;
-		
+
 		case "crearalbum":
 			if(isset($_POST)){
 				if(isset($_POST["titulo"]) && isset($_POST["descripcion"]) && isset($_POST["pais"]) && isset($_POST["date"])){
@@ -205,8 +205,8 @@ session_start();
 						header("location: crearalbum.php?error=user_no_exists");
 						exit;
 					}
-					$titulo  = $db->real_escape_string($_POST["titulo"]);
-					$descripcion  = $db->real_escape_string($_POST["descripcion"]);
+					$titulo  = htmlentities($db->real_escape_string($_POST["titulo"]));
+					$descripcion  = htmlentities($db->real_escape_string($_POST["descripcion"]));
 					$fecha = $db->real_escape_string($_POST["date"]);
 					$pais   = $db->real_escape_string($_POST["pais"]);
 					if (strlen($titulo) < 3 || strlen($titulo) > 200) {
@@ -236,7 +236,7 @@ session_start();
 				} else header("location: modificaperfil.php?error=bad_params");
 			}
 		break;
-		
+
 		case "fotoalbum":
 			if(isset($_POST)){
 				if(isset($_POST["titulo"]) && isset($_POST["descripcion"]) && isset($_POST["pais"]) && isset($_POST["date"]) && isset($_POST["album"])){
@@ -245,7 +245,7 @@ session_start();
 						header("location: subefoto.php?error=user_no_exists");
 						exit;
 					}
-					$titulo = $db->real_escape_string($_POST["titulo"]);
+					$titulo = htmlentities($db->real_escape_string($_POST["titulo"]));
 					$fecha 	= $db->real_escape_string($_POST["date"]);
 					$pais   = $db->real_escape_string($_POST["pais"]);
 					$album  = $db->real_escape_string($_POST["album"]);
@@ -281,7 +281,7 @@ session_start();
 				} else header("location: modificaperfil.php?error=bad_params");
 			}
 		break;
-		
+
 		case "logout":
 			if(isset($_SESSION["remember"])){
 				unset($_SESSION["remember"]);
@@ -293,7 +293,7 @@ session_start();
 				header("location: index.php");
 			}
 		break;
-		
+
 		case "deletecookie":
 			if(isset($_COOKIE["remember_user"])){
 				setcookie("remember_user", "", time() -3600);
@@ -302,14 +302,14 @@ session_start();
 			}
 			header("location: index.php");
 		break;
-		
+
 		case "semilogout":
 			if(isset($_SESSION["remember"])){
 				unset($_SESSION["remember"]);
 			}
 			header("location: index.php");
 		break;
-		
+
 		case "dardebaja":
 			if (isset($_SESSION["remember"])){
 				$db->query("DELETE FROM usuarios WHERE id=".$_SESSION["remember"]["id"]);
@@ -322,7 +322,7 @@ session_start();
 			}
 			header("location: index.php");
 		break;
-		
+
 		default:
 			die("No existe esa opcion.<br><a href='index.php'>Volver</a>");
 		break;
