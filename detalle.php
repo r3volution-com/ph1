@@ -18,7 +18,7 @@
 			$titulo = $foto["titulo"];
 			$ruta = $foto["ruta"];
 			$descripcion = $foto["descripcion"];
-			$fecha = $foto["fecha"];
+			$fecha = date("d/m/Y", strtotime($foto["fecha"]));
 			$pais = $foto["nombrePais"];
 			$id_autor = $foto["idUsuario"];
 			$autor = $foto["nombreUsuario"];
