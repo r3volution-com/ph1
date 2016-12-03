@@ -12,6 +12,7 @@
 		if(is_numeric($id)){
 			if($id>=0){
 				$res = $db->query("SELECT titulo FROM albumes WHERE id=".$id);
+				if (!$res || ($res && $res->num_rows <= 0)) $error = true;
 				$album = $res->fetch_array();
 				$response = $db->query("SELECT id, titulo, descripcion, fecha, idAlbum, idPais, ruta FROM fotos where idAlbum=$id ORDER BY fechaSubida DESC");
 				if (!$response) $error = true;
@@ -31,7 +32,7 @@
 			while ($row = $response->fetch_array()){
 				$r_pais = $db->query("SELECT nombre FROM paises WHERE id=".$row["idPais"]);
 				$pais = $r_pais->fetch_array();
-				$r_usuario = $db->query("SELECT * FROM usuarios WHERE id=(SELECT idUsuario FROM albumes WHERE id=".$row["idAlbum"].")");
+				$r_usuario = $db->query("SELECT id, foto, nombre FROM usuarios WHERE id=(SELECT idUsuario FROM albumes WHERE id=".$row["idAlbum"].")");
 				$usuario = $r_usuario->fetch_array();
 				?>
 		<article>
