@@ -7,11 +7,14 @@
 	}
 	include("includes/header.php");
 	$response = $db->query("SELECT id,nombre FROM paises ORDER BY nombre");
-	if($response->num_rows){
+	$email = $_SESSION["remember"]["email"];
+	$ciudad = $_SESSION["remember"]["ciudad"];
+	$pais = $_SESSION["remember"]["idPais"];
+	$sexo = $_SESSION["remember"]["sexo"];
 ?>
 <section class="box">
 	<h3>Modificar pefil</h3>
-	<?php 
+	<?php
 	if (isset($_GET["error"])) {
 		switch($_GET["error"]){
 			case "bad_params":
@@ -56,15 +59,19 @@
 		<select id="pais" name="pais">
 		<option value="0">Elija un país</option>
 		<?php
+		if($response && $response->num_rows){
 			while($row=$response->fetch_array()){
-				echo '<option value="'.$row["id"].'">'.$row["nombre"].'</option>';
+				if ($row["id"] == $pais)
+					echo '<option selected value="'.$row["id"].'">'.$row["nombre"].'</option>';
+				else echo '<option value="'.$row["id"].'">'.$row["nombre"].'</option>';
 			}
+		}
 		?>
 		</select>
 		<label for="sexo">Sexo</label>
 		<select name="sexo" id="sexo">
-			<option value="h">Hombre</option>
-			<option value="m">Mujer</option>
+			<option <?php if ($sexo == "h") echo "selected"; ?> value="h">Hombre</option>
+			<option <?php if ($sexo == "m") echo "selected"; ?> value="m">Mujer</option>
 		</select>
 		<p>
 		Elija su foto de perfil<br><br>
@@ -75,6 +82,5 @@
 	</form>
 	</section>
 <?php
-	}
 	include("includes/footer.php");
 ?>

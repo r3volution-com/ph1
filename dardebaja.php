@@ -6,7 +6,6 @@
 		header("location: index.php");
 	}
 	include("includes/header.php");
-	$response = $db->query("SELECT id,nombre FROM paises ORDER BY nombre");
 ?>
 <section class="box">
 	<h1>Pedido realizado</h1>
@@ -17,4 +16,3 @@
 <?php
 	include("includes/footer.php");
 ?>
-

@@ -36,6 +36,61 @@
         <link href="css/outside-style.css" rel="stylesheet" type="text/css" media="screen"/>
         <link href="css/outside-style-print.css" rel="stylesheet" type="text/css" media="print"/>
 		<link href="css/style-accesible.css" rel="alternate stylesheet" type="text/css" title="Accesible"/> 
+		<?php 
+			$response = $db->query("SELECT titulo, ruta FROM fotos ORDER BY fechaSubida DESC LIMIT 5");
+			if($response){ 
+				$backgrounds = array();
+				$titles = array();
+				while ($row = $response->fetch_assoc()) {
+					$backgrounds[] = $row["ruta"];
+					$titles[] = $row["titulo"];
+				}
+				?>
+		<style> 
+			body {
+				background-position: center center;
+				background-repeat: no-repeat;
+				background-size: 100% 100%;
+				animation-name: background;
+				animation-duration: 30s;
+				animation-iteration-count: infinite;
+				animation-direction: alternate;
+				animation-play-state: running;
+				animation-timing-function: linear;
+			}
+			.text:after {
+				content: "No hay fotos";
+				position: absolute;
+				bottom: 7.5px;
+				right: 5px;
+				z-index: 10;
+				text-shadow: 0px 0px 0.5px white;
+				font-size: 20px;
+				animation-name: text;
+				animation-duration: 30s;
+				animation-iteration-count: infinite;
+				animation-direction: alternate;
+				animation-play-state: running;
+				animation-timing-function: linear;
+			}
+			@keyframes background {
+				<?php $i = 0;
+				foreach ($backgrounds as $background) { 
+					echo $i."% { background-image: url('images/".$background."');}";
+					$i += 25;
+				} 
+				?>
+			}
+			@keyframes text {
+				<?php $i = 0;
+				foreach ($titles as $title) { 
+					echo $i."% { content: \"".$title."\";}";
+					$i += 25;
+				} 
+				?>
+			}
+		</style>
+		<?php } ?>
     </head>
     <body>
 		<nav>
@@ -67,6 +122,7 @@
 				include("includes/registro.php");
 			}
 		?>
+		<div class="text"></div>
 		<footer>
 			WePic ©2016
 		</footer>

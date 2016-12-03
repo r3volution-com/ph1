@@ -7,12 +7,15 @@
 	}
 	include("includes/header.php");
 	$response = $db->query("SELECT id,nombre FROM paises ORDER BY nombre");
+	if(!$response){
+		die("<section>".$db->error."</section>");
+	}
 ?>
 <section class="box">
 	<div class="content">
-	<h2>Formulario de creación</h2>	
+	<h2>Formulario de creación</h2>
 		<p>Permite crear un álbum de fotos</p>
-		<?php 
+		<?php
 			if (isset($_GET["error"])) {
 				switch($_GET["error"]){
 					case "bad_params":

@@ -6,20 +6,20 @@
 		header("location: index.php");
 	}
 	include("includes/header.php");
-	$response = $db->query("SELECT id, titulo, descripcion, fecha, idAlbum, idPais, ruta FROM fotos ORDER BY fechaSubida DESC LIMIT 5");
+	$response = $db->query("SELECT id, titulo, descripcion, fecha, idAlbum, (SELECT titulo FROM albumes WHERE id=idAlbum) as nombreAlbum,".
+		"(SELECT nombre FROM paises WHERE id=(SELECT idPais FROM albumes WHERE id=idAlbum)) as nombrePais, ".
+		"(SELECT nombre FROM usuarios WHERE id=(SELECT idUsuario FROM albumes WHERE id=idAlbum)) as nombreUsuario, ".
+		"(SELECT foto FROM usuarios WHERE id=(SELECT idUsuario FROM albumes WHERE id=idAlbum)) as fotoUsuario, ".
+		"(SELECT idUsuario FROM albumes WHERE id=idAlbum) as idUsuario, ruta FROM fotos ORDER BY fechaSubida DESC LIMIT 5");
 	if(!$response){
 		die("<section>No hay fotos".$db->error."</section>");
 	}
 ?>
 <section>
-<?php 
-	if($response->num_rows<=0) echo "No hay fotos"; 
-	else { 
-		while ($row = $response->fetch_array()){ 
-			$r_pais = $db->query("SELECT nombre FROM paises WHERE id=".$row["idPais"]);
-			$pais = $r_pais->fetch_array();
-			$r_usuario = $db->query("SELECT * FROM usuarios WHERE id=(SELECT idUsuario FROM albumes WHERE id=".$row["idAlbum"].")");
-			$usuario = $r_usuario->fetch_array();
+<?php
+	if($response->num_rows<=0) echo "No hay fotos";
+	else {
+		while ($row = $response->fetch_array()){
 	?>
 	<article>
 		<div class="image">
@@ -27,8 +27,10 @@
 		</div>
 		<div class="info">
 			<a href="detalle.php?id=<?php echo $row["id"]; ?>"><h3><?php echo $row["titulo"]; ?></h3></a>
-			<p class="left"><?php echo $row["fecha"]; ?> - <?php echo $pais["nombre"]; ?></p>
-			<p class="right author"><a href="perfil.php?id=<?php echo $usuario["id"]; ?>"><img src="images/<?php echo $usuario["foto"]; ?>" alt="Perfil"/><b><?php echo $usuario["nombre"]; ?></b></a></p>
+			<p class="left"><?php echo $row["fecha"]; ?> - <?php echo $row["nombrePais"]; ?></p>
+			<p class="right author"><a href="perfil.php?id=<?php echo $row["idPais"]; ?>">
+				<img src="images/<?php echo $row["fotoUsuario"]; ?>" alt="Perfil"/><b><?php echo $row["nombreUsuario"]; ?></b></a>
+			</p>
 			<p class="clear"></p>
 		</div>
 	</article>
@@ -38,4 +40,3 @@
 <?php
 	include("includes/footer.php");
 ?>
-

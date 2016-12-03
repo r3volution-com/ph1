@@ -24,8 +24,8 @@
 ?>
 <section class="box">
 	<div class="content">
-	<h2>Añade una foto</h2>	
-		<?php 
+	<h2>Añade una foto</h2>
+		<?php
 			if (isset($_GET["error"])) {
 				switch($_GET["error"]){
 					case "bad_params":
@@ -70,7 +70,7 @@
 						?>
 					</select>
 				<?php } else { ?>
-					<input type="hidden" name="album" value="<?php echo $_SESSION["remember"]["id"]; ?>"/>
+					<input type="hidden" name="album" value="<?php echo $_GET["idalbum"]; ?>"/>
 				<?php } ?>
 				<label class="label" for="date">Fecha</label>
 				<input type="date" id="date" name="date" required>

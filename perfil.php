@@ -6,18 +6,29 @@
 		header("location: index.php");
 	}
 	include("includes/header.php");
+	$nombre = $_SESSION["remember"]["nombre"];
+	$email = $_SESSION["remember"]["email"];
+	$ciudad = $_SESSION["remember"]["ciudad"];
+	$response = $db->query("SELECT nombre FROM paises WHERE id=".$_SESSION["remember"]["idPais"]);
+	if ($response && $response->num_rows){
+		$row_pais = $response->fetch_assoc();
+		$pais = $row_pais["nombre"];
+	} else $pais = "Desconocido";
+	$sexo = ($_SESSION["remember"]["sexo"] == 0) ? "Hombre" : "Mujer";
+	$foto = $_SESSION["remember"]["foto"];
+	$fecha = date("d/m/Y", strtotime($_SESSION["remember"]["fechaNacimiento"]));
 ?>
 <section>
 	<div class="perfil">
 		<div class="cabecera">
-			<img src="images/fotoperfil.gif" width="75" alt="Foto"/>
-			<h2>Jon Snow</h2>
+			<img src="images/<?php echo $foto; ?>" width="75" alt="Foto"/>
+			<h2><?php echo $nombre; ?></h2>
 		</div>
 		<div class="section-profile">
-			<p><b>Email: </b>iknownothing@nightwatch.com</p>
-			<p><b>Sexo: </b>Hombre</p>
-			<p><b>Fecha de nacimiento: </b>Desconocida</p>
-			<p><b>País: </b>Ivernalia</p>
+			<p><b>Email: </b><?php echo $email; ?></p>
+			<p><b>Sexo: </b><?php echo $sexo; ?></p>
+			<p><b>Fecha de nacimiento: </b><?php echo $fecha; ?></p>
+			<p><b>País: </b><?php echo $pais; ?></p>
 			<p><b><a class="boton2" href="modificaperfil.php">Modificar datos</a></b></p>
 			<p><b><a class="boton2" href="dardebaja.php">Darse de baja</a></b></p>
 		</div>
@@ -29,7 +40,7 @@
 				<a href="crearalbum.php">Crear album</a>
 			</div>
 			<div class="boton">
-				<a href="solicitaralbum.php">Imprimir album</a>	
+				<a href="solicitaralbum.php">Imprimir album</a>
 			</div>
 		</div>
 	</div>

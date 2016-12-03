@@ -7,6 +7,9 @@
 	}
 	include("includes/header.php");
 	$response = $db->query("SELECT id,nombre FROM paises ORDER BY nombre");
+	if(!$response){
+		die("<section>".$db->error."</section>");
+	}
 ?>
 <section class="box">
 	<div class="rediv">

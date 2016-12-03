@@ -14,6 +14,7 @@
 				$res = $db->query("SELECT titulo FROM albumes WHERE id=".$id);
 				$album = $res->fetch_array();
 				$response = $db->query("SELECT id, titulo, descripcion, fecha, idAlbum, idPais, ruta FROM fotos where idAlbum=$id ORDER BY fechaSubida DESC");
+				if (!$response) $error = true;
 			} else $error=true;
 		} else $error=true;
 	} else $error = true;
@@ -24,10 +25,10 @@
 	?>
 	<h2><?php echo $album["titulo"]; ?></h2>
 	<a class="foto2" href="subefoto.php?idalbum=<?php echo $row["id"]; ?>">Añadir foto</a>
-	<?php 
-		if($response->num_rows<=0) echo "No hay fotos"; 
-		else { 
-			while ($row = $response->fetch_array()){ 
+	<?php
+		if($response->num_rows<=0) echo "No hay fotos";
+		else {
+			while ($row = $response->fetch_array()){
 				$r_pais = $db->query("SELECT nombre FROM paises WHERE id=".$row["idPais"]);
 				$pais = $r_pais->fetch_array();
 				$r_usuario = $db->query("SELECT * FROM usuarios WHERE id=(SELECT idUsuario FROM albumes WHERE id=".$row["idAlbum"].")");
@@ -53,4 +54,3 @@
 <?php
 	include("includes/footer.php");
 ?>
-
