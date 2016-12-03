@@ -6,7 +6,7 @@
 		header("location: index.php");
 	}
 	include("includes/header.php");
-	$response = $db->query("SELECT id, titulo, descripcion, fecha, idAlbum, (SELECT titulo FROM albumes WHERE id=idAlbum) as nombreAlbum,".
+	$response = $db->query("SELECT id, titulo, descripcion, fecha, idAlbum, idPais, (SELECT titulo FROM albumes WHERE id=idAlbum) as nombreAlbum,".
 		"(SELECT nombre FROM paises WHERE id=(SELECT idPais FROM albumes WHERE id=idAlbum)) as nombrePais, ".
 		"(SELECT nombre FROM usuarios WHERE id=(SELECT idUsuario FROM albumes WHERE id=idAlbum)) as nombreUsuario, ".
 		"(SELECT foto FROM usuarios WHERE id=(SELECT idUsuario FROM albumes WHERE id=idAlbum)) as fotoUsuario, ".
@@ -27,8 +27,8 @@
 		</div>
 		<div class="info">
 			<a href="detalle.php?id=<?php echo $row["id"]; ?>"><h3><?php echo $row["titulo"]; ?></h3></a>
-			<p class="left"><?php echo $row["fecha"]; ?> - <?php echo $row["nombrePais"]; ?></p>
-			<p class="right author"><a href="perfil.php?id=<?php echo $row["idPais"]; ?>">
+			<p class="left"><?php echo date("d/m/Y", strtotime($row["fecha"])); ?> - <?php echo $row["nombrePais"]; ?></p>
+			<p class="right author"><a href="perfil.php?id=<?php echo $row["idUsuario"]; ?>">
 				<img src="images/<?php echo $row["fotoUsuario"]; ?>" alt="Perfil"/><b><?php echo $row["nombreUsuario"]; ?></b></a>
 			</p>
 			<p class="clear"></p>
