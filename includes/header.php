@@ -3,7 +3,7 @@
 	<div class="right">
 		<form method="GET" action="resultadobusqueda.php">
 			<label for="search">Buscar</label>
-			<input name="search" type="text" placeholder="Buscar" id="search"/>
+			<input name="search" type="text" placeholder="Buscar" id="search" minlength="3" maxlength="22"/>
 		</form>
 		<a href="resultadobusqueda.php" class="search-icon"><i class="material-icons">search</i></a>
 		<a href="buscafoto.php">Búsqueda avanzada</a>

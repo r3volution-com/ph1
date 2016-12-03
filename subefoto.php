@@ -50,7 +50,7 @@
 			} ?>
 		<form id="formulario" action="operaciones.php?operacion=fotoalbum" method="post">
 				<label for="titulo">Título de la foto</label>
-				<input id="titulo" name="titulo" type="text" maxlength="200" required placeholder="Título de la foto"/>
+				<input id="titulo" name="titulo" type="text" maxlength="30" required placeholder="Título de la foto"/>
 				<select id="pais" name="pais" >
 					<option value="0">Elija un país</option>
 					<?php

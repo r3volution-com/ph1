@@ -40,9 +40,9 @@
 			} ?>
 		<form id="formulario" action="operaciones.php?operacion=crearalbum" method="post">
 				<label for="titulo">Título del álbum</label>
-				<input id="titulo" name="titulo" type="text" minlength="3" maxlength="200" required placeholder="Título del álbum"/>
+				<input id="titulo" name="titulo" type="text" minlength="3" maxlength="30" required placeholder="Título del álbum"/>
 				<label for="descripcion">Descripción</label>
-				<textarea name="descripcion" id="descripcion" minlength="3" maxlength="4000" placeholder="Descripción"></textarea>
+				<textarea name="descripcion" id="descripcion" minlength="3" maxlength="130" placeholder="Descripción"></textarea>
 				<label for="pais">País</label>
 				<select id="pais" name="pais">
 					<option value="0">Elija un país</option>
