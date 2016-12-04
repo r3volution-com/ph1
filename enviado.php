@@ -15,7 +15,7 @@
 	}
 	$nombre = htmlentities($db->real_escape_string($_POST["nombre"]));
 	$titulo = htmlentities($db->real_escape_string($_POST["titulo"]));
-	$adicional = htmlentities($db->real_escape_string($_POST["adicional"]));
+	$descripcion = htmlentities($db->real_escape_string($_POST["adicional"]));
 	$email = $db->real_escape_string($_POST["email"]);
 	$direccion = htmlentities($db->real_escape_string($_POST["direccion"]));
 	$numero = $db->real_escape_string($_POST["numero"]);
@@ -42,7 +42,7 @@
 		echo"Se ha excedido el tamaño máximo de campo <b>Título</b>";
 		$error=true;
 	}
-	if(strlen($adicional)>201){
+	if(strlen($descripcion)>201){
 		echo"Se ha excedido el tamaño máximo de campo <b>Texto adicional</b>";
 		$error=true;
 	}
@@ -59,8 +59,12 @@
 		echo"Se ha excedido el tamaño máximo de campo <b>Dirección</b>";
 		$error=true;
 	}
-	if(strlen($numero)>10 || !is_numeric($numero)){
+	if(strlen($numcopias)>10 || !is_numeric($numcopias)){
 		echo"Se ha excedido el tamaño máximo o no es valido el campo <b>Número</b>";
+		$error=true;
+	}
+	if(strlen($album)>10 || !is_numeric($album)){
+		echo"Se ha excedido el tamaño máximo o no es valido el campo <b>Album</b>";
 		$error=true;
 	}
 	if(strlen($cod)>6){
@@ -80,10 +84,13 @@
 		$error=true;
 	}
 	if($error == false){
-		$db->query("INSERT INTO solicitudes (AQUI_ISMA) VALUES ('".$titulo."', ".$album.", '".$date."', ".$pais.", '".$ruta."')");
+		$precio = (($res/100)*$numcopias)+$colored;
+		$db->query("INSERT INTO solicitudes (nombre, titulo, descripcion, email, idAlbum, direccion, idPais, color, nCopias, resolucion, ".
+		"fecha, portadaColor, coste) VALUES ('".$nombre."', '".$titulo."', '".$descripcion."', '".$email."', ".$album.", '".
+		$direccion."', ".$pais.", '".$color."', ".$numcopias.", ".$res.", '".$date."', '".$colored."', '".$precio."')");
 ?>
 <h1>Pedido realizado</h1>
-	<p>Su pedido de envío de album impreso ha sido registrado. El coste es de <em><?php echo (($res/100)*$numcopias)+$colored; ?>€</em></p>
+	<p>Su pedido de envío de album impreso ha sido registrado. El coste es de <em><?php echo $precio; ?>€</em></p>
 <?php
 	}
 ?>
