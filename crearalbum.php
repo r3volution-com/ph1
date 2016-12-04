@@ -25,7 +25,7 @@
 						echo "El titulo debe tener entre 3 y 200 caracteres";
 					break;
 					case "bad_length_desc":
-						echo "La contraseña debe tener entre 3 y 4000 caracteres";
+						echo "La descripcion debe tener entre 3 y 4000 caracteres";
 					break;
 					case "bad_date":
 						echo "La fecha introducida no es valida";
