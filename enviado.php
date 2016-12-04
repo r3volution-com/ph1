@@ -7,7 +7,7 @@
 		exit;
 	}
 	if(!isset($_POST["nombre"]) ||!isset($_POST["titulo"]) || !isset($_POST["adicional"]) || !isset($_POST["email"]) ||
-	!isset($_POST["direcion"]) || !isset($_POST["numero"]) ||  !isset($_POST["cod"]) || !isset($_POST["localidad"]) ||
+	!isset($_POST["direccion"]) || !isset($_POST["numero"]) ||  !isset($_POST["cod"]) || !isset($_POST["localidad"]) ||
 	!isset($_POST["prov"]) || !isset($_POST["pais"]) || !isset($_POST["color"]) || !isset($_POST["res"]) ||
 	!isset($_POST["numcopias"]) || !isset($_POST["album"]) || !isset($_POST["date"]) || !isset($_POST["colored"])){
 		header("location: index.php");
@@ -35,52 +35,52 @@
 <section class="box">
 <?php
 	if(strlen($nombre)>51){
-		echo"Se ha excedido el tamaño máximo de campo <b>Nombre</b>";
+		echo"Se ha excedido el tamaño máximo de campo <b>Nombre</b><br>";
 		$error=true;
 	}
 	if(strlen($titulo)>21){
-		echo"Se ha excedido el tamaño máximo de campo <b>Título</b>";
+		echo"Se ha excedido el tamaño máximo de campo <b>Título</b><br>";
 		$error=true;
 	}
 	if(strlen($descripcion)>201){
-		echo"Se ha excedido el tamaño máximo de campo <b>Texto adicional</b>";
+		echo"Se ha excedido el tamaño máximo de campo <b>Texto adicional</b><br>";
 		$error=true;
 	}
 	if (filter_var($email, FILTER_VALIDATE_EMAIL)){
 		if(strlen($email)>21){
-			echo"Se ha excedido el tamaño máximo de campo <b>Email</b>";
+			echo"Se ha excedido el tamaño máximo de campo <b>Email</b><br>";
 			$error=true;
 		}
 	} else {
-		echo"El <b>Email</b> introducido no es valido";
+		echo"El <b>Email</b> introducido no es valido<br>";
 		$error=true;
 	}
-	if(strlen($direccion)>21){
-		echo"Se ha excedido el tamaño máximo de campo <b>Dirección</b>";
+	if(strlen($direccion)>50){
+		echo"Se ha excedido el tamaño máximo de campo <b>Dirección</b><br>";
 		$error=true;
 	}
 	if(strlen($numcopias)>10 || !is_numeric($numcopias)){
-		echo"Se ha excedido el tamaño máximo o no es valido el campo <b>Número</b>";
+		echo"Se ha excedido el tamaño máximo o no es valido el campo <b>Número</b><br>";
 		$error=true;
 	}
 	if(strlen($album)>10 || !is_numeric($album)){
-		echo"Se ha excedido el tamaño máximo o no es valido el campo <b>Album</b>";
+		echo"Se ha excedido el tamaño máximo o no es valido el campo <b>Album</b><br>";
 		$error=true;
 	}
 	if(strlen($cod)>6){
-		echo"Se ha excedido el tamaño máximo de campo <b>Código postal</b>";
+		echo"Se ha excedido el tamaño máximo de campo <b>Código postal</b><br>";
 		$error=true;
 	}
-	if(strlen($localidad)>20){
-		echo"Se ha excedido el tamaño máximo de campo <b>Localidad</b>";
+	if(strlen($localidad)>50){
+		echo"Se ha excedido el tamaño máximo de campo <b>Localidad</b><br>";
 		$error=true;
 	}
 	if(strlen($prov)>20){
-		echo"Se ha excedido el tamaño máximo de campo <b>Provincia</b>";
+		echo"Se ha excedido el tamaño máximo de campo <b>Provincia</b><br>";
 		$error=true;
 	}
 	if(strlen($pais)>2 || !is_numeric($pais)){
-		echo"Se ha excedido el tamaño máximo de campo <b>País</b>";
+		echo"Se ha excedido el tamaño máximo de campo <b>País</b><br>";
 		$error=true;
 	}
 	if($error == false){

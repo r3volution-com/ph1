@@ -233,13 +233,13 @@ session_start();
 					$db->query("INSERT INTO albumes (titulo, descripcion, fecha, idPais, idUsuario) VALUES ('".$titulo."', '".$descripcion."', '".$fecha."', ".$pais.", ".$_SESSION["remember"]["id"].")");
 					if ($db->error) die($db->error." INSERT INTO albumes (titulo, descripcion, fecha, idPais, idUsuario) VALUES ('".$titulo."', '".$descripcion."', '".$fecha."', ".$pais.", ".$_SESSION["remember"]["id"].")");
 					header("location: perfil.php");
-				} else header("location: modificaperfil.php?error=bad_params");
+				} else header("location: crearalbum.php?error=bad_params");
 			}
 		break;
 
 		case "fotoalbum":
 			if(isset($_POST)){
-				if(isset($_POST["titulo"]) && isset($_POST["descripcion"]) && isset($_POST["pais"]) && isset($_POST["date"]) && isset($_POST["album"])){
+				if(isset($_POST["titulo"]) && isset($_POST["pais"]) && isset($_POST["date"]) && isset($_POST["album"])){
 					$response = $db->query("SELECT * FROM usuarios WHERE id=".$_SESSION["remember"]["id"]);
 					if (!$response || ($response && $response->num_rows == 0)) {
 						header("location: subefoto.php?error=user_no_exists");
@@ -278,7 +278,7 @@ session_start();
 					}
 					$db->query("INSERT INTO fotos (titulo, idAlbum, fecha, idPais, ruta) VALUES ('".$titulo."', ".$album.", '".$fecha."', ".$pais.", '".$ruta."')");
 					header("location: perfil.php");
-				} else header("location: modificaperfil.php?error=bad_params");
+				} else header("location: subefoto.php?error=bad_params");
 			}
 		break;
 
