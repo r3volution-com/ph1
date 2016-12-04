@@ -27,6 +27,15 @@ $response = $db->query("SELECT id,nombre FROM paises ORDER BY nombre");
 			case "pass_only_alphanumeric":
 				echo "La contraseña que has especificado no cumple los requisitos (Solo letras, numeros y barra baja)";
 			break;
+			case "pass_no_uppercase":
+				echo "La contraseña que has especificado no cumple los requisitos (Debe contener al menos una letra mayuscula)";
+			break;
+			case "pass_no_lowercase":
+				echo "La contraseña que has especificado no cumple los requisitos (Debe contener al menos una letra minuscula)";
+			break;
+			case "pass_no_number":
+				echo "La contraseña que has especificado no cumple los requisitos (Debe contener al menos un número)";
+			break;
 			case "bad_email":
 				echo "El e-mail no es valido";
 			break;

@@ -56,7 +56,7 @@ session_start();
 						header("location: index.php?q=registro&error=user_already_exists");
 						exit;
 					}
-					if (ctype_alnum($user)){
+					if (!ctype_alnum($user)){
 						header("location: index.php?q=registro&error=user_only_alphanumeric");
 						exit;
 					}
@@ -64,7 +64,7 @@ session_start();
 						header("location: index.php?q=registro&error=bad_length_pass");
 						exit;
 					}
-					if (ctype_alnum(str_replace('_', '', $pass))){
+					if (!ctype_alnum(str_replace('_', '', $pass))){
 						header("location: index.php?q=registro&error=pass_only_alphanumeric");
 						exit;
 					}
@@ -143,7 +143,7 @@ session_start();
 							header("location: modificaperfil.php?error=pass_not_equals");
 							exit;
 						}
-						if (ctype_alnum(str_replace('_', '', $pass))){
+						if (!ctype_alnum(str_replace('_', '', $pass))){
 							header("location: modificaperfil.php?error=pass_only_alphanumeric");
 							exit;
 						}
