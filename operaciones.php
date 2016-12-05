@@ -1,4 +1,4 @@
-+<?php
+<?php
 session_start();
 	include ("includes/config.php");
 	$db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -110,9 +110,8 @@ session_start();
 						exit;
 					}
 					if (isset($_FILES['foto']['name']) && $_FILES['foto']['name'] != "") {
-						$foto = basename($_FILES['foto']['name']);
-						if (!$foto){
-							header("location: index.php?q=registro&error=wrong_photo_name");
+						if (!is_uploaded_file($_FILES['foto']['tmp_name'])) {
+							header("location: index.php?q=registro&error=file_not_found");
 							exit;
 						}
 						$finfo = finfo_open(FILEINFO_MIME_TYPE);
@@ -124,8 +123,13 @@ session_start();
 							header("location: index.php?q=registro&error=wrong_photo_size");
 							exit;
 						}
-						$rutafoto = UPLOAD_DIR.$foto;
-						if(!move_uploaded_file($_FILES['foto']['tmp_name'], $rutafoto)) {
+						$foto = basename($_FILES['foto']['name']);
+						if (!$foto){
+							header("location: index.php?q=registro&error=wrong_photo_name");
+							exit;
+						}
+						$rutafoto = UPLOAD_DIR.$user."_".$foto;
+						if(!@move_uploaded_file($_FILES['foto']['tmp_name'], $rutafoto)) {
 							header("location: index.php?q=registro&error=file_not_found");
 							exit;
 						}
@@ -133,8 +137,7 @@ session_start();
 							header("location: index.php?q=registro&error=file_not_found");
 							exit;
 						}
-					}
-					else $foto = "";
+					} else $foto = "";
 					$db->query("INSERT INTO usuarios (nombre, clave, email, sexo, fechaNacimiento, ciudad, idPais, foto) VALUES ('".$user."', '".sha1($pass)."', '".$email."', '".$sexo."', '".$fecha."', '".$ciudad."', ".$pais.", '".$foto."')");
 					header("location: index.php");
 				} else header("location: index.php?error=bad_params");
@@ -157,7 +160,6 @@ session_start();
 					$ciudad = htmlentities($db->real_escape_string($_POST["ciudad"]));
 					$pais   = $db->real_escape_string($_POST["pais"]);
 					$sexo   = $db->real_escape_string($_POST["sexo"]);
-					//$foto   = $db->real_escape_string($_POST["foto"]);
 					$extra = array();
 					if ($pass != "" && $pass != $row["clave"]){
 						if (strlen($pass) < 6 || strlen($pass) > 15) {
@@ -215,6 +217,36 @@ session_start();
 							exit;
 						}
 						$extra[] = " sexo='".$sexo."' ";
+					}
+					if (isset($_FILES['foto']['name']) && $_FILES['foto']['name'] != "") {
+						if (!is_uploaded_file($_FILES['foto']['tmp_name'])) {
+							header("location: index.php?q=registro&error=file_not_found");
+							exit;
+						}
+						$finfo = finfo_open(FILEINFO_MIME_TYPE);
+						if (finfo_file($finfo, $_FILES['foto']['tmp_name']) != "image/jpeg" && finfo_file($finfo, $_FILES['foto']['tmp_name']) != "image/png"){
+							header("location: index.php?q=registro&error=wrong_photo_type");
+							exit;
+						}
+						if (filesize($_FILES['foto']['tmp_name']) > 10485760){
+							header("location: index.php?q=registro&error=wrong_photo_size");
+							exit;
+						}
+						$foto = basename($_FILES['foto']['name']);
+						if (!$foto){
+							header("location: index.php?q=registro&error=wrong_photo_name");
+							exit;
+						}
+						$rutafoto = UPLOAD_DIR.$user."_".$foto;
+						if(!@move_uploaded_file($_FILES['foto']['tmp_name'], $rutafoto)) {
+							header("location: index.php?q=registro&error=file_not_found");
+							exit;
+						}
+						if (!file_exists($rutafoto)){
+							header("location: index.php?q=registro&error=file_not_found");
+							exit;
+						}
+						$extra[] = "ruta='".$rutafoto."'";
 					}
 					$extraquery = implode(",", $extra);
 					if($extraquery != "") $db->query("UPDATE usuarios SET ".$extraquery." WHERE id=".$row["id"]);
