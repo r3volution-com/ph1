@@ -43,6 +43,18 @@
 					case "country_not_found":
 						echo "El pais especificado no existe";
 					break;
+					case "wrong_photo_name":
+						echo "Nombre de fotografía incorrecto";
+					default:
+					case "wrong_photo_type":
+						echo "Formato de archivo incorrecto";
+					break;
+					case "wrong_photo_size":
+						echo "El tamaño de la fotografía es incorrecto";
+					break;
+					case "file_not_found":
+						echo "No se ha encontrado el archivo";
+					break;
 					default:
 						echo "Error inesperado";
 					break;
@@ -77,7 +89,7 @@
 				<label for="pais">País</label>
 				<p>
 				<label class="label" for="foto">Foto</label><br>
-				<input type="file" id="foto" name="foto" requiered>
+				<input type="file" id="foto" name="foto" accept="image/jpg,image/png" requiered>
 				</p>
 			<input id="campo9" name="enviar" type="submit" value="Enviar"/>
 		</form>
