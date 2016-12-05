@@ -34,20 +34,20 @@
 ?>
 <section class="box">
 <?php
-	if(strlen($nombre)>51){
+	if(strlen($nombre) < 5 || strlen($nombre)>51){
 		echo"Se ha excedido el tamaño máximo de campo <b>Nombre</b><br>";
 		$error=true;
 	}
-	if(strlen($titulo)>21){
+	if(strlen($titulo) < 5 || strlen($titulo)>21){
 		echo"Se ha excedido el tamaño máximo de campo <b>Título</b><br>";
 		$error=true;
 	}
-	if(strlen($descripcion)>201){
+	if(strlen($descripcion) < 1 || strlen($descripcion)>201){
 		echo"Se ha excedido el tamaño máximo de campo <b>Texto adicional</b><br>";
 		$error=true;
 	}
 	if (filter_var($email, FILTER_VALIDATE_EMAIL)){
-		if(strlen($email)>21){
+		if(strlen($email)>250){
 			echo"Se ha excedido el tamaño máximo de campo <b>Email</b><br>";
 			$error=true;
 		}
@@ -55,7 +55,7 @@
 		echo"El <b>Email</b> introducido no es valido<br>";
 		$error=true;
 	}
-	if(strlen($direccion)>50){
+	if(strlen($direccion) < 5 || strlen($direccion)>50){
 		echo"Se ha excedido el tamaño máximo de campo <b>Dirección</b><br>";
 		$error=true;
 	}
@@ -67,15 +67,15 @@
 		echo"Se ha excedido el tamaño máximo o no es valido el campo <b>Album</b><br>";
 		$error=true;
 	}
-	if(strlen($cod)>6){
+	if(strlen($cod) < 1 || strlen($cod)>6){
 		echo"Se ha excedido el tamaño máximo de campo <b>Código postal</b><br>";
 		$error=true;
 	}
-	if(strlen($localidad)>50){
+	if(strlen($localidad) < 3 || strlen($localidad)>50){
 		echo"Se ha excedido el tamaño máximo de campo <b>Localidad</b><br>";
 		$error=true;
 	}
-	if(strlen($prov)>20){
+	if(strlen($prov) < 3 || strlen($prov)>20){
 		echo"Se ha excedido el tamaño máximo de campo <b>Provincia</b><br>";
 		$error=true;
 	}
