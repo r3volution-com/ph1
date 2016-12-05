@@ -1,7 +1,6 @@
 <?php
 	define("DB_HOST", "localhost");
-	define("DB_USER", "wepic");
-	define("DB_PASS", "we123");
+	define("DB_USER", "root");
+	define("DB_PASS", "");
 	define("DB_NAME", "pibd");
-	define("UPLOAD_DIR", "uploads/")
 ?>

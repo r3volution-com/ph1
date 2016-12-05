@@ -14,7 +14,7 @@
 	if(!$response){
 		die("<section>No hay fotos".$db->error."</section>");
 	}
-	/*
+	
 	if(($fichero = file("importante.txt"))==false){
 		die("No se ha podido abrir el fichero");
 	}
@@ -26,16 +26,14 @@
 			$claves = preg_split("/[_]+/", $aux);
 			$id=$claves[0];
 			$nombre=$claves[1];
-			$fecha=trim($claves[2]);
+			$motivo=trim($claves[2]);
 			$ids[]=$id;
-			$auxarray[]=array("id" => $id, "nombre" => $nombre, "fecha" => $fecha);
+			$auxarray[]=array("id" => $id, "nombre" => $nombre, "motivo" => $motivo);
 		}
 		$idsmayor=max($ids);
 		$idsmenor=min($ids);
 		$rand=rand($idsmenor, $idsmayor);
 		$key = array_search($rand, array_column($auxarray, 'id'));
-	print_r($auxarray[$key]);
-	echo "</pre>\n";
 		$important_response = $db->query("SELECT titulo, descripcion, fecha, idAlbum, ruta, idPais FROM fotos WHERE id=$rand");
 		if(!$important_response){
 			die("<section>No hay fotos".$db->error."</section>");
@@ -43,9 +41,28 @@
 		if($important_response->num_rows<=0) echo "No hay fotos";
 		else{
 			$important_row = $important_response->fetch_assoc();
+			$important_data = $auxarray[$key];
 		}
 	}
-	*/
+	if(isset($important_row)){
+	?>
+<section>
+	<article>
+		<div class="image">
+			<a href="detalle.php?id=<?php echo $important_row["id"]; ?>"><img src="images/<?php echo $row["ruta"]; ?>" width="800" alt="Foto"/></a>
+		</div>
+		<div class="info">
+			<a href="detalle.php?id=<?php echo $important_row["id"]; ?>"><h3><?php echo $important_row["titulo"]; ?></h3></a>
+			<p class="left"><?php echo $important_data["motivo"]?></p>
+			<p class="right author">
+				<b><?php echo $important_data["nombre"]; ?></b></a>
+			</p>
+			<p class="clear"></p>
+		</div>
+	</article>
+</section>
+<?php
+	}
 	?>
 <section>
 <?php
