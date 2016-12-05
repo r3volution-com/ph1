@@ -1,4 +1,4 @@
-<?php
++<?php
 session_start();
 	include ("includes/config.php");
 	$db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -37,7 +37,7 @@ session_start();
 		case "register":
 			if(isset($_POST)){
 				if(isset($_POST["nombre"]) && isset($_POST["pass"]) && isset($_POST["pass2"]) && isset($_POST["email"]) && isset($_POST["ciudad"])
-					 && isset($_POST["pais"]) && isset($_POST["sexo"]) && isset($_POST["fecha"]) && isset($_POST["foto"])){
+					 && isset($_POST["pais"]) && isset($_POST["sexo"]) && isset($_POST["fecha"])){
 					$user   = $db->real_escape_string($_POST["nombre"]);
 					$pass   = $db->real_escape_string($_POST["pass"]);
 					$pass2  = $db->real_escape_string($_POST["pass2"]);
@@ -46,7 +46,6 @@ session_start();
 					$pais   = $db->real_escape_string($_POST["pais"]);
 					$sexo   = $db->real_escape_string($_POST["sexo"]);
 					$fecha  = $db->real_escape_string($_POST["fecha"]);
-					$foto   = "";//$db->real_escape_string($_POST["foto"]);
 					if (strlen($user) < 3 || strlen($user) > 15) {
 						header("location: index.php?q=registro&error=bad_length_name");
 						exit;
@@ -110,6 +109,32 @@ session_start();
 						header("location: index.php?q=registro&error=country_not_found");
 						exit;
 					}
+					if (isset($_FILES['uploadedfile']['name']) && $_FILES['uploadedfile']['name'] != "") {
+						$foto = basename($_FILES['uploadedfile']['name']);
+						if (!$foto){
+							header("location: index.php?q=registro&error=wrong_photo_name");
+							exit;
+						}
+						$finfo = finfo_open(FILEINFO_MIME_TYPE);
+						if (finfo_file($finfo, $_FILES['uploadedfile']['tmp_name']) != "image/jpeg" && finfo_file($finfo, $_FILES['uploadedfile']['tmp_name']) != "image/png"){
+							header("location: index.php?q=registro&error=wrong_photo_type");
+							exit;
+						}
+						if (filesize($_FILES['uploadedfile']['tmp_name']) > 10485760){
+							header("location: index.php?q=registro&error=wrong_photo_size");
+							exit;
+						}
+						$rutafoto = UPLOAD_DIR.$foto;
+						if(!move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $rutafoto)) {
+							header("location: index.php?q=registro&error=file_not_found");
+							exit;
+						}
+						if (!file_exists($rutafoto)){
+							header("location: index.php?q=registro&error=file_not_found");
+							exit;
+						}
+					}
+					else $foto = "";
 					$db->query("INSERT INTO usuarios (nombre, clave, email, sexo, fechaNacimiento, ciudad, idPais, foto) VALUES ('".$user."', '".sha1($pass)."', '".$email."', '".$sexo."', '".$fecha."', '".$ciudad."', ".$pais.", '".$foto."')");
 					header("location: index.php");
 				} else header("location: index.php?error=bad_params");
