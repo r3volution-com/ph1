@@ -44,7 +44,16 @@ article .image img{
 /*Busqueda*/
 section{
 	position: relative;
-	margin-top:9%;
+	margin-top:7%;
+	padding: 5px;
+	padding-bottom:3px;
+}
+.trending{
+	padding:5px;
+}
+.section2{
+	position: relative;
+	margin-top:4%;
 }
 section.results{
 	margin-top: 20px;

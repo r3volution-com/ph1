@@ -47,6 +47,7 @@
 	if(isset($important_row)){
 	?>
 <section>
+	<h2 class="trending">Trending</h2>
 	<article>
 		<div class="image">
 			<a href="detalle.php?id=<?php echo $important_row["id"]; ?>"><img src="images/<?php echo $row["ruta"]; ?>" width="800" alt="Foto"/></a>
@@ -64,7 +65,7 @@
 <?php
 	}
 	?>
-<section>
+<section class="section2">
 <?php
 	if($response->num_rows<=0) echo "No hay fotos";
 	else {
