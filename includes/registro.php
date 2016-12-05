@@ -67,7 +67,7 @@ $response = $db->query("SELECT id,nombre FROM paises ORDER BY nombre");
 			break;
 		}
 	} ?>
-	<form method="POST" action="operaciones.php?operacion=register">
+	<form method="POST" action="operaciones.php?operacion=register" enctype="multipart/form-data">
 		<label for="nombre" class="hide">Nombre</label>
 		<input id="nombre" name="nombre" type="text" minlength="3" maxlength="15" pattern="[a-zA-Z0-9\s]{3,15}" placeholder="Nombre de usuario" <?php if (isset($user)) echo "value='".$user."' disabled"; ?> required/>
 		<label for="pass" class="hide">Contraseña</label>

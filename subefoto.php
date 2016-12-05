@@ -60,7 +60,7 @@
 					break;
 				}
 			} ?>
-		<form id="formulario" action="operaciones.php?operacion=fotoalbum" method="post">
+		<form id="formulario" action="operaciones.php?operacion=fotoalbum" method="post" enctype="multipart/form-data">
 				<label for="titulo">Título de la foto</label>
 				<input id="titulo" name="titulo" type="text" maxlength="30" required placeholder="Título de la foto"/>
 				<select id="pais" name="pais" >

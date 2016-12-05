@@ -109,23 +109,23 @@ session_start();
 						header("location: index.php?q=registro&error=country_not_found");
 						exit;
 					}
-					if (isset($_FILES['uploadedfile']['name']) && $_FILES['uploadedfile']['name'] != "") {
-						$foto = basename($_FILES['uploadedfile']['name']);
+					if (isset($_FILES['foto']['name']) && $_FILES['foto']['name'] != "") {
+						$foto = basename($_FILES['foto']['name']);
 						if (!$foto){
 							header("location: index.php?q=registro&error=wrong_photo_name");
 							exit;
 						}
 						$finfo = finfo_open(FILEINFO_MIME_TYPE);
-						if (finfo_file($finfo, $_FILES['uploadedfile']['tmp_name']) != "image/jpeg" && finfo_file($finfo, $_FILES['uploadedfile']['tmp_name']) != "image/png"){
+						if (finfo_file($finfo, $_FILES['foto']['tmp_name']) != "image/jpeg" && finfo_file($finfo, $_FILES['foto']['tmp_name']) != "image/png"){
 							header("location: index.php?q=registro&error=wrong_photo_type");
 							exit;
 						}
-						if (filesize($_FILES['uploadedfile']['tmp_name']) > 10485760){
+						if (filesize($_FILES['foto']['tmp_name']) > 10485760){
 							header("location: index.php?q=registro&error=wrong_photo_size");
 							exit;
 						}
 						$rutafoto = UPLOAD_DIR.$foto;
-						if(!move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $rutafoto)) {
+						if(!move_uploaded_file($_FILES['foto']['tmp_name'], $rutafoto)) {
 							header("location: index.php?q=registro&error=file_not_found");
 							exit;
 						}
