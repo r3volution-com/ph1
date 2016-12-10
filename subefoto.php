@@ -34,6 +34,9 @@
 					case "bad_length_title":
 						echo "El titulo debe tener entre 3 y 200 caracteres";
 					break;
+					case "bad_length_description":
+						echo "La descripcion debe tener entre 5 y 2500 caracteres";
+					break;
 					case "album_not_found":
 						echo "El album especificado no existe o no le pertenece";
 					break;
@@ -45,7 +48,7 @@
 					break;
 					case "wrong_photo_name":
 						echo "Nombre de fotografía incorrecto";
-					default:
+					break;
 					case "wrong_photo_type":
 						echo "Formato de archivo incorrecto";
 					break;
@@ -63,6 +66,8 @@
 		<form id="formulario" action="operaciones.php?operacion=fotoalbum" method="post" enctype="multipart/form-data">
 				<label for="titulo">Título de la foto</label>
 				<input id="titulo" name="titulo" type="text" maxlength="30" required placeholder="Título de la foto"/>
+				<label for="descripcion">Descripción</label>
+				<textarea name="descripcion" id="descripcion" minlength="5" maxlength="2500" placeholder="Descripción"></textarea>
 				<select id="pais" name="pais" >
 					<option value="0">Elija un país</option>
 					<?php

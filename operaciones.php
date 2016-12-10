@@ -7,6 +7,53 @@ session_start();
 		header("location: index.php");
 	}
 	$opt=$_GET["operacion"];
+	function sanear_string($string) {
+	    $string = trim($string);
+	    $string = str_replace(
+	        array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
+	        array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
+	        $string
+	    );
+	    $string = str_replace(
+	        array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
+	        array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
+	        $string
+	    );
+	    $string = str_replace(
+	        array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
+	        array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
+	        $string
+	    );
+	    $string = str_replace(
+	        array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'),
+	        array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'),
+	        $string
+	    );
+	    $string = str_replace(
+	        array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'),
+	        array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
+	        $string
+	    );
+	    $string = str_replace(
+	        array('ñ', 'Ñ', 'ç', 'Ç'),
+	        array('n', 'N', 'c', 'C',),
+	        $string
+	    );
+	    //Esta parte se encarga de eliminar cualquier caracter extraño
+	    $string = str_replace(
+	        array("\\", "¨", "º", "-", "~",
+	             "#", "@", "|", "!", "\"",
+	             "·", "$", "%", "&", "/",
+	             "(", ")", "?", "'", "¡",
+	             "¿", "[", "^", "<code>", "]",
+	             "+", "}", "{", "¨", "´",
+	             ">", "< ", ";", ",", ":",
+	             " "),
+	        '',
+	        $string
+	    );
+	    return $string;
+	}
 	switch($opt){
 		case "login":
 			if(isset($_POST)){
@@ -147,7 +194,7 @@ session_start();
 		case "modificaruser":
 			if(isset($_POST)){
 				if(isset($_POST["pass"]) && isset($_POST["pass2"]) && isset($_POST["email"]) && isset($_POST["ciudad"])
-				&& isset($_POST["pais"]) && isset($_POST["sexo"]) && isset($_POST["foto"])){
+				&& isset($_POST["pais"]) && isset($_POST["sexo"])){
 					$response = $db->query("SELECT * FROM usuarios WHERE id=".$_SESSION["remember"]["id"]);
 					if (!$response || ($response && $response->num_rows == 0)) {
 						header("location: modificaperfil.php?error=user_no_exists");
@@ -186,6 +233,7 @@ session_start();
 							header("location: modificaperfil.php?error=pass_no_uppercase");
 							exit;
 						}
+						$_SESSION["remember"]["clave"] = sha1($pass);
 						$extra[] = " clave='".sha1($pass)."' ";
 					}
 					if ($email != "" && $email != $row["email"]){
@@ -198,58 +246,72 @@ session_start();
 							header("location: modificaperfil.php?error=email_already_exists");
 							exit;
 						}
+						$_SESSION["remember"]["email"] = $email;
 						$extra[] = " email='".$email."' ";
 					}
 					if ($ciudad != "" && $ciudad != $row["ciudad"]){
+					$_SESSION["remember"]["ciudad"] = $ciudad;
 						$extra[] = " ciudad='".$ciudad."' ";
 					}
-					if ($pais != "" && $pais != $row["pais"] && is_numeric($pais)){
+					if ($pais != "" && $pais != $row["idPais"] && is_numeric($pais)){
 						$response = $db->query("SELECT * FROM paises WHERE id=".$pais);
 						if(!$response || ($response && $response->num_rows == 0)){
 							header("location: modificaperfil.php?error=country_not_found");
 							exit;
 						}
-						$extra[] = " pais=".$pais." ";
+						$_SESSION["remember"]["idPais"] = $pais;
+						$extra[] = " idPais=".$pais." ";
 					}
 					if ($sexo != "" && $sexo != $row["sexo"]){
 						if ($sexo != "h" && $sexo != "m"){
 							header("location: modificaperfil.php?error=bad_sex");
 							exit;
 						}
+						$_SESSION["remember"]["sexo"] = $sexo;
 						$extra[] = " sexo='".$sexo."' ";
 					}
 					if (isset($_FILES['foto']['name']) && $_FILES['foto']['name'] != "") {
 						if (!is_uploaded_file($_FILES['foto']['tmp_name'])) {
-							header("location: index.php?q=registro&error=file_not_found");
+							header("location: modificaperfil.php?error=file_not_found");
 							exit;
 						}
 						$finfo = finfo_open(FILEINFO_MIME_TYPE);
 						if (finfo_file($finfo, $_FILES['foto']['tmp_name']) != "image/jpeg" && finfo_file($finfo, $_FILES['foto']['tmp_name']) != "image/png"){
-							header("location: index.php?q=registro&error=wrong_photo_type");
+							header("location: modificaperfil.php?error=wrong_photo_type");
 							exit;
 						}
 						if (filesize($_FILES['foto']['tmp_name']) > 10485760){
-							header("location: index.php?q=registro&error=wrong_photo_size");
+							header("location: modificaperfil.php?error=wrong_photo_size");
 							exit;
 						}
 						$foto = basename($_FILES['foto']['name']);
 						if (!$foto){
-							header("location: index.php?q=registro&error=wrong_photo_name");
+							header("location: modificaperfil.php?error=wrong_photo_name");
 							exit;
 						}
-						$rutafoto = UPLOAD_DIR.$user."_".$foto;
+						$rutafoto = UPLOAD_DIR.$row["nombre"]."_".$foto;
 						if(!@move_uploaded_file($_FILES['foto']['tmp_name'], $rutafoto)) {
-							header("location: index.php?q=registro&error=file_not_found");
+							header("location: modificaperfil.php?error=file_not_found");
 							exit;
 						}
 						if (!file_exists($rutafoto)){
-							header("location: index.php?q=registro&error=file_not_found");
+							header("location: modificaperfil.php?error=file_not_found");
 							exit;
 						}
-						$extra[] = "ruta='".$rutafoto."'";
+						if ($row["foto"]) unlink($row["foto"]);
+						$_SESSION["remember"]["foto"] = $row["nombre"]."_".$foto;
+						$extra[] = "foto='".$row["nombre"]."_".$foto."'";
 					}
 					$extraquery = implode(",", $extra);
-					if($extraquery != "") $db->query("UPDATE usuarios SET ".$extraquery." WHERE id=".$row["id"]);
+					if($extraquery != "") {
+						$db->query("UPDATE usuarios SET ".$extraquery." WHERE id=".$row["id"]);
+						if(isset($_COOKIE["remember_user"])){
+							setcookie("remember_user", "", time() -3600);
+							setcookie("remember_pass", "", time() -3600);
+							setcookie("remember_time", "", time() -3600);
+						}
+					}
+					header("location: perfil.php");
 				}else header("location: modificaperfil.php?error=bad_params");
 			}
 		break;
@@ -296,7 +358,7 @@ session_start();
 
 		case "fotoalbum":
 			if(isset($_POST)){
-				if(isset($_POST["titulo"]) && isset($_POST["pais"]) && isset($_POST["date"]) && isset($_POST["album"])){
+				if(isset($_POST["titulo"]) && isset($_POST["pais"]) && isset($_POST["date"]) && isset($_POST["album"]) && isset($_POST["descripcion"])){
 					$response = $db->query("SELECT * FROM usuarios WHERE id=".$_SESSION["remember"]["id"]);
 					if (!$response || ($response && $response->num_rows == 0)) {
 						header("location: subefoto.php?error=user_no_exists");
@@ -306,9 +368,13 @@ session_start();
 					$fecha 	= $db->real_escape_string($_POST["date"]);
 					$pais   = $db->real_escape_string($_POST["pais"]);
 					$album  = $db->real_escape_string($_POST["album"]);
-					$foto	= ""; //$db->real_escape_string($_POST["foto"]);
+					$descripcion  = $db->real_escape_string($_POST["descripcion"]);
 					if (strlen($titulo) < 3 || strlen($titulo) > 200) {
 						header("location: subefoto.php?error=bad_length_title");
+						exit;
+					}
+					if (strlen($descripcion) < 3 || strlen($descripcion) > 200) {
+						header("location: subefoto.php?error=bad_length_description");
 						exit;
 					}
 					if (!is_numeric($pais)){
@@ -333,7 +399,37 @@ session_start();
 						header("location: subefoto.php?error=bad_date");
 						exit;
 					}
-					$db->query("INSERT INTO fotos (titulo, idAlbum, fecha, idPais, ruta) VALUES ('".$titulo."', ".$album.", '".$fecha."', ".$pais.", '".$ruta."')");
+					if (isset($_FILES['foto']['name']) && $_FILES['foto']['name'] != "") {
+						if (!is_uploaded_file($_FILES['foto']['tmp_name'])) {
+							header("location: subefoto.php?error=file_not_found");
+							exit;
+						}
+						$finfo = finfo_open(FILEINFO_MIME_TYPE);
+						if (finfo_file($finfo, $_FILES['foto']['tmp_name']) != "image/jpeg" && finfo_file($finfo, $_FILES['foto']['tmp_name']) != "image/png"){
+							header("location: subefoto.php?error=wrong_photo_type");
+							exit;
+						}
+						if (filesize($_FILES['foto']['tmp_name']) > 10485760){
+							header("location: subefoto.php?error=wrong_photo_size");
+							exit;
+						}
+						$foto = basename($_FILES['foto']['name']);
+						if (!$foto){
+							header("location: subefoto.php?error=wrong_photo_name");
+							exit;
+						}
+						$foto = time()."_".sanear_string($foto);
+						$rutafoto = UPLOAD_DIR.$foto;
+						if(!@move_uploaded_file($_FILES['foto']['tmp_name'], $rutafoto)) {
+							header("location: subefoto.php?error=file_not_found");
+							exit;
+						}
+						if (!file_exists($rutafoto)){
+							header("location: subefoto.php?error=file_not_found");
+							exit;
+						}
+					}
+					$db->query("INSERT INTO fotos (titulo, descripcion, idAlbum, fecha, idPais, ruta) VALUES ('".$titulo."', '".$descripcion."', ".$album.", '".$fecha."', ".$pais.", '".$foto."')");
 					header("location: perfil.php");
 				} else header("location: subefoto.php?error=bad_params");
 			}

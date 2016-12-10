@@ -43,7 +43,7 @@
 			break;
 			case "wrong_photo_name":
 				echo "Nombre de fotografía incorrecto";
-			default:
+			break;
 			case "wrong_photo_type":
 				echo "Formato de archivo incorrecto";
 			break;
@@ -58,15 +58,15 @@
 			break;
 		}
 	} ?>
-	<form method="POST" action="perfil.php" enctype="multipart/form-data">
+	<form method="POST" action="operaciones.php?operacion=modificaruser" enctype="multipart/form-data">
 		<label for="pass" class="hide">Contraseña</label>
-		<input id="pass" name="pass" type="password" minlength="6" maxlength="15" pattern="[a-zA-Z0-9\s_]{6,15}" placeholder="Contraseña" required/>
+		<input id="pass" name="pass" type="password" minlength="6" maxlength="15" pattern="[a-zA-Z0-9\s_]{6,15}" placeholder="Contraseña"/>
 		<label for="pass2" class="hide">Repetir Contraseña</label>
-		<input id="pass2" name="pass2" type="password" minlength="6" maxlength="15" pattern="[a-zA-Z0-9\s_]{6,15}" placeholder="Confirmar Contraseña" required/>
+		<input id="pass2" name="pass2" type="password" minlength="6" maxlength="15" pattern="[a-zA-Z0-9\s_]{6,15}" placeholder="Confirmar Contraseña"/>
 		<label for="email" class="hide">E-mail</label>
-		<input id="email" name="email" type="email" minlength="8" maxlength="250" placeholder="E-mail" <?php if (isset($email)) echo "value='".$email."' disabled"; ?> required/>
+		<input id="email" name="email" type="email" minlength="8" maxlength="250" placeholder="E-mail" <?php if (isset($email)) echo "value='".$email."'"; ?>/>
 		<label for="ciudad" class="hide">Ciudad</label>
-		<input id="ciudad" name="ciudad" type="text" maxlength="250" placeholder="Ciudad" <?php if (isset($ciudad)) echo "value='".$ciudad."' disabled"; ?> />
+		<input id="ciudad" name="ciudad" type="text" maxlength="250" placeholder="Ciudad" <?php if (isset($ciudad)) echo "value='".$ciudad."'"; ?> />
 		<label for="pais">País</label>
 		<select id="pais" name="pais">
 		<option value="0">Elija un país</option>

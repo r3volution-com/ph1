@@ -53,7 +53,7 @@ $response = $db->query("SELECT id,nombre FROM paises ORDER BY nombre");
 			break;
 			case "wrong_photo_name":
 				echo "Nombre de fotografía incorrecto";
-			default:
+			break;
 			case "wrong_photo_type":
 				echo "Formato de archivo incorrecto";
 			break;

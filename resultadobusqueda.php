@@ -57,12 +57,12 @@
 	?>
 	<article>
 		<div class="image">
-			<a href="detalle.php?id=<?php echo $row["id"]; ?>"><img src="images/<?php echo $row["ruta"]; ?>" width="800" alt="Foto"/></a>
+			<a href="detalle.php?id=<?php echo $row["id"]; ?>"><img src="uploads/<?php echo $row["ruta"]; ?>" width="800" alt="Foto"/></a>
 		</div>
 		<div class="info">
 			<a href="detalle.php?id=<?php echo $row["id"]; ?>"><h3><?php echo $row["titulo"]; ?></h3></a>
 			<p class="left"><?php echo date("d/m/Y", strtotime($row["fecha"])); ?> - <?php echo $row["nombrePais"]; ?></p>
-			<p class="right author"><a href="perfil.php?id=<?php echo $row["idUsuario"]; ?>"><img src="images/<?php echo ($row["fotoUsuario"]) ? $row["fotoUsuario"] : "user.png"; ?>" alt="Perfil"/><b><?php echo $row["nombreUsuario"]; ?></b></a></p>
+			<p class="right author"><a href="perfil.php?id=<?php echo $row["idUsuario"]; ?>"><img src="uploads/<?php echo ($row["fotoUsuario"]) ? $row["fotoUsuario"] : "user.png"; ?>" alt="Perfil"/><b><?php echo $row["nombreUsuario"]; ?></b></a></p>
 			<p class="clear"></p>
 		</div>
 	</article>

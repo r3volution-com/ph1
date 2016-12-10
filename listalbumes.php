@@ -6,7 +6,8 @@
 		header("location: index.php");
 	}
 	include("includes/header.php");
-	$response = $db->query("SELECT id, titulo, descripcion, fecha, (SELECT nombre FROM paises WHERE id=idPais) as nombrePais FROM albumes WHERE idUsuario=".$_SESSION["remember"]["id"]." ORDER BY fecha DESC LIMIT 5");
+	$response = $db->query("SELECT id, titulo, descripcion, fecha, (SELECT nombre FROM paises WHERE id=idPais) as nombrePais, (SELECT ruta from fotos WHERE idAlbum=albumes.id LIMIT 1) as default_image ".
+	"FROM albumes WHERE idUsuario=".$_SESSION["remember"]["id"]." ORDER BY fecha DESC LIMIT 5");
 	if(!$response){
 		die("<section>".$db->error."</section>");
 	}
@@ -24,7 +25,7 @@
 	<article>
 		<div class="aux">
 		<div class="image">
-			<a href="veralbum.php?id=<?php echo $row["id"]; ?>"><img src="images/01.jpg" alt="Foto"/></a>
+			<a href="veralbum.php?id=<?php echo $row["id"]; ?>"><img src="uploads/<?php echo $row["default_image"]; ?>" alt="Foto"/></a>
 		</div>
 		<div class="info">
 			<div class="titulo"><a href="veralbum.php?id=<?php echo $row["id"]; ?>"><?php echo $row["titulo"]; ?></a></div>

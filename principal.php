@@ -14,7 +14,7 @@
 	if(!$response){
 		die("<section>No hay fotos".$db->error."</section>");
 	}
-	
+
 	if(($fichero = file("importante.txt"))==false){
 		die("No se ha podido abrir el fichero");
 	}
@@ -50,7 +50,7 @@
 	<h2 class="trending">Trending</h2>
 	<article>
 		<div class="image">
-			<a href="detalle.php?id=<?php echo $important_row["id"]; ?>"><img src="images/<?php echo $row["ruta"]; ?>" width="800" alt="Foto"/></a>
+			<a href="detalle.php?id=<?php echo $important_row["id"]; ?>"><img src="uploads/<?php echo $row["ruta"]; ?>" width="800" alt="Foto"/></a>
 		</div>
 		<div class="info">
 			<a href="detalle.php?id=<?php echo $important_row["id"]; ?>"><h3><?php echo $important_row["titulo"]; ?></h3></a>
@@ -73,13 +73,13 @@
 	?>
 	<article>
 		<div class="image">
-			<a href="detalle.php?id=<?php echo $row["id"]; ?>"><img src="images/<?php echo $row["ruta"]; ?>" width="800" alt="Foto"/></a>
+			<a href="detalle.php?id=<?php echo $row["id"]; ?>"><img src="uploads/<?php echo $row["ruta"]; ?>" width="800" alt="Foto"/></a>
 		</div>
 		<div class="info">
 			<a href="detalle.php?id=<?php echo $row["id"]; ?>"><h3><?php echo $row["titulo"]; ?></h3></a>
 			<p class="left"><?php echo date("d/m/Y", strtotime($row["fecha"])); ?> - <?php echo $row["nombrePais"]; ?></p>
 			<p class="right author"><a href="perfil.php?id=<?php echo $row["idUsuario"]; ?>">
-				<img src="images/<?php echo ($row["fotoUsuario"]) ? $row["fotoUsuario"] : "user.png"; ?>" alt="Perfil"/><b><?php echo $row["nombreUsuario"]; ?></b></a>
+				<img src="uploads/<?php echo ($row["fotoUsuario"]) ? $row["fotoUsuario"] : "user.png"; ?>" alt="Perfil"/><b><?php echo $row["nombreUsuario"]; ?></b></a>
 			</p>
 			<p class="clear"></p>
 		</div>

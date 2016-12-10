@@ -34,7 +34,7 @@
 	</div>
 	<article>
 		<div class="image">
-			<img src="images/<?php echo ($ruta) ? $ruta : "user.png"; ?>" alt="Foto"/>
+			<img src="uploads/<?php echo ($ruta) ? $ruta : "user.png"; ?>" alt="Foto"/>
 			<div class="info">
 				<p class="descripcion"><?php echo $descripcion;?></p>
 				<p><?php echo $fecha; ?> - <?php echo $pais; ?></p>

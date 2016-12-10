@@ -42,7 +42,7 @@
 <section>
 	<div class="perfil">
 		<div class="cabecera">
-			<img src="images/<?php echo ($foto) ? $foto : "user.png"; ?>" alt="Foto"/>
+			<img src="uploads/<?php echo ($foto) ? $foto : "user.png"; ?>" alt="Foto"/>
 			<h2><?php echo $nombre; ?></h2>
 		</div>
 		<div class="section-profile">
