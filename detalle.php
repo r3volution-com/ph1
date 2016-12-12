@@ -22,6 +22,7 @@
 			$pais = $foto["nombrePais"];
 			$id_autor = $foto["idUsuario"];
 			$autor = $foto["nombreUsuario"];
+			$foto_autor=$foto["fotoUsuario"];
 		}else{
 			$error=true;
 		}
@@ -38,12 +39,10 @@
 			<div class="info">
 				<p class="descripcion"><?php echo $descripcion;?></p>
 				<p><?php echo $fecha; ?> - <?php echo $pais; ?></p>
-				<p><b><a href="perfil.php?id=<?php echo $id_autor; ?>"><?php echo $autor; ?></a></b></p>
+				<p class="right author"><a href="perfil.php?id=<?php echo $autor; ?>">
+				<img src="uploads/<?php echo ($foto_autor) ? $foto_autor : "user.png"; ?>" alt="Perfil"/><b><?php echo $autor; ?></b></a>
+			</p>
 			</div>
-		</div>
-		<div class="comments">
-			<h1>Comentarios</h1>
-			<p class="coment"><b><a href="perfil.php">Ygritte:</a></b> You know nothing John Snow</p>
 		</div>
 		<div class="clear"></div>
 	</article>
