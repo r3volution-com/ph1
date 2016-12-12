@@ -10,7 +10,7 @@
 <section class="box">
 	<h1>Pedido realizado</h1>
 	<p>¿Quiere darse de baja?</p>
-	<a class="ref" href="operaciones.php?operacion=dardebja">Si</a>
+	<a class="ref" href="operaciones.php?operacion=dardebaja">Si</a>
 	<a class="ref" href="perfil.php">No</a>
 </section>
 <?php
