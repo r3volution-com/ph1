@@ -27,7 +27,6 @@
 		}
 		$key=rand(0, count($fichero));
 		$id = $auxarray[$key]["id"];
-		array_column($auxarrarray_search($rand, array_column($auxarray, 'id'));
 		$important_response = $db->query("SELECT titulo, descripcion, fecha, idAlbum, ruta, idPais FROM fotos WHERE id=$id");
 		if(!$important_response){
 			die("<section>No hay fotos".$db->error."</section>");
