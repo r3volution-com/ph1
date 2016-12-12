@@ -170,7 +170,7 @@ session_start();
 							header("location: index.php?q=registro&error=wrong_photo_size");
 							exit;
 						}
-						$foto = basename($_FILES['foto']['name']);
+						$foto = sanear_string(basename($_FILES['foto']['name']));
 						if (!$foto){
 							header("location: index.php?q=registro&error=wrong_photo_name");
 							exit;
@@ -284,7 +284,7 @@ session_start();
 							header("location: modificaperfil.php?error=wrong_photo_size");
 							exit;
 						}
-						$foto = basename($_FILES['foto']['name']);
+						$foto = sanear_string(basename($_FILES['foto']['name']));
 						if (!$foto){
 							header("location: modificaperfil.php?error=wrong_photo_name");
 							exit;
@@ -413,7 +413,7 @@ session_start();
 							header("location: subefoto.php?error=wrong_photo_size");
 							exit;
 						}
-						$foto = basename($_FILES['foto']['name']);
+						$foto = sanear_string(basename($_FILES['foto']['name']));
 						if (!$foto){
 							header("location: subefoto.php?error=wrong_photo_name");
 							exit;

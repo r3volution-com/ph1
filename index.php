@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	include ("includes/config.php");
-	
+
 	if(isset($_SESSION["remember"])==true){
 		header("location: principal.php");
 		exit;
@@ -35,10 +35,10 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css"/>
         <link href="css/outside-style.css" rel="stylesheet" type="text/css" media="screen"/>
         <link href="css/outside-style-print.css" rel="stylesheet" type="text/css" media="print"/>
-		<link href="css/style-accesible.css" rel="alternate stylesheet" type="text/css" title="Accesible"/> 
-		<?php 
+		<link href="css/style-accesible.css" rel="alternate stylesheet" type="text/css" title="Accesible"/>
+		<?php
 			$response = $db->query("SELECT titulo, ruta FROM fotos ORDER BY fechaSubida DESC LIMIT 5");
-			if($response){ 
+			if($response){
 				$backgrounds = array();
 				$titles = array();
 				while ($row = $response->fetch_assoc()) {
@@ -46,7 +46,7 @@
 					$titles[] = $row["titulo"];
 				}
 				?>
-		<style> 
+		<style>
 			body {
 				background-position: center center;
 				background-repeat: no-repeat;
@@ -75,18 +75,18 @@
 			}
 			@keyframes background {
 				<?php $i = 0;
-				foreach ($backgrounds as $background) { 
-					echo $i."% { background-image: url('images/".$background."');}";
+				foreach ($backgrounds as $background) {
+					echo $i."% { background-image: url('uploads/".$background."');}";
 					$i += 25;
-				} 
+				}
 				?>
 			}
 			@keyframes text {
 				<?php $i = 0;
-				foreach ($titles as $title) { 
+				foreach ($titles as $title) {
 					echo $i."% { content: \"".$title."\";}";
 					$i += 25;
-				} 
+				}
 				?>
 			}
 		</style>
