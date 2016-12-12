@@ -76,6 +76,12 @@ section h2{
 	padding: 20px;
 	display: inline-block;
 }
+.h2{
+	width:50%;
+	margin: auto;
+	padding: 10px;
+	display: inline-block;
+}
 .foto2{
 	font-weight: bold;
 	position: absolute;

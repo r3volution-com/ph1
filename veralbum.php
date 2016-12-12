@@ -28,10 +28,10 @@
 	<?php
 	if (!$error){
 	?>
-	<h2><?php echo $album["titulo"]; ?></h2>
+	<h2 class="h2"><?php echo $album["titulo"]; ?></h2>
 	<a class="foto2" href="subefoto.php?idalbum=<?php echo $id; ?>">Añadir foto</a>
 	<?php
-		if($response->num_rows<=0) echo "No hay fotos";
+		if($response->num_rows<=0) echo "<p>No hay fotos</p>";
 		else {
 			while ($row = $response->fetch_array()){
 				?>

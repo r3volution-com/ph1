@@ -3,6 +3,8 @@
 	margin-left: 5px;
 	width:30%;
 	display: inline-block;
+	min-height:100px;
+	min-width:177px;
 }
 .info{
 	width: 68%;
