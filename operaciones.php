@@ -54,6 +54,39 @@ session_start();
 	    );
 	    return $string;
 	}
+	function createThumbnail($image_name, $new_width, $new_height, $uploadDir){
+	    $path = $uploadDir . '/' . $image_name;
+	    $mime = getimagesize($path);
+	    if($mime['mime']=='image/png'){ $src_img = imagecreatefrompng($path); }
+	    if($mime['mime']=='image/jpg'){ $src_img = imagecreatefromjpeg($path); }
+	    if($mime['mime']=='image/jpeg'){ $src_img = imagecreatefromjpeg($path); }
+	    if($mime['mime']=='image/pjpeg'){ $src_img = imagecreatefromjpeg($path); }
+	    $old_x          =   imageSX($src_img);
+	    $old_y          =   imageSY($src_img);
+	    if($old_x > $old_y) {
+	        $thumb_w    =   $new_width;
+	        $thumb_h    =   $old_y*($new_height/$old_x);
+	    }
+	    if($old_x < $old_y) {
+	        $thumb_w    =   $old_x*($new_width/$old_y);
+	        $thumb_h    =   $new_height;
+	    }
+	    if($old_x == $old_y) {
+	        $thumb_w    =   $new_width;
+	        $thumb_h    =   $new_height;
+	    }
+	    $dst_img        =   ImageCreateTrueColor($thumb_w,$thumb_h);
+	    imagecopyresampled($dst_img,$src_img,0,0,0,0,$thumb_w,$thumb_h,$old_x,$old_y);
+	    // New save location
+	    $new_thumb_loc = $uploadDir . "thumb_".$image_name;
+	    if($mime['mime']=='image/png'){ $result = imagepng($dst_img,$new_thumb_loc,8); }
+	    if($mime['mime']=='image/jpg'){ $result = imagejpeg($dst_img,$new_thumb_loc,80); }
+	    if($mime['mime']=='image/jpeg'){ $result = imagejpeg($dst_img,$new_thumb_loc,80); }
+	    if($mime['mime']=='image/pjpeg'){ $result = imagejpeg($dst_img,$new_thumb_loc,80); }
+	    imagedestroy($dst_img);
+	    imagedestroy($src_img);
+	    return $result;
+	}
 	switch($opt){
 		case "login":
 			if(isset($_POST)){
@@ -180,6 +213,7 @@ session_start();
 							header("location: index.php?q=registro&error=file_not_found");
 							exit;
 						}
+						createThumbnail($user."_".$foto, 50, 50, UPLOAD_DIR);
 						if (!file_exists($rutafoto)){
 							header("location: index.php?q=registro&error=file_not_found");
 							exit;
@@ -294,10 +328,12 @@ session_start();
 							header("location: modificaperfil.php?error=file_not_found");
 							exit;
 						}
+						createThumbnail($row["nombre"]."_".$foto, 50, 50, UPLOAD_DIR);
 						if (!file_exists($rutafoto)){
 							header("location: modificaperfil.php?error=file_not_found");
 							exit;
 						}
+
 						if ($row["foto"]) unlink($row["foto"]);
 						$_SESSION["remember"]["foto"] = $row["nombre"]."_".$foto;
 						$extra[] = "foto='".$row["nombre"]."_".$foto."'";
@@ -410,6 +446,11 @@ session_start();
 							exit;
 						}
 						if (filesize($_FILES['foto']['tmp_name']) > 10485760){
+							header("location: subefoto.php?error=wrong_photo_size");
+							exit;
+						}
+						$tamano = getimagesize($_FILES['foto']['tmp_name']);
+						if (($tamano[0] > 1125 || $tamano[0] < 500) || ($tamano[1] > 1125 || $tamano[1] < 500)){
 							header("location: subefoto.php?error=wrong_photo_size");
 							exit;
 						}
