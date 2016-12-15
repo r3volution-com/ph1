@@ -172,7 +172,7 @@ session_start();
 						header("location: index.php?q=registro&error=email_already_exists");
 						exit;
 					}
-					if ($sexo != "h" && $sexo != "m"){
+					if ($sexo != "0" && $sexo != "1"){
 						header("location: index.php?q=registro&error=bad_sex");
 						exit;
 					}
