@@ -8,8 +8,8 @@
 	if (isset($_GET["id"]) && is_numeric($_GET["id"]) && $_GET["id"] > 0){
 		$id = $db->real_escape_string($_GET["id"]);
 		if($id>=0){
-			$response = $db->query("SELECT id, titulo, descripcion, fecha, idAlbum, ruta, (SELECT titulo FROM albumes WHERE id=idAlbum) as nombreAlbum,".
-				"(SELECT nombre FROM paises WHERE id=(SELECT idPais FROM albumes WHERE id=idAlbum)) as nombrePais, ".
+			$response = $db->query("SELECT id, titulo, descripcion, fecha, idPais, idAlbum, ruta, (SELECT titulo FROM albumes WHERE id=idAlbum) as nombreAlbum,".
+				"(SELECT nombre FROM paises WHERE id=idPais) as nombrePais, ".
 				"(SELECT nombre FROM usuarios WHERE id=(SELECT idUsuario FROM albumes WHERE id=idAlbum)) as nombreUsuario, ".
 				"(SELECT foto FROM usuarios WHERE id=(SELECT idUsuario FROM albumes WHERE id=idAlbum)) as fotoUsuario, ".
 				"(SELECT idUsuario FROM albumes WHERE id=idAlbum) as idUsuario, ".

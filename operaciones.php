@@ -471,7 +471,7 @@ session_start();
 						}
 					}
 					$db->query("INSERT INTO fotos (titulo, descripcion, idAlbum, fecha, idPais, ruta) VALUES ('".$titulo."', '".$descripcion."', ".$album.", '".$fecha."', ".$pais.", '".$foto."')");
-					header("location: perfil.php");
+					header("location: veralbum.php?id=".$album);
 				} else header("location: subefoto.php?error=bad_params");
 			}
 		break;
@@ -506,13 +506,15 @@ session_start();
 
 		case "dardebaja":
 			if (isset($_SESSION["remember"])){
-				$db->query("DELETE FROM usuarios WHERE id=".$_SESSION["remember"]["id"]);
-				unset($_SESSION["remember"]);
-				if(isset($_COOKIE["remember_user"])){
-					setcookie("remember_user", "", time() -3600);
-					setcookie("remember_pass", "", time() -3600);
-					setcookie("remember_time", "", time() -3600);
-				}
+				$res = $db->query("DELETE FROM usuarios WHERE id=".$_SESSION["remember"]["id"]);
+				if ($res){
+					unset($_SESSION["remember"]);
+					if(isset($_COOKIE["remember_user"])){
+						setcookie("remember_user", "", time() -3600);
+						setcookie("remember_pass", "", time() -3600);
+						setcookie("remember_time", "", time() -3600);
+					}
+				} else die("ERROR al dar de baja ".$db->error);
 			}
 			header("location: index.php");
 		break;

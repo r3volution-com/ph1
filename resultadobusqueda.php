@@ -18,7 +18,7 @@
 		$extra2 = " LIMIT 10";
 	}
 	$query = "SELECT id, titulo, descripcion, fecha, idAlbum, idPais, ruta, (SELECT titulo FROM albumes WHERE id=idAlbum) as nombreAlbum,".
-		"(SELECT nombre FROM paises WHERE id=(SELECT idPais FROM albumes WHERE id=idAlbum)) as nombrePais, ".
+		"(SELECT nombre FROM paises WHERE id=idPais) as nombrePais, ".
 		"(SELECT nombre FROM usuarios WHERE id=(SELECT idUsuario FROM albumes WHERE id=idAlbum)) as nombreUsuario, ".
 		"(SELECT foto FROM usuarios WHERE id=(SELECT idUsuario FROM albumes WHERE id=idAlbum)) as fotoUsuario, ".
 		"(SELECT idUsuario FROM albumes WHERE id=idAlbum) as idUsuario FROM fotos $extra ORDER BY fechaSubida DESC $extra2";

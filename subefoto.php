@@ -94,7 +94,7 @@
 				<label for="pais">País</label>
 				<p>
 				<label class="label" for="foto">Foto</label><br>
-				<input type="file" id="foto" name="foto" accept="image/jpg,image/png" requiered>
+				<input type="file" id="foto" name="foto" accept="image/jpeg,image/png" required>
 				</p>
 			<input id="campo9" name="enviar" type="submit" value="Enviar"/>
 		</form>

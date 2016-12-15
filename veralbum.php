@@ -15,7 +15,7 @@
 				if (!$res || ($res && $res->num_rows <= 0)) $error = true;
 				$album = $res->fetch_array();
 				$response = $db->query("SELECT id, titulo, descripcion, fecha, idAlbum, idPais, ruta, (SELECT titulo FROM albumes WHERE id=idAlbum) as nombreAlbum,".
-					"(SELECT nombre FROM paises WHERE id=(SELECT idPais FROM albumes WHERE id=idAlbum)) as nombrePais, ".
+					"(SELECT nombre FROM paises WHERE id=idPais) as nombrePais, ".
 					"(SELECT nombre FROM usuarios WHERE id=(SELECT idUsuario FROM albumes WHERE id=idAlbum)) as nombreUsuario, ".
 					"(SELECT foto FROM usuarios WHERE id=(SELECT idUsuario FROM albumes WHERE id=idAlbum)) as fotoUsuario, ".
 					"(SELECT idUsuario FROM albumes WHERE id=idAlbum) as idUsuario FROM fotos where idAlbum=$id ORDER BY fechaSubida DESC");
@@ -30,6 +30,7 @@
 	?>
 	<h2 class="h2"><?php echo $album["titulo"]; ?></h2>
 	<a class="foto2" href="subefoto.php?idalbum=<?php echo $id; ?>">Añadir foto</a>
+	<a class="foto3" href="listalbumes.php">Volver a la lista</a>
 	<?php
 		if($response->num_rows<=0) echo "<p>No hay fotos</p>";
 		else {

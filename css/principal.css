@@ -94,6 +94,16 @@ section h2{
 	background-color: rgba(200, 200, 200, 0.5);
 	padding:8px;
 }
+.foto3{
+	font-weight: bold;
+	position: absolute;
+	left:10px;
+	top:10px;
+	display: block;
+	text-align: center;
+	background-color: rgba(200, 200, 200, 0.5);
+	padding:8px;
+}
 .foto2:hover{
 	background-color: grey;
 }
