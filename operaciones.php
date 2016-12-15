@@ -297,7 +297,7 @@ session_start();
 						$extra[] = " idPais=".$pais." ";
 					}
 					if ($sexo != "" && $sexo != $row["sexo"]){
-						if ($sexo != "h" && $sexo != "m"){
+						if ($sexo != "0" && $sexo != "1"){
 							header("location: modificaperfil.php?error=bad_sex");
 							exit;
 						}
