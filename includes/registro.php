@@ -98,7 +98,7 @@ $response = $db->query("SELECT id,nombre FROM paises ORDER BY nombre");
 		<input id="fecha" name="fecha" type="date" placeholder="dd/mm/yy"/><br>
 		<p>
 		<label for="foto">Foto</label>
-		<input type="file" id="foto" name="foto" accept="image/jpg,image/png">
+		<input type="file" id="foto" name="foto" accept="image/jpeg,image/png">
 		</p>
 		<input id="enviar" name="enviar" type="submit" value="Enviar" />
 	</form>
