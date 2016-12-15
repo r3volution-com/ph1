@@ -27,7 +27,7 @@
 		}
 		$key=rand(0, count($fichero)-1);
 		$id = $auxarray[$key]["id"];
-		$important_response = $db->query("SELECT titulo, descripcion, fecha, idAlbum, ruta, idPais FROM fotos WHERE id=$id");
+		$important_response = $db->query("SELECT id, titulo, descripcion, fecha, idAlbum, ruta, idPais FROM fotos WHERE id=$id");
 		if(!$important_response){
 			die("<section>No hay fotos".$db->error."</section>");
 		}
