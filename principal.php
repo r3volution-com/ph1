@@ -19,14 +19,11 @@
 		die("No se ha podido abrir el fichero");
 	}
 	else{
-		$auxarray=array();
-		foreach($fichero as $numLinea => $linea){
-			$aux=htmlspecialchars($linea, ENT_NOQUOTES, "UTF-8");
-			$claves = preg_split("/[_]+/", $aux);
-			$auxarray[]=array("id" => $claves[0], "nombre" => $claves[1], "motivo" => trim($claves[2]));
-		}
 		$key=rand(0, count($fichero)-1);
-		$id = $auxarray[$key]["id"];
+		$aux=htmlspecialchars($fichero[$key], ENT_NOQUOTES, "UTF-8");
+		$claves = preg_split("/[_]+/", $aux);
+		$auxarray=array("id" => $claves[0], "nombre" => $claves[1], "motivo" => trim($claves[2]));
+		$id = $auxarray["id"];
 		$important_response = $db->query("SELECT id, titulo, descripcion, fecha, idAlbum, ruta, idPais FROM fotos WHERE id=$id");
 		if(!$important_response){
 			die("<section>No hay fotos".$db->error."</section>");
@@ -34,7 +31,7 @@
 		if($important_response->num_rows<=0) echo "No hay fotos";
 		else{
 			$important_row = $important_response->fetch_assoc();
-			$important_data = $auxarray[$key];
+			$important_data = $auxarray;
 		}
 	}
 	if(isset($important_row)){
