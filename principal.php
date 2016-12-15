@@ -34,7 +34,7 @@
 		if($important_response->num_rows<=0) echo "No hay fotos";
 		else{
 			$important_row = $important_response->fetch_assoc();
-			$important_data = $id;
+			$important_data = $auxarray[$key];
 		}
 	}
 	if(isset($important_row)){
