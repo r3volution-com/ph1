@@ -91,8 +91,8 @@ $response = $db->query("SELECT id,nombre FROM paises ORDER BY nombre");
 		</select>
 		<label for="sexo">Sexo</label>
 		<select name="sexo" id="sexo">
-			<option value="h">Hombre</option>
-			<option value="m">Mujer</option>
+			<option value="0">Hombre</option>
+			<option value="1">Mujer</option>
 		</select>
 		<label for="fecha">Fecha de nacimiento</label>
 		<input id="fecha" name="fecha" type="date" placeholder="dd/mm/yy"/><br>

@@ -82,8 +82,8 @@
 		</select>
 		<label for="sexo">Sexo</label>
 		<select name="sexo" id="sexo">
-			<option <?php if ($sexo == "h") echo "selected"; ?> value="h">Hombre</option>
-			<option <?php if ($sexo == "m") echo "selected"; ?> value="m">Mujer</option>
+			<option <?php if ($sexo == "0") echo "selected"; ?> value="0">Hombre</option>
+			<option <?php if ($sexo == "1") echo "selected"; ?> value="1">Mujer</option>
 		</select>
 		<p>
 		Elija su foto de perfil<br><br>
