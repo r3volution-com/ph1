@@ -1,5 +1,5 @@
-1_Ismael Bertaïba Fernández_Menuda calidad de imágen
-2_Mario González Alvarado_La mejor foto que he visto
-3_Jesús Hernández Hernández_Sorprendente ángulo
-4_Pedro Zapata Jiménez_Maravilloso paisaje
-5_Pablo López Iborra_Alucinantes colores
+6_Ismael Bertaïba Fernández_Menuda calidad de imágen
+7_Mario González Alvarado_La mejor foto que he visto
+8_Jesús Hernández Hernández_Sorprendente ángulo
+9_Pedro Zapata Jiménez_Maravilloso paisaje
+10_Pablo López Iborra_Alucinantes colores
