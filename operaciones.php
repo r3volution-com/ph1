@@ -219,7 +219,7 @@ session_start();
 							exit;
 						}
 					} else $foto = "";
-					$db->query("INSERT INTO usuarios (nombre, clave, email, sexo, fechaNacimiento, ciudad, idPais, foto) VALUES ('".$user."', '".sha1($pass)."', '".$email."', '".$sexo."', '".$fecha."', '".$ciudad."', ".$pais.", '".$foto."')");
+					$db->query("INSERT INTO usuarios (nombre, clave, email, sexo, fechaNacimiento, ciudad, idPais, foto) VALUES ('".$user."', '".sha1($pass)."', '".$email."', '".$sexo."', '".$fecha."', '".$ciudad."', ".$pais.", '".$user."_".$foto."')");
 					header("location: index.php");
 				} else header("location: index.php?error=bad_params");
 			}

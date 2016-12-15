@@ -25,7 +25,7 @@
 			$claves = preg_split("/[_]+/", $aux);
 			$auxarray[]=array("id" => $claves[0], "nombre" => $claves[1], "motivo" => trim($claves[2]));
 		}
-		$key=rand(0, count($fichero));
+		$key=rand(0, count($fichero)-1);
 		$id = $auxarray[$key]["id"];
 		$important_response = $db->query("SELECT titulo, descripcion, fecha, idAlbum, ruta, idPais FROM fotos WHERE id=$id");
 		if(!$important_response){
@@ -43,7 +43,7 @@
 	<h2 class="trending">Trending</h2>
 	<article>
 		<div class="image">
-			<a href="detalle.php?id=<?php echo $important_row["id"]; ?>"><img src="uploads/<?php echo $row["ruta"]; ?>" width="800" alt="Foto"/></a>
+			<a href="detalle.php?id=<?php echo $important_row["id"]; ?>"><img src="uploads/<?php echo $important_row["ruta"]; ?>" width="800" alt="Foto"/></a>
 		</div>
 		<div class="info">
 			<a href="detalle.php?id=<?php echo $important_row["id"]; ?>"><h3><?php echo $important_row["titulo"]; ?></h3></a>
