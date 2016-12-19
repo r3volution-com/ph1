@@ -171,3 +171,11 @@ main{
 		width: 90%;
 	}
 }
+@media(max-width: 1100px) {
+	.parte1 {
+		height:400px;
+	}
+	.parte2 {
+		height:400px;
+	}
+}
