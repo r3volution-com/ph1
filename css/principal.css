@@ -107,6 +107,68 @@ section h2{
 .foto2:hover{
 	background-color: grey;
 }
+.parte1{
+	width:49%;
+	display:inline-block;
+	vertical-align:top;
+	height:450px;
+}
+.parte2{
+	width:49%;
+	display:inline-block;
+	vertical-align:top;
+	height:450px;
+}
+.grafico{
+	margin-top:30px;
+}
+.algo{
+	display: inline-block;
+	vertical-align: top;
+	width: 70%;
+	min-width: 325px;
+	max-width:750px;
+	border: 1px solid #AAAAAA;
+	margin: 0.8%;
+	background-color: rgba(220, 220, 220, 0.7);
+}
+.algo .info {
+	text-align: left;
+	padding: 5px;
+}
+.algo .info p {
+	margin: 0px;
+	padding: 0px;
+}
+.algo .info h3 {
+	margin-top: 5px;
+}
+.algo .author{
+	margin-top: -5px !important;
+}
+.algo .author a {
+	background-color: white;
+	border-radius: 15px;
+	padding: 5px 5px 5px 0px !important;
+}
+.algo .author a:hover{
+	background-color: lightgrey;
+}
+.algo .author img {
+	width: 30px;
+	border: 1px solid white;
+	border-radius: 15px;
+	vertical-align: middle;
+	margin-right: 2px;
+	margin-top: -2px;
+}
+.algo .image img{
+	width: 100%;
+	max-width:750px;
+}
+main{
+	text-align:center;
+}
 @media(max-width: 1324px) {
 	article {
 		width: 90%;

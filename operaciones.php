@@ -445,10 +445,76 @@ session_start();
 
 		case "viewchart":
 			// Send the PNG header information. Replace for JPEG or GIF or whatever
-		    header ("Content-type: image/png");
-			$values = array(11,4,8,10,5,13,2);
-			$column_text = array("Lun", "Mar", "Mie", "Jue", "Vie", "Sab", "Dom");
-			generarGrafico($values, $column_text);
+			$response = $db->query("SELECT count(*) as cuantos, DAYOFWEEK(fechaSubida) as dia FROM fotos WHERE fechaSubida > DATE_SUB(NOW(), INTERVAL 7 DAY) GROUP BY DATE(fechaSubida)");
+			if(!$response){
+				die($db->error);
+			}
+			$values = array();
+			$column_text = array();
+			while($aux=$response->fetch_assoc()){
+				$values[] = $aux["cuantos"];
+				$column_text[] = $aux["dia"];
+			}
+			$newvalues = array();
+			$newcolum_text = array();
+			$dayofweek = $column_text[0];
+			for($i=0; $i<7; $i++){
+				switch($dayofweek){
+					case 1:
+						if (in_array($dayofweek, $column_text)){
+							$newvalues[] = $values[array_search($dayofweek, $column_text)];
+						} else $newvalues[] = 0;
+						$newcolumn_text[] = "D";
+					break;
+					
+					case 2:
+						if (in_array($dayofweek, $column_text)){
+							$newvalues[] = $values[array_search($dayofweek, $column_text)];
+						} else $newvalues[] = 0;
+						$newcolumn_text[] = "L";
+					break;
+					
+					case 3:
+						if (in_array($dayofweek, $column_text)){
+							$newvalues[] = $values[array_search($dayofweek, $column_text)];
+						} else $newvalues[] = 0;
+						$newcolumn_text[] = "M";
+					break;
+					
+					case 4:
+						if (in_array($dayofweek, $column_text)){
+							$newvalues[] = $values[array_search($dayofweek, $column_text)];
+						} else $newvalues[] = 0;
+						$newcolumn_text[] = "X";
+					break;
+					
+					case 5:
+						if (in_array($dayofweek, $column_text)){
+							$newvalues[] = $values[array_search($dayofweek, $column_text)];
+						} else $newvalues[] = 0;
+						$newcolumn_text[] = "J";
+					break;
+					
+					case 6:
+						if (in_array($dayofweek, $column_text)){
+							$newvalues[] = $values[array_search($dayofweek, $column_text)];
+						} else $newvalues[] = 0;
+						$newcolumn_text[] = "V";
+					break;
+					
+					case 7:
+						if (in_array($dayofweek, $column_text)){
+							$newvalues[] = $values[array_search($dayofweek, $column_text)];
+						} else $newvalues[] = 0;
+						$newcolumn_text[] = "S";
+					break;
+				}
+				$dayofweek++;
+				if ($dayofweek > 7) $dayofweek=1;
+			}
+			
+			header ("Content-type: image/png");
+			generarGrafico($newvalues, $newcolumn_text);
 			exit;
 		break;
 

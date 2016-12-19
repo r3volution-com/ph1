@@ -36,25 +36,28 @@
 	}
 	if(isset($important_row)){
 	?>
-<section>
-	<h2 class="trending">Trending</h2>
-	<article>
-		<div class="image">
-			<a href="detalle.php?id=<?php echo $important_row["id"]; ?>"><img src="uploads/<?php echo $important_row["ruta"]; ?>" width="800" alt="Foto"/></a>
-		</div>
-		<div class="info">
-			<a href="detalle.php?id=<?php echo $important_row["id"]; ?>"><h3><?php echo $important_row["titulo"]; ?></h3></a>
-			<p class="left"><?php echo $important_data["motivo"]?></p>
-			<p class="right author">
-				<b><?php echo $important_data["nombre"]; ?></b></a>
-			</p>
-			<p class="clear"></p>
-		</div>
-	</article>
-</section>
-<section>
-	<img src="operaciones.php?operacion=viewchart"/>
-</section>
+	<main>
+		<section class="parte1">
+			<h2 class="trending">Trending</h2>
+			<div class="algo">
+					<div class="image">
+						<a href="detalle.php?id=<?php echo $important_row["id"]; ?>"><img src="uploads/<?php echo $important_row["ruta"]; ?>" width="800" alt="Foto"/></a>
+					</div>
+					<div class="info">
+						<a href="detalle.php?id=<?php echo $important_row["id"]; ?>"><h3><?php echo $important_row["titulo"]; ?></h3></a>
+						<p class="left"><?php echo $important_data["motivo"]?></p>
+						<p class="right author">
+							<b><?php echo $important_data["nombre"]; ?></b></a>
+						</p>
+						<p class="clear"></p>
+					</div>
+			</div>
+		</section>
+		<section class="parte2">
+			<h2 class="historial">Últimas fotos subidas</h2>
+				<img class="grafico" src="operaciones.php?operacion=viewchart"/>
+		</section>
+	</main>
 <?php
 	}
 	?>

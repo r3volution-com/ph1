@@ -3,8 +3,8 @@ function generarGrafico($values, $column_text){
 	$columns  = count($values);
 
 	// Get the height and width of the final image
-    $width = 300;
-    $height = 200;
+    $width = 400;
+    $height = 300;
 
 	// Set the amount of space between each column
     $padding = 5;
@@ -34,14 +34,17 @@ function generarGrafico($values, $column_text){
         $y1 = $height-$column_height;
         $x2 = (($i+1)*$column_width)-$padding;
         $y2 = $height-$padding_bottom;
-        imagefilledrectangle($im,$x1,$y1,$x2,$y2,$gray);
 		$color_texto = imagecolorallocate($im, 0, 0, 255);
-		imagestring($im, 5, $x2 - $column_width/2 - 5, $y2 - 15 - 3, "".$values[$i], $color_texto);
 		imagestring($im, 5, $x2 - $column_width/2 - 10, $y2 - 1, "".$column_text[$i], $color_texto);
+		
 		// This part is just for 3D effect
-        imageline($im,$x1,$y1,$x1,$y2,$gray_lite);
-        imageline($im,$x1,$y2,$x2,$y2,$gray_lite);
-        imageline($im,$x2,$y1,$x2,$y2,$gray_dark);
+		if($values[$i]){
+			imagefilledrectangle($im,$x1,$y1,$x2,$y2,$gray);
+			imageline($im,$x1,$y1,$x1,$y2,$gray_lite);
+			imageline($im,$x1,$y2,$x2,$y2,$gray_lite);
+			imageline($im,$x2,$y1,$x2,$y2,$gray_dark);
+		}
+		imagestring($im, 5, $x2 - $column_width/2 - 5, $y2 - 15 - 3, "".$values[$i], $color_texto);
     }
 
     imagepng($im);

@@ -25,18 +25,8 @@
 .perfil2 .section-profile{
 	display: inline-block;
 	margin-left: 150px;
-}
-
-
-@media (max-width: 800px) {
-	.section-profile{
-	 width: 95%;
-	display: block;
-	margin: auto;
-	}
-	section{
-		margin-top:75px !important;
-	}
+	word-wrap: break-word;
+	vertical-align:top;
 }
 
 .image{
@@ -48,7 +38,7 @@
 	min-width:177px;
 }
 .info{
-	width: 68%;
+	width: 40%;
 	display: inline-block;
 	vertical-align:top;
 	margin-top: 5px;
@@ -139,4 +129,20 @@ article {
 }
 section{
 	position: relative;
+}
+
+@media (max-width: 995px) {
+	.perfil2 .section-profile{
+	width:67%;
+	margin-left:0px;
+	}
+	.cabecera2{
+	width:30%;
+	}
+	div.pais{
+		display:none;
+	}
+	div.fecha{
+		display: none;
+	}
 }
