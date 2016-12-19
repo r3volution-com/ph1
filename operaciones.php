@@ -446,8 +446,9 @@ session_start();
 		case "viewchart":
 			// Send the PNG header information. Replace for JPEG or GIF or whatever
 		    header ("Content-type: image/png");
-			$values = array(11,4,8,10,5,13,2,18);
-			generarGrafico($values);
+			$values = array(11,4,8,10,5,13,2);
+			$column_text = array("Lun", "Mar", "Mie", "Jue", "Vie", "Sab", "Dom");
+			generarGrafico($values, $column_text);
 			exit;
 		break;
 
