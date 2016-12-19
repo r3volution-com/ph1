@@ -1,4 +1,6 @@
 <?php
+	ini_set("display_errors", 1);
+	error_reporting(E_ALL);
 session_start();
 	include ("includes/config.php");
 	include ("includes/functions.php");
@@ -440,8 +442,10 @@ session_start();
 			}
 			header("location: index.php");
 		break;
-		
+
 		case "viewchart":
+			// Send the PNG header information. Replace for JPEG or GIF or whatever
+		    header ("Content-type: image/png");
 			$values = array(11,4,8,10,5,13,2,18);
 			generarGrafico($values);
 			exit;

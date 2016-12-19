@@ -1,4 +1,4 @@
-<?php 
+<?php
 function generarGrafico($values){
 	$columns  = count($values);
 
@@ -18,11 +18,11 @@ function generarGrafico($values){
     $gray_lite = imagecolorallocate ($im,0xee,0xee,0xee);
     $gray_dark = imagecolorallocate ($im,0x7f,0x7f,0x7f);
     $white     = imagecolorallocate ($im,0xff,0xff,0xff);
-    
+
 	// Fill in the background of the image
     imagefilledrectangle($im,0,0,$width,$height,$white);
     $maxv = 0;
-    
+
 	// Calculate the maximum value we are going to plot
     for($i=0;$i<$columns;$i++)$maxv = max($values[$i],$maxv);
 
@@ -34,57 +34,55 @@ function generarGrafico($values){
         $x2 = (($i+1)*$column_width)-$padding;
         $y2 = $height;
         imagefilledrectangle($im,$x1,$y1,$x2,$y2,$gray);
-        
+
 		// This part is just for 3D effect
         imageline($im,$x1,$y1,$x1,$y2,$gray_lite);
         imageline($im,$x1,$y2,$x2,$y2,$gray_lite);
         imageline($im,$x2,$y1,$x2,$y2,$gray_dark);
     }
 
-	// Send the PNG header information. Replace for JPEG or GIF or whatever
-    header ("Content-type: image/png");
     imagepng($im);
 }
 function sanear_string($string) {
 	    $string = trim($string);
 	    $string = str_replace(
-	        array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
+	        array('ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½'),
 	        array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
 	        $string
 	    );
 	    $string = str_replace(
-	        array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
+	        array('ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½'),
 	        array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
 	        $string
 	    );
 	    $string = str_replace(
-	        array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
+	        array('ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½'),
 	        array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
 	        $string
 	    );
 	    $string = str_replace(
-	        array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'),
+	        array('ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½'),
 	        array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'),
 	        $string
 	    );
 	    $string = str_replace(
-	        array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'),
+	        array('ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½', 'ï¿½'),
 	        array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
 	        $string
 	    );
 	    $string = str_replace(
-	        array('ñ', 'Ñ', 'ç', 'Ç'),
+	        array('ï¿½', 'ï¿½', 'ï¿½', 'ï¿½'),
 	        array('n', 'N', 'c', 'C',),
 	        $string
 	    );
-	    //Esta parte se encarga de eliminar cualquier caracter extraño
+	    //Esta parte se encarga de eliminar cualquier caracter extraï¿½o
 	    $string = str_replace(
-	        array("\\", "¨", "º", "-", "~",
+	        array("\\", "ï¿½", "ï¿½", "-", "~",
 	             "#", "@", "|", "!", "\"",
-	             "·", "$", "%", "&", "/",
-	             "(", ")", "?", "'", "¡",
-	             "¿", "[", "^", "<code>", "]",
-	             "+", "}", "{", "¨", "´",
+	             "ï¿½", "$", "%", "&", "/",
+	             "(", ")", "?", "'", "ï¿½",
+	             "ï¿½", "[", "^", "<code>", "]",
+	             "+", "}", "{", "ï¿½", "ï¿½",
 	             ">", "< ", ";", ",", ":",
 	             " "),
 	        '',
@@ -126,4 +124,3 @@ function sanear_string($string) {
 	    return $result;
 	}
 ?>
-

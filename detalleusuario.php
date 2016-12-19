@@ -1,5 +1,4 @@
 <?php
-	error_reporting(E_ALL);
 	$title = "Perfil";
 	$cssfile = "detalleusuario";
 	include("includes/head.php");
@@ -36,7 +35,7 @@
 			<img src="uploads/<?php echo ($foto) ? $foto : "user.png"; ?>" alt="Foto" style="max-height: 100px;"/>
 			<h2><?php echo $nombre; ?></h2>
 		</div>
-		
+
 		<div class="section-profile">
 			<p><b>Email: </b><?php echo $email; ?></p>
 			<p><b>Sexo: </b><?php echo $sexo; ?></p>
@@ -47,7 +46,7 @@
 		<div class="cabecera2">
 		<h1>Tus álbumes</h1>
 		</div>
-	
+
 <?php
 	if(!$myself){
 		if($response2->num_rows<=0) echo 'No tienes ningun album<br>';
