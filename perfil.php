@@ -50,6 +50,7 @@
 			<p><b>Sexo: </b><?php echo $sexo; ?></p>
 			<p><b>Fecha de nacimiento: </b><?php echo $fecha; ?></p>
 			<p><b>País: </b><?php echo $pais; ?></p>
+			<p><b>Ciudad: </b><?php echo $ciudad; ?></p>
 			<?php if ($myself){ ?>
 			<p><b><a class="boton2" href="modificaperfil.php">Modificar datos</a></b></p>
 			<p><b><a class="boton2" href="dardebaja.php">Darse de baja</a></b></p>

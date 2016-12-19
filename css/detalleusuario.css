@@ -1,0 +1,142 @@
+.cabecera{
+	width:30%;
+	display:inline-block;
+	vertical-align: top;
+}
+.cabecera2{
+	width:20%;
+	margin: auto;
+	margin-top: 50px;
+}
+.perfil2{
+	width:80%;
+	background-color: rgba(200, 200, 200, 0.5);
+	margin:auto;
+	text-align: left;
+	padding: 10px;
+}
+.perfil2 .cabecera h2{
+	display: inline-block;
+	vertical-align: top;
+}
+.perfil2 .cabecera img{
+	border-radius: 37px;
+}
+.perfil2 .section-profile{
+	display: inline-block;
+	margin-left: 150px;
+}
+
+
+@media (max-width: 800px) {
+	.section-profile{
+	 width: 95%;
+	display: block;
+	margin: auto;
+	}
+	section{
+		margin-top:75px !important;
+	}
+}
+
+.image{
+	margin-top: 5px;
+	margin-left: 5px;
+	width:30%;
+	display: inline-block;
+	min-height:100px;
+	min-width:177px;
+}
+.info{
+	width: 68%;
+	display: inline-block;
+	vertical-align:top;
+	margin-top: 5px;
+	text-align:right;
+	height:100%;
+}
+.image img{
+	width:100%;
+}
+div.titulo{
+	font-size:1.5em;
+	font-weight: bold;
+	text-align: left;
+	width:100%;
+	display: inline-block;
+	margin-left: 10px;
+}
+div.descripcion{
+	margin-top:20px;
+	margin-left: 5px;
+	font-size:1em;
+	text-align: left;
+	width:98%;
+	display: inline-block;
+	word-wrap: break-word;
+	max-height:40px;
+	overflow-y:hidden;
+}
+div.fecha{
+	font-weight: bold;
+	margin-right:10px;
+	margin-top:70px;
+	font-size:1em;
+	vertical-align:bottom;
+	width:20%;
+	display: inline-block;
+	position: absolute;
+	bottom:0px;
+	right: 0px;
+}
+div.pais{
+	font-weight: bold;
+	font-size:1em;
+	vertical-align:bottom;
+	width:20%;
+	display: inline-block;
+	position: absolute;
+	bottom:0px;
+	left: 31%;
+	margin-left: 10px;
+	text-align: left;
+}
+div.aux{
+	position: relative;
+}
+article {
+	margin: auto;
+	margin-top: 20px;
+	width: 90%;
+	background-color: rgba(225, 225, 225, 0.6);
+	text-align: left;
+}
+.foto{
+	font-weight: bold;
+	position: absolute;
+	right:10px;
+	top:10px;
+	display: block;
+	text-align: center;
+	background-color: rgba(200, 200, 200, 0.5);
+	padding:8px;
+}
+.foto:hover{
+	background-color: grey;
+}
+.foto2{
+	font-weight: bold;
+	position: absolute;
+	right:10px;
+	top:10px;
+	display: block;
+	text-align: center;
+	background-color: rgba(250, 250, 250, 0.8);
+	padding:8px;
+}
+.foto2:hover{
+	background-color: grey;
+}
+section{
+	position: relative;
+}
