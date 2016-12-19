@@ -52,6 +52,9 @@
 		</div>
 	</article>
 </section>
+<section>
+	<img src="operaciones.php?operacion=viewchart"/>
+</section>
 <?php
 	}
 	?>

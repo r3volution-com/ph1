@@ -1,92 +1,14 @@
 <?php
 session_start();
 	include ("includes/config.php");
+	include ("includes/functions.php");
 	$db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	$db->set_charset("utf8");
 	if(!isset($_GET["operacion"])){
 		header("location: index.php");
+		exit;
 	}
 	$opt=$_GET["operacion"];
-	function sanear_string($string) {
-	    $string = trim($string);
-	    $string = str_replace(
-	        array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
-	        array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
-	        $string
-	    );
-	    $string = str_replace(
-	        array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
-	        array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
-	        $string
-	    );
-	    $string = str_replace(
-	        array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
-	        array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
-	        $string
-	    );
-	    $string = str_replace(
-	        array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'),
-	        array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'),
-	        $string
-	    );
-	    $string = str_replace(
-	        array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'),
-	        array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
-	        $string
-	    );
-	    $string = str_replace(
-	        array('ñ', 'Ñ', 'ç', 'Ç'),
-	        array('n', 'N', 'c', 'C',),
-	        $string
-	    );
-	    //Esta parte se encarga de eliminar cualquier caracter extraño
-	    $string = str_replace(
-	        array("\\", "¨", "º", "-", "~",
-	             "#", "@", "|", "!", "\"",
-	             "·", "$", "%", "&", "/",
-	             "(", ")", "?", "'", "¡",
-	             "¿", "[", "^", "<code>", "]",
-	             "+", "}", "{", "¨", "´",
-	             ">", "< ", ";", ",", ":",
-	             " "),
-	        '',
-	        $string
-	    );
-	    return $string;
-	}
-	function createThumbnail($image_name, $new_width, $new_height, $uploadDir){
-	    $path = $uploadDir . '/' . $image_name;
-	    $mime = getimagesize($path);
-	    if($mime['mime']=='image/png'){ $src_img = imagecreatefrompng($path); }
-	    if($mime['mime']=='image/jpg'){ $src_img = imagecreatefromjpeg($path); }
-	    if($mime['mime']=='image/jpeg'){ $src_img = imagecreatefromjpeg($path); }
-	    if($mime['mime']=='image/pjpeg'){ $src_img = imagecreatefromjpeg($path); }
-	    $old_x          =   imageSX($src_img);
-	    $old_y          =   imageSY($src_img);
-	    if($old_x > $old_y) {
-	        $thumb_w    =   $new_width;
-	        $thumb_h    =   $old_y*($new_height/$old_x);
-	    }
-	    if($old_x < $old_y) {
-	        $thumb_w    =   $old_x*($new_width/$old_y);
-	        $thumb_h    =   $new_height;
-	    }
-	    if($old_x == $old_y) {
-	        $thumb_w    =   $new_width;
-	        $thumb_h    =   $new_height;
-	    }
-	    $dst_img        =   ImageCreateTrueColor($thumb_w,$thumb_h);
-	    imagecopyresampled($dst_img,$src_img,0,0,0,0,$thumb_w,$thumb_h,$old_x,$old_y);
-	    // New save location
-	    $new_thumb_loc = $uploadDir . "thumb_".$image_name;
-	    if($mime['mime']=='image/png'){ $result = imagepng($dst_img,$new_thumb_loc,8); }
-	    if($mime['mime']=='image/jpg'){ $result = imagejpeg($dst_img,$new_thumb_loc,80); }
-	    if($mime['mime']=='image/jpeg'){ $result = imagejpeg($dst_img,$new_thumb_loc,80); }
-	    if($mime['mime']=='image/pjpeg'){ $result = imagejpeg($dst_img,$new_thumb_loc,80); }
-	    imagedestroy($dst_img);
-	    imagedestroy($src_img);
-	    return $result;
-	}
 	switch($opt){
 		case "login":
 			if(isset($_POST)){
@@ -517,6 +439,12 @@ session_start();
 				} else die("ERROR al dar de baja ".$db->error);
 			}
 			header("location: index.php");
+		break;
+		
+		case "viewchart":
+			$values = array(11,4,8,10,5,13,2,18);
+			generarGrafico($values);
+			exit;
 		break;
 
 		default:
