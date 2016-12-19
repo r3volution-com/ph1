@@ -143,9 +143,6 @@ section h2{
 .algo .info h3 {
 	margin-top: 5px;
 }
-.algo .author{
-	margin-top: -5px !important;
-}
 .algo .author a {
 	background-color: white;
 	border-radius: 15px;
