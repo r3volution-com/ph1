@@ -1,21 +1,19 @@
 .image{
 	margin-top: 5px;
-	margin-left: 5px;
-	width:30%;
 	display: inline-block;
-	min-height:100px;
-	min-width:177px;
+	width: 30%;
+	max-width:235px;
 }
 .info{
 	width: 68%;
 	display: inline-block;
 	vertical-align:top;
 	margin-top: 5px;
-	text-align:right;
 	height:100%;
+	margin-left: 5px;
 }
 .image img{
-	width:100%;
+	width: 100%;
 }
 div.titulo{
 	font-size:1.5em;
@@ -23,14 +21,12 @@ div.titulo{
 	text-align: left;
 	width:100%;
 	display: inline-block;
-	margin-left: 10px;
 }
 div.descripcion{
 	margin-top:20px;
-	margin-left: 5px;
 	font-size:1em;
 	text-align: left;
-	width:98%;
+	width:95%;
 	display: inline-block;
 	word-wrap: break-word;
 	max-height:40px;
@@ -42,7 +38,6 @@ div.fecha{
 	margin-top:70px;
 	font-size:1em;
 	vertical-align:bottom;
-	width:20%;
 	display: inline-block;
 	position: absolute;
 	bottom:0px;
@@ -52,11 +47,10 @@ div.pais{
 	font-weight: bold;
 	font-size:1em;
 	vertical-align:bottom;
-	width:20%;
 	display: inline-block;
 	position: absolute;
 	bottom:0px;
-	left: 31%;
+	left: 235px;
 	margin-left: 10px;
 	text-align: left;
 }
@@ -99,7 +93,7 @@ article {
 section{
 	position: relative;
 }
-@media (max-width: 840px) {
+@media (max-width: 1110px) {
 	section{
 		margin-top:75px !important;
 	}
@@ -110,7 +104,10 @@ section{
 		display:none !important;
 	}
 	div.pais{
-		display:none;
+		top: auto;
+		right: 3px;
+		left: auto;
+		bottom: 3px;
 	}
 	.info{
 		width:61%;
