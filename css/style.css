@@ -4,7 +4,7 @@ html, body{
 	padding: 0px;
 }
 html{
-	position: relative;	
+	position: relative;
 	min-height: 100%;
 }
 body{
@@ -61,7 +61,7 @@ nav input[type="text"] {
 	padding: 3px;
 }
 nav .search-icon {
-	position: relative; 
+	position: relative;
 	left: -25px;
 	top: 8px;
 	cursor: pointer;
@@ -152,6 +152,6 @@ footer {
 		width: 100px;
 	}
 	section{
-		margin-top:75px !important;
+		/*margin-top:75px !important;*/
 	}
 }

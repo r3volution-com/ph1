@@ -171,13 +171,24 @@ main{
 		width: 90%;
 	}
 }
-@media(max-width: 1100px) {
+@media(max-width: 1150px) {
 	.parte1 {
 		height:400px;
 		margin-top:70px;
 	}
 	.parte2 {
 		height:400px;
-		margin-top:70px;
+		margin-top:50px;
+	}
+	.grafico {
+		margin-top: 5px;
+	}
+}
+@media (max-width: 970px){
+	.parte1{
+		height: 360px;
+	}
+	.grafico {
+		margin-top: 0px;
 	}
 }
