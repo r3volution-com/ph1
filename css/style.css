@@ -8,7 +8,7 @@ html{
 	min-height: 100%;
 }
 body{
-	font-family: Arial, Helvetica;
+	font-family: 'Roboto', sans-serif;
 	background-color: #272D4E;
 	margin: 0 0 45px 0;
 }

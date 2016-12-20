@@ -16,4 +16,5 @@ $db->set_charset("utf8");
 		<link href="css/style-accesible.css" rel="alternate stylesheet" type="text/css" title="Accesible"/>
 		<link href="css/<?php echo $cssfile; ?>.css" rel="stylesheet" type="text/css" media="screen"/>
 		<link href="css/<?php echo $cssfile; ?>-print.css" rel="stylesheet" type="text/css" media="print"/>
+		<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 	</head>
