@@ -1,6 +1,6 @@
 <?php
 	$title = "Ver álbum";
-	$cssfile = "principal";
+	$cssfile = "veralbum";
 	include("includes/head.php");
 	if(isset($_SESSION["remember"])==false){
 		header("location: index.php");

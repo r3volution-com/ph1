@@ -1,0 +1,111 @@
+article {
+	display: inline-block;
+	vertical-align: top;
+	width: 48%;
+	min-width: 325px;
+	max-width:750px;
+	border: 1px solid #AAAAAA;
+	margin: 0.8%;
+	background-color: rgba(220, 220, 220, 0.7);
+}
+article .info {
+	text-align: left;
+	padding: 5px;
+}
+article .info p {
+	margin: 0px;
+	padding: 0px;
+}
+article .info h3 {
+	margin-top: 5px;
+}
+article .author{
+	margin-top: -5px !important;
+}
+article .author a {
+	background-color: white;
+	border-radius: 15px;
+	padding: 5px 5px 5px 0px !important;
+}
+article .author a:hover{
+	background-color: lightgrey;
+}
+article .author img {
+	width: 30px;
+	border: 1px solid white;
+	border-radius: 15px;
+	vertical-align: middle;
+	margin-right: 2px;
+	margin-top: -2px;
+}
+article .image img{
+	width: 100%;
+	max-width:750px;
+}
+section{
+	position: relative;
+	margin-top:7%;
+	padding: 5px;
+	padding-bottom:3px;
+}
+section h2{
+	width:50%;
+	margin: auto;
+	padding: 20px;
+	display: inline-block;
+}
+.h2{
+	width:50%;
+	margin: auto;
+	padding: 10px;
+	display: inline-block;
+}
+.foto2{
+	font-weight: bold;
+	position: absolute;
+	right:10px;
+	top:10px;
+	display: block;
+	text-align: center;
+	background-color: rgba(200, 200, 200, 0.5);
+	padding:8px;
+}
+.foto3{
+	font-weight: bold;
+	position: absolute;
+	left:10px;
+	top:10px;
+	display: block;
+	text-align: center;
+	background-color: rgba(200, 200, 200, 0.5);
+	padding:8px;
+}
+.foto2:hover{
+	background-color: grey;
+}
+@media(max-width: 1324px) {
+	article {
+		width: 90%;
+	}
+}
+@media(max-width: 1150px) {
+	.parte1 {
+		height:400px;
+		margin-top:70px;
+	}
+	.parte2 {
+		height:400px;
+		margin-top:50px;
+	}
+	.grafico {
+		margin-top: 5px;
+	}
+}
+@media (max-width: 970px){
+	.parte1{
+		height: 360px;
+	}
+	.grafico {
+		margin-top: 0px;
+	}
+}
