@@ -1,6 +1,6 @@
 <?php
 	$title = "Resultados de la busqueda";
-	$cssfile = "principal";
+	$cssfile = "resultadobusqueda";
 	include("includes/head.php");
 	include("includes/header.php");
 	if(isset($_GET["search"])) $search = $_GET["search"];

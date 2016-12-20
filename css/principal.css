@@ -57,21 +57,7 @@ section{
 	position: relative;
 	margin-top:4%;
 }
-section.results{
-	margin-top: 20px;
-}
-section.search input[type="text"]{
-	padding: 10px 5px;
-	margin: 5px;
-	font-size: 14px;
-	border: 0px;
-}
-section.search input[type="submit"]{
-	padding: 10px;
-	font-size: 14px;
-	background-color: lightgrey;
-	border: 0px;
-}
+
 section h2{
 	width:50%;
 	margin: auto;
