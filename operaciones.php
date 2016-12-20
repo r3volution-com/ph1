@@ -256,8 +256,8 @@ session_start();
 							header("location: modificaperfil.php?error=file_not_found");
 							exit;
 						}
-						createThumbnail($row["nombre"]."_".$foto, 50, 50, UPLOAD_DIR);
 						if ($row["foto"]) unlink($row["foto"]);
+						createThumbnail($row["nombre"]."_".$foto, 50, 50, UPLOAD_DIR);
 						$_SESSION["remember"]["foto"] = $row["nombre"]."_".$foto;
 						$extra[] = "foto='".$row["nombre"]."_".$foto."'";
 					}
@@ -392,7 +392,7 @@ session_start();
 							header("location: subefoto.php?error=file_not_found");
 							exit;
 						}
-						createThumbnail($foto, 520, 350, UPLOAD_DIR, "bigthumb_");
+						createThumbnail($foto, 520, 450, UPLOAD_DIR, "bigthumb_");
 						createThumbnail($foto, 235, 210, UPLOAD_DIR, "tinythumb_");
 					}
 					$db->query("INSERT INTO fotos (titulo, descripcion, idAlbum, fecha, idPais, ruta) VALUES ('".$titulo."', '".$descripcion."', ".$album.", '".$fecha."', ".$pais.", '".$foto."')");

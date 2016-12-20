@@ -3,6 +3,7 @@
 	display: inline-block;
 	width: 30%;
 	max-width:235px;
+	margin-left: 5px;
 }
 .info{
 	width: 68%;
@@ -50,7 +51,7 @@ div.pais{
 	display: inline-block;
 	position: absolute;
 	bottom:0px;
-	left: 235px;
+	left: 240px;
 	margin-left: 10px;
 	text-align: left;
 }

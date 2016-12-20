@@ -1,9 +1,9 @@
 article {
 	display: inline-block;
 	vertical-align: top;
-	width: 48%;
+	width: 31%;
 	min-width: 325px;
-	max-width:750px;
+	max-width:520px;
 	border: 1px solid #AAAAAA;
 	margin: 0.8%;
 	background-color: rgba(220, 220, 220, 0.7);
@@ -49,16 +49,10 @@ section{
 	padding-bottom:3px;
 }
 section h2{
-	width:50%;
+	/*width:50%;*/
 	margin: auto;
 	padding: 20px;
-	display: inline-block;
-}
-.h2{
-	width:50%;
-	margin: auto;
-	padding: 10px;
-	display: inline-block;
+	display: block;
 }
 .foto2{
 	font-weight: bold;
@@ -85,7 +79,7 @@ section h2{
 }
 @media(max-width: 1324px) {
 	article {
-		width: 90%;
+		width: 45%;
 	}
 }
 @media(max-width: 1150px) {

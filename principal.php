@@ -34,9 +34,10 @@
 			$important_data = $auxarray;
 		}
 	}
-	if(isset($important_row)){
 	?>
 	<main>
+		<?php
+		if(isset($important_row)){ ?>
 		<section class="parte1">
 			<h2 class="trending">Trending</h2>
 			<div class="algo">
@@ -53,14 +54,12 @@
 					</div>
 			</div>
 		</section>
+		<?php } ?>
 		<section class="parte2">
 			<h2 class="historial">Últimas fotos subidas</h2>
 				<img class="grafico" src="operaciones.php?operacion=viewchart"/>
 		</section>
 	</main>
-<?php
-	}
-	?>
 <section class="section2">
 <?php
 	if($response->num_rows<=0) echo "No hay fotos";
