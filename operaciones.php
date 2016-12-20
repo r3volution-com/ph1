@@ -137,11 +137,11 @@ session_start();
 							header("location: index.php?q=registro&error=file_not_found");
 							exit;
 						}
-						createThumbnail($user."_".$foto, 50, 50, UPLOAD_DIR);
 						if (!file_exists($rutafoto)){
 							header("location: index.php?q=registro&error=file_not_found");
 							exit;
 						}
+						createThumbnail($user."_".$foto, 50, 50, UPLOAD_DIR);
 					} else $foto = "";
 					$db->query("INSERT INTO usuarios (nombre, clave, email, sexo, fechaNacimiento, ciudad, idPais, foto) VALUES ('".$user."', '".sha1($pass)."', '".$email."', '".$sexo."', '".$fecha."', '".$ciudad."', ".$pais.", '".$user."_".$foto."')");
 					header("location: index.php");
@@ -252,12 +252,11 @@ session_start();
 							header("location: modificaperfil.php?error=file_not_found");
 							exit;
 						}
-						createThumbnail($row["nombre"]."_".$foto, 50, 50, UPLOAD_DIR);
 						if (!file_exists($rutafoto)){
 							header("location: modificaperfil.php?error=file_not_found");
 							exit;
 						}
-
+						createThumbnail($row["nombre"]."_".$foto, 50, 50, UPLOAD_DIR);
 						if ($row["foto"]) unlink($row["foto"]);
 						$_SESSION["remember"]["foto"] = $row["nombre"]."_".$foto;
 						$extra[] = "foto='".$row["nombre"]."_".$foto."'";
@@ -374,7 +373,7 @@ session_start();
 							exit;
 						}
 						$tamano = getimagesize($_FILES['foto']['tmp_name']);
-						if (($tamano[0] > 1125 || $tamano[0] < 500) || ($tamano[1] > 1125 || $tamano[1] < 500)){
+						if (($tamano[0] > 1125 || $tamano[0] < 300) || ($tamano[1] > 1125 || $tamano[1] < 300)){
 							header("location: subefoto.php?error=wrong_photo_size");
 							exit;
 						}
@@ -393,6 +392,8 @@ session_start();
 							header("location: subefoto.php?error=file_not_found");
 							exit;
 						}
+						createThumbnail($foto, 520, 350, UPLOAD_DIR, "bigthumb_");
+						createThumbnail($foto, 235, 210, UPLOAD_DIR, "tinythumb_");
 					}
 					$db->query("INSERT INTO fotos (titulo, descripcion, idAlbum, fecha, idPais, ruta) VALUES ('".$titulo."', '".$descripcion."', ".$album.", '".$fecha."', ".$pais.", '".$foto."')");
 					header("location: veralbum.php?id=".$album);
@@ -466,42 +467,42 @@ session_start();
 						} else $newvalues[] = 0;
 						$newcolumn_text[] = "D";
 					break;
-					
+
 					case 2:
 						if (in_array($dayofweek, $column_text)){
 							$newvalues[] = $values[array_search($dayofweek, $column_text)];
 						} else $newvalues[] = 0;
 						$newcolumn_text[] = "L";
 					break;
-					
+
 					case 3:
 						if (in_array($dayofweek, $column_text)){
 							$newvalues[] = $values[array_search($dayofweek, $column_text)];
 						} else $newvalues[] = 0;
 						$newcolumn_text[] = "M";
 					break;
-					
+
 					case 4:
 						if (in_array($dayofweek, $column_text)){
 							$newvalues[] = $values[array_search($dayofweek, $column_text)];
 						} else $newvalues[] = 0;
 						$newcolumn_text[] = "X";
 					break;
-					
+
 					case 5:
 						if (in_array($dayofweek, $column_text)){
 							$newvalues[] = $values[array_search($dayofweek, $column_text)];
 						} else $newvalues[] = 0;
 						$newcolumn_text[] = "J";
 					break;
-					
+
 					case 6:
 						if (in_array($dayofweek, $column_text)){
 							$newvalues[] = $values[array_search($dayofweek, $column_text)];
 						} else $newvalues[] = 0;
 						$newcolumn_text[] = "V";
 					break;
-					
+
 					case 7:
 						if (in_array($dayofweek, $column_text)){
 							$newvalues[] = $values[array_search($dayofweek, $column_text)];
@@ -512,7 +513,7 @@ session_start();
 				$dayofweek++;
 				if ($dayofweek > 7) $dayofweek=1;
 			}
-			
+
 			header ("Content-type: image/png");
 			generarGrafico($newvalues, $newcolumn_text);
 			exit;

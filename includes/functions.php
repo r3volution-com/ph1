@@ -36,7 +36,7 @@ function generarGrafico($values, $column_text){
         $y2 = $height-$padding_bottom;
 		$color_texto = imagecolorallocate($im, 0, 0, 255);
 		imagestring($im, 5, $x2 - $column_width/2 - 10, $y2 - 1, "".$column_text[$i], $color_texto);
-		
+
 		// This part is just for 3D effect
 		if($values[$i]){
 			imagefilledrectangle($im,$x1,$y1,$x2,$y2,$gray);
@@ -96,7 +96,7 @@ function sanear_string($string) {
 	    );
 	    return $string;
 	}
-	function createThumbnail($image_name, $new_width, $new_height, $uploadDir){
+	function createThumbnail($image_name, $new_width, $new_height, $uploadDir, $prefix = "thumb_"){
 	    $path = $uploadDir . '/' . $image_name;
 	    $mime = getimagesize($path);
 	    if($mime['mime']=='image/png'){ $src_img = imagecreatefrompng($path); }
@@ -120,7 +120,7 @@ function sanear_string($string) {
 	    $dst_img        =   ImageCreateTrueColor($thumb_w,$thumb_h);
 	    imagecopyresampled($dst_img,$src_img,0,0,0,0,$thumb_w,$thumb_h,$old_x,$old_y);
 	    // New save location
-	    $new_thumb_loc = $uploadDir . "thumb_".$image_name;
+	    $new_thumb_loc = $uploadDir.$prefix.$image_name;
 	    if($mime['mime']=='image/png'){ $result = imagepng($dst_img,$new_thumb_loc,8); }
 	    if($mime['mime']=='image/jpg'){ $result = imagejpeg($dst_img,$new_thumb_loc,80); }
 	    if($mime['mime']=='image/jpeg'){ $result = imagejpeg($dst_img,$new_thumb_loc,80); }

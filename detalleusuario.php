@@ -56,7 +56,7 @@
 		<article class="article">
 			<div class="aux">
 			<div class="image">
-				<a href="veralbum.php?id=<?php echo $row["id"]; ?>"><img src="uploads/<?php echo ($row["default_image"]) ? $row["default_image"] : "nofoto.png"; ?>" alt="Foto"/></a>
+				<a href="veralbum.php?id=<?php echo $row["id"]; ?>"><img src="uploads/tinythumb_<?php echo ($row["default_image"]) ? $row["default_image"] : "nofoto.png"; ?>" alt="Foto"/></a>
 			</div>
 			<div class="info">
 				<div class="titulo"><a href="veralbum.php?id=<?php echo $row["id"]; ?>"><?php echo $row["titulo"]; ?></a></div>
