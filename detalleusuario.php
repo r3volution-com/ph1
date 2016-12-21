@@ -22,8 +22,9 @@
 			$sexo = ($row["sexo"] == 0) ? "Hombre" : "Mujer";
 			$foto = $row["foto"];
 			$fecha = date("d/m/Y", strtotime($row["fechaNacimiento"]));
+			$idalbum = mysql_real_escape_string($_GET["id"]);
 			$response2 = $db->query("SELECT id, titulo, descripcion, fecha, (SELECT nombre FROM paises WHERE id=idPais) as nombrePais, (SELECT ruta from fotos WHERE idAlbum=albumes.id LIMIT 1) as default_image ".
-	"FROM albumes WHERE idUsuario=".$_SESSION["remember"]["id"]." ORDER BY fecha DESC LIMIT 5");
+	"FROM albumes WHERE idUsuario=".$idalbum." ORDER BY fecha DESC LIMIT 5");
 			$myself = false;
 		} else die ("<section>ERROR: id incorrecta ".$db->error."</section>");
 	}
