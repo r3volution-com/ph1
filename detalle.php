@@ -43,7 +43,7 @@
 				<p class="descripcion"><?php echo $descripcion;?></p>
 				<p><?php echo $fecha; ?> - <?php echo $pais; ?></p>
 				<p>Album: <a href="veralbum.php?id=<?php echo $idAlbum; ?>"><b><?php echo $tituloAlbum; ?></b></a></p>
-				<p class="right author"><a href="detalleusuario.php?id=<?php echo $autor; ?>">
+				<p class="right author"><a href="detalleusuario.php?id=<?php echo $id_autor; ?>">
 					<img src="uploads/<?php echo ($foto_autor) ? "thumb_".$foto_autor : "user.png"; ?>" alt="Perfil"/><b><?php echo $autor; ?></b></a>
 				</p>
 			</div>
