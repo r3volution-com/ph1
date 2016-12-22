@@ -80,7 +80,7 @@ nav .profile img {
 	height: 42px;
 	border: 2px solid black;
 	border-radius: 3px;
-margin: 2px;
+	margin: 2px;
 }
 nav .dropdown {
     position: relative;
@@ -147,6 +147,17 @@ footer {
   padding: 10px 0px 0px 10px;
   width:99%
 }
+
+.rss{
+	position:absolute;
+	right:25px;
+}
+
+.atom{
+	position:absolute;
+	right:5px;
+}
+
 @media (max-width: 800px) {
 	nav input[type="text"] {
 		width: 100px;
