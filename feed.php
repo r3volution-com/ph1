@@ -30,7 +30,7 @@ if(isset($_GET["type"])){
 		$rss_node->appendChild($xml->createElement("id", uuid("urn:uuid:")));
 		$rss_node->appendChild($xml->createElement("updated", gmdate(DATE_RFC3339, strtotime(date("D, d M Y H:i:s T", time())))));
 
-		$res = $db->query("SELECT *, (SELECT nombre from usuarios WHERE id=(SELECT idUsuario FROM albumes WHERE id=fotos.idAlbum)) as nombre, (SELECT email from usuarios WHERE id=(SELECT idUsuario FROM albumes WHERE id=fotos.idAlbum)) as email FROM fotos ORDER BY fechaSubida DESC LIMIT 10");
+		$res = $db->query("SELECT *, (SELECT nombre from usuarios WHERE id=(SELECT idUsuario FROM albumes WHERE id=fotos.idAlbum)) as nombre, (SELECT email from usuarios WHERE id=(SELECT idUsuario FROM albumes WHERE id=fotos.idAlbum)) as email FROM fotos ORDER BY fechaSubida DESC LIMIT 5");
 		if ($res){
 			while ($row = $res->fetch_assoc()){
 				$item_node = $rss_node->appendChild($xml->createElement("entry")); //create a new node called "item"
@@ -95,7 +95,7 @@ if(isset($_GET["type"])){
 		$title_node = $image_node->appendChild($xml->createElement("title", "WePic"));
 		$url_node = $image_node->appendChild($xml->createElement("url", "http://localhost/images/logo.png"));
 		$lnk_node = $image_node->appendChild($xml->createElement("link", "http://localhost"));
-		$res = $db->query("SELECT * FROM fotos ORDER BY fechaSubida DESC LIMIT 10");
+		$res = $db->query("SELECT * FROM fotos ORDER BY fechaSubida DESC LIMIT 5");
 		if ($res){
 			while ($row = $res->fetch_assoc()){
 				$item_node = $channel_node->appendChild($xml->createElement("item")); //create a new node called "item"
@@ -115,7 +115,7 @@ if(isset($_GET["type"])){
 			    $description_node->appendChild($description_contents);
 
 			    //Published date
-			    $date_rfc = gmdate(DATE_RFC2822, strtotime($row["fecha"]));
+			    $date_rfc = gmdate(DATE_RFC2822, strtotime($row["fechaSubida"]));
 			    $pub_date = $xml->createElement("pubDate", $date_rfc);
 			    $pub_date_node = $item_node->appendChild($pub_date);
 			}
