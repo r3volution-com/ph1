@@ -20,7 +20,7 @@
 				if (!$res2 || ($res2 && $res2->num_rows <= 0)) $error = true;
 				$row2 = $res2->fetch_assoc();
 				$total = $row2["cuantos"];
-				$tupla = 10;
+				$tupla = 3;
 				$npaginas = $total/$tupla;
 				if (($total % $tupla) > 0) $npaginas = $npaginas +1;
 				if ($total > $tupla) $extra = "LIMIT ".(($pg-1)*$tupla).", ".$tupla;
@@ -67,7 +67,7 @@
 			for ($i = 1; $i <= $npaginas; $i++) {
 				if ($i == $pg) echo $i;
 				else echo "<a href='veralbum.php?id=".$_GET["id"]."&pg=".$i."'>".$i."</a>";
-				if ($i < $npaginas-1) echo " - ";
+				if ($i < $npaginas) echo " - ";
 			}
 			echo "</section>";
 		}
